@@ -1,3 +1,3 @@
-export const PROMPT = ""
+export const PROMPT = "";
 
-export const DESCRIPTION = ""
+export const DESCRIPTION = "";
