@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "target": "ES2021", // Node.js 14
+      "strict": true,
+      "noEmitOnError": true,
+      "forceConsistentCasingInFileNames": true,
+      "skipLibCheck": true,
+      "module": "nodenext",
+      "moduleResolution": "nodenext",
+      "jsx": "react",
+      "esModuleInterop": true,
+      "noEmit": true,
+      "allowImportingTsExtensions": true,
+      "outDir": "dist"
+    },
+    "include": ["src"]
+  }

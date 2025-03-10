@@ -1,0 +1,68 @@
+{
+  "name": "@anthropic-ai/claude-code",
+  "version": "0.2.8",
+  "bin": {
+    "claude": "cli.mjs"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "type": "module",
+  "author": "Boris Cherny <boris@anthropic.com>",
+  "license": "SEE LICENSE IN README.md",
+  "description": "Use Claude, Anthropic's AI assistant, right from your terminal. Claude can understand your codebase, edit files, run terminal commands, and handle entire workflows for you.",
+  "homepage": "https://github.com/anthropics/claude-code",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anthropics/claude-cli-internal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anthropics/claude-code/issues"
+  },
+  "optionalDependencies": {
+    "@img/sharp-darwin-arm64": "^0.33.5",
+    "@img/sharp-linux-arm": "^0.33.5",
+    "@img/sharp-linux-x64": "^0.33.5",
+    "@img/sharp-win32-x64": "^0.33.5"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/diff": "^7.0.1",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "@types/semver": "^7.5.8",
+    "@types/shell-quote": "^1.7.5",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@anthropic-ai/bedrock-sdk": "^0.12.4",
+    "@anthropic-ai/sdk": "0.37.0",
+    "@anthropic-ai/vertex-sdk": "^0.7.0",
+    "@commander-js/extra-typings": "^13.1.0",
+    "@inkjs/ui": "^2.0.0",
+    "@modelcontextprotocol/sdk": "^1.6.1",
+    "@sentry/node": "^9.5.0",
+    "@statsig/js-client": "^3.14.1",
+    "cli-highlight": "^2.1.11",
+    "cli-table3": "^0.6.5",
+    "debug": "^4.4.0",
+    "diff": "^7.0.0",
+    "dotenv": "^16.4.7",
+    "env-paths": "^3.0.0",
+    "glob": "^11.0.1",
+    "ink": "github:bcherny/ink",
+    "ink-link": "^4.1.0",
+    "is-in-ci": "^1.0.0",
+    "lodash-es": "^4.17.21",
+    "lru-cache": "^11.0.2",
+    "marked": "^15.0.7",
+    "react": "^18.3.1",
+    "semver": "^7.7.1",
+    "sharp": "^0.33.5",
+    "shell-quote": "^1.8.2",
+    "spawn-rx": "^5.1.2",
+    "zod": "^3.24.2",
+    "zod-to-json-schema": "^3.24.3"
+  }
+}
