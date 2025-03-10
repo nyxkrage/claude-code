@@ -137,7 +137,7 @@ export class PersistentShell {
 				});
 			}
 
-			childPids.forEach((pid) => {
+			for (const pid of childPids) {
 				try {
 					process.kill(Number(pid), "SIGTERM");
 				} catch (error) {
@@ -146,7 +146,7 @@ export class PersistentShell {
 						error: (error as Error).message.substring(0, 10),
 					});
 				}
-			});
+			};
 		} catch {
 			// pgrep returns non-zero when no processes are found - this is expected
 		} finally {

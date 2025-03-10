@@ -773,50 +773,48 @@ export function normalizeMessagesForAPI(
 	messages: Message[],
 ): (UserMessage | AssistantMessage)[] {
 	const result: (UserMessage | AssistantMessage)[] = [];
-	messages
-		.filter((_) => _.type !== "progress")
-		.forEach((message) => {
-			switch (message.type) {
-				case "user": {
-					// If the current message is not a tool result, add it to the result
-					if (
-						!Array.isArray(message.message.content) ||
-						message.message.content[0]?.type !== "tool_result"
-					) {
-						result.push(message);
-						return;
-					}
-
-					// If the last message is not a tool result, add it to the result
-					const lastMessage = last(result);
-					if (
-						!lastMessage ||
-						lastMessage?.type === "assistant" ||
-						!Array.isArray(lastMessage.message.content) ||
-						lastMessage.message.content[0]?.type !== "tool_result"
-					) {
-						result.push(message);
-						return;
-					}
-
-					// Otherwise, merge the current message with the last message
-					result[result.indexOf(lastMessage)] = {
-						...lastMessage,
-						message: {
-							...lastMessage.message,
-							content: [
-								...lastMessage.message.content,
-								...message.message.content,
-							],
-						},
-					};
-					return;
-				}
-				case "assistant":
+	for (const message of messages.filter((_) => _.type !== "progress")) {
+		switch (message.type) {
+			case "user": {
+				// If the current message is not a tool result, add it to the result
+				if (
+					!Array.isArray(message.message.content) ||
+					message.message.content[0]?.type !== "tool_result"
+				) {
 					result.push(message);
-					return;
+					continue;
+				}
+
+				// If the last message is not a tool result, add it to the result
+				const lastMessage = last(result);
+				if (
+					!lastMessage ||
+					lastMessage?.type === "assistant" ||
+					!Array.isArray(lastMessage.message.content) ||
+					lastMessage.message.content[0]?.type !== "tool_result"
+				) {
+					result.push(message);
+					continue;
+				}
+
+				// Otherwise, merge the current message with the last message
+				result[result.indexOf(lastMessage)] = {
+					...lastMessage,
+					message: {
+						...lastMessage.message,
+						content: [
+							...lastMessage.message.content,
+							...message.message.content,
+						],
+					},
+				};
+				break;
 			}
-		});
+			case "assistant":
+				result.push(message);
+				break;
+		}
+	}
 	return result;
 }
 

@@ -386,9 +386,9 @@ export const TEST_MCPRC_CONFIG_FOR_TESTING: Record<string, McpServerConfig> =
 
 export function clearMcprcConfigForTesting(): void {
 	if (process.env.NODE_ENV === "test") {
-		Object.keys(TEST_MCPRC_CONFIG_FOR_TESTING).forEach((key) => {
+		for (const key of Object.keys(TEST_MCPRC_CONFIG_FOR_TESTING)) {
 			delete TEST_MCPRC_CONFIG_FOR_TESTING[key];
-		});
+		};
 	}
 }
 
