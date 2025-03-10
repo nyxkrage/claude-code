@@ -270,11 +270,11 @@ export async function processUserInput(
 		// For invalid commands, preserve both the user message and error
 		if (
 			newMessages.length === 2 &&
-			newMessages[0]!.type === "user" &&
-			newMessages[1]!.type === "assistant" &&
-			typeof newMessages[1]!.message.content === "string" &&
+			newMessages[0].type === "user" &&
+			newMessages[1].type === "assistant" &&
+			typeof newMessages[1].message.content === "string" &&
 			// @ts-expect-error: TODO: this is probably a bug
-			newMessages[1]!.message.content.startsWith("Unknown command:")
+			newMessages[1].message.content.startsWith("Unknown command:")
 		) {
 			logEvent("tengu_input_slash_invalid", { input });
 			return newMessages;
@@ -521,14 +521,14 @@ export function isNotEmptyMessage(message: Message): boolean {
 		return true;
 	}
 
-	if (message.message.content[0]!.type !== "text") {
+	if (message.message.content[0].type !== "text") {
 		return true;
 	}
 
 	return (
-		message.message.content[0]!.text.trim().length > 0 &&
-		message.message.content[0]!.text !== NO_CONTENT_MESSAGE &&
-		message.message.content[0]!.text !== INTERRUPT_MESSAGE_FOR_TOOL_USE
+		message.message.content[0].text.trim().length > 0 &&
+		message.message.content[0].text !== NO_CONTENT_MESSAGE &&
+		message.message.content[0].text !== INTERRUPT_MESSAGE_FOR_TOOL_USE
 	);
 }
 
@@ -684,8 +684,8 @@ const getToolResultIDs = memoize(
 				_.type === "user" && _.message.content[0]?.type === "tool_result"
 					? [
 							[
-								_.message.content[0]!.tool_use_id,
-								_.message.content[0]!.is_error ?? false,
+								_.message.content[0].tool_use_id,
+								_.message.content[0].is_error ?? false,
 							],
 						]
 					: ([] as [string, boolean][]),
@@ -753,7 +753,7 @@ export function getInProgressToolUseIDs(
 
 				return false;
 			}) as AssistantMessage[]
-		).map((_) => (_.message.content[0]! as ToolUseBlockParam).id),
+		).map((_) => (_.message.content[0] as ToolUseBlockParam).id),
 	);
 }
 

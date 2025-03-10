@@ -114,7 +114,7 @@ export const GrepTool = {
 		const stats = await Promise.all(results.map((_) => stat(_)));
 		const matches = results
 			// Sort by modification time
-			.map((_, i) => [_, stats[i]!] as const)
+			.map((_, i) => [_, stats[i]] as const)
 			.sort((a, b) => {
 				if (process.env.NODE_ENV === "test") {
 					// In tests, we always want to sort by filename, so that results are deterministic

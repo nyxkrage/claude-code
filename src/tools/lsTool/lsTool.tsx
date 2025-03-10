@@ -140,6 +140,8 @@ function listDirectory(
 			return results;
 		}
 
+		
+		// biome-ignore lint/style/noNonNullAssertion: while condition guarantees non-null
 		const path = queue.shift()!;
 		if (skip(path)) {
 			continue;
@@ -193,7 +195,7 @@ function createFileTree(sortedPaths: string[]): TreeNode[] {
 		let currentPath = "";
 
 		for (let i = 0; i < parts.length; i++) {
-			const part = parts[i]!;
+			const part = parts[i];
 			if (!part) {
 				// directories have trailing slashes
 				continue;

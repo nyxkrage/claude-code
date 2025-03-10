@@ -413,7 +413,7 @@ async function* checkPermissionsAndCallTool(
 		yield createUserMessage([
 			{
 				type: "tool_result",
-				content: isValidCall!.message,
+				content: isValidCall.message,
 				is_error: true,
 				tool_use_id: toolUseID,
 			},

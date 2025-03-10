@@ -39,6 +39,7 @@ export async function* all<A>(
 
 	// Start initial batch up to concurrency cap
 	while (promises.size < concurrencyCap && waiting.length > 0) {
+		// biome-ignore lint/style/noNonNullAssertion: while condition checks for waiting to be non-empty
 		const gen = waiting.shift()!;
 		promises.add(next(gen));
 	}
@@ -55,6 +56,7 @@ export async function* all<A>(
 			}
 		} else if (waiting.length > 0) {
 			// Start a new generator when one finishes
+			// biome-ignore lint/style/noNonNullAssertion: branch requires waiting to be non-empty
 			const nextGen = waiting.shift()!;
 			promises.add(next(nextGen));
 		}

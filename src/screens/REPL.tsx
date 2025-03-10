@@ -248,7 +248,7 @@ export function REPL({
 
 			// The last message is an assistant message if the user input was a bash command,
 			// or if the user input was an invalid slash command.
-			const lastMessage = newMessages[newMessages.length - 1]!;
+			const lastMessage = newMessages[newMessages.length - 1];
 			if (lastMessage.type === "assistant") {
 				setAbortController(null);
 				setIsLoading(false);
@@ -311,7 +311,7 @@ export function REPL({
 
 		// The last message is an assistant message if the user input was a bash command,
 		// or if the user input was an invalid slash command.
-		const lastMessage = newMessages[newMessages.length - 1]!;
+		const lastMessage = newMessages[newMessages.length - 1];
 
 		// Update terminal title based on user message
 		if (
@@ -406,7 +406,7 @@ export function REPL({
 		() =>
 			new Set(
 				getErroredToolUseMessages(normalizedMessages).map(
-					(_) => (_.message.content[0]! as ToolUseBlockParam).id,
+					(_) => (_.message.content[0] as ToolUseBlockParam).id,
 				),
 			),
 		[normalizedMessages],
@@ -458,7 +458,7 @@ export function REPL({
 									inProgressToolUseIDs={new Set()}
 									unresolvedToolUseIDs={
 										new Set([
-											(_.content.message.content[0]! as ToolUseBlockParam).id,
+											(_.content.message.content[0] as ToolUseBlockParam).id,
 										])
 									}
 									shouldAnimate={false}

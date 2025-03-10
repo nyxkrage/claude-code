@@ -271,7 +271,7 @@ export class MeasuredText {
 
 		const lines = wrappedText.split("\n");
 		for (let i = 0; i < lines.length; i++) {
-			const text = lines[i]!;
+			const text = lines[i];
 			const isPrecededByNewline = (startOffset: number) =>
 				i == 0 || (startOffset > 0 && this.text[startOffset - 1] === "\n");
 
@@ -350,7 +350,7 @@ export class MeasuredText {
 	private getLine(line: number): WrappedLine {
 		return this.wrappedLines[
 			Math.max(0, Math.min(line, this.wrappedLines.length - 1))
-		]!;
+		];
 	}
 
 	public getOffsetFromPosition(position: Position): number {
@@ -383,7 +383,7 @@ export class MeasuredText {
 	public getPositionFromOffset(offset: number): Position {
 		const lines = this.wrappedLines;
 		for (let line = 0; line < lines.length; line++) {
-			const currentLine = lines[line]!;
+			const currentLine = lines[line];
 			const nextLine = lines[line + 1];
 			if (
 				offset >= currentLine.startOffset &&
@@ -410,7 +410,7 @@ export class MeasuredText {
 		const line = lines.length - 1;
 		return {
 			line,
-			column: this.wrappedLines[line]!.text.length,
+			column: this.wrappedLines[line].text.length,
 		};
 	}
 

@@ -99,7 +99,7 @@ export const BashTool = {
 
 			// Special handling for cd command
 			if (baseCmd === "cd" && parts[1]) {
-				const targetDir = parts[1]!.replace(/^['"]|['"]$/g, ""); // Remove quotes if present
+				const targetDir = parts[1].replace(/^['"]|['"]$/g, ""); // Remove quotes if present
 				const fullTargetDir = isAbsolute(targetDir)
 					? targetDir
 					: resolve(getCwd(), targetDir);

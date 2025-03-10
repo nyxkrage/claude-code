@@ -116,6 +116,7 @@ function allContentBlocksEqual(
 		return false;
 	}
 	return zip(content1, content2).every(([cb1, cb2]) =>
+		// biome-ignore lint/style/noNonNullAssertion: content1 and content2 are guaranteed to be the same length
 		contentBlocksEqual(cb1!, cb2!),
 	);
 }

@@ -205,8 +205,12 @@ export const FileWriteTool = {
 			? detectLineEndings(fullFilePath)
 			: await detectRepoLineEndings(getCwd());
 
+		if (!endings) {
+			throw new Error("Failed to detect line endings");
+		}
+
 		mkdirSync(dir, { recursive: true });
-		writeTextContent(fullFilePath, content, enc, endings!);
+		writeTextContent(fullFilePath, content, enc, endings);
 
 		// Update read timestamp, to invalidate stale writes
 		readFileTimestamps[fullFilePath] = statSync(fullFilePath).mtimeMs;

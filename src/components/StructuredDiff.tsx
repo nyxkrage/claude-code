@@ -143,6 +143,7 @@ function numberDiffLines(
 	const queue = [...diff];
 
 	while (queue.length > 0) {
+		// biome-ignore lint/style/noNonNullAssertion: while condition ensures that there is at least an element in the queue
 		const { code, type } = queue.shift()!;
 		const line = {
 			code: code,
@@ -165,6 +166,7 @@ function numberDiffLines(
 				let numRemoved = 0;
 				while (queue[0]?.type === "remove") {
 					i++;
+					// biome-ignore lint/style/noNonNullAssertion: while condition ensures that there is at least an element in the queue
 					const { code, type } = queue.shift()!;
 					const line = {
 						code: code,

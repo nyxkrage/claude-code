@@ -121,7 +121,7 @@ async function showSetupScreens(
 	// Check for custom API key (only allowed for ants)
 	if (process.env.ANTHROPIC_API_KEY && process.env.USER_TYPE === "ant") {
 		const customApiKeyTruncated = normalizeApiKeyForConfig(
-			process.env.ANTHROPIC_API_KEY!,
+			process.env.ANTHROPIC_API_KEY,
 		);
 		const keyStatus = getCustomApiKeyStatus(customApiKeyTruncated);
 		if (keyStatus === "new") {

@@ -195,9 +195,12 @@ export const NotebookEditTool = {
 				// Delete the specified cell
 				notebook.cells.splice(cell_number, 1);
 			} else if (edit_mode === "insert") {
+				if (cell_type === undefined) {
+					throw new Error("cell_type is undefined, validateInput should ensure otherwise, make sure it is called before calling call");
+				}
 				// Insert the new cell
 				const new_cell = {
-					cell_type: cell_type!, // validateInput ensures cell_type is not undefined
+					cell_type: cell_type, // validateInput ensures cell_type is not undefined
 					source: new_source,
 					metadata: {},
 				};
@@ -208,7 +211,7 @@ export const NotebookEditTool = {
 				);
 			} else {
 				// Find the specified cell
-				const targetCell = notebook.cells[cell_number]!; // validateInput ensures cell_number is in bounds
+				const targetCell = notebook.cells[cell_number]; // validateInput ensures cell_number is in bounds
 				targetCell.source = new_source;
 				// Reset execution count and clear outputs since cell was modified
 				targetCell.execution_count = undefined;
@@ -223,7 +226,7 @@ export const NotebookEditTool = {
 				fullPath,
 				JSON.stringify(notebook, null, 1),
 				enc,
-				endings!,
+				endings,
 			);
 			const data = {
 				cell_number,

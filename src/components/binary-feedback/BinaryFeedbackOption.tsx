@@ -69,7 +69,7 @@ function AdditionalContext({
 	if (message.type !== "assistant") {
 		return null;
 	}
-	const content = message.message.content[0]!;
+	const content = message.message.content[0];
 	switch (content.type) {
 		case "tool_use":
 			switch (content.name) {

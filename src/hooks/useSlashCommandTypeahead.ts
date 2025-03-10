@@ -45,7 +45,7 @@ export function useSlashCommandTypeahead({
 			// Try to preserve the selected suggestion
 			const newIndex =
 				selectedSuggestion > -1
-					? filtered.indexOf(suggestions[selectedSuggestion]!)
+					? filtered.indexOf(suggestions[selectedSuggestion])
 					: 0;
 			if (newIndex > -1) {
 				setSelectedSuggestion(newIndex);

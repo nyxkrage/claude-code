@@ -86,7 +86,7 @@ export function MessageSelector({
 			return;
 		}
 		if (key.return) {
-			handleSelect(allItems[selectedIndex]!);
+			handleSelect(allItems[selectedIndex]);
 			return;
 		}
 		if (key.upArrow) {
@@ -112,7 +112,7 @@ export function MessageSelector({
 			if (!allItems[num - 1]) {
 				return;
 			}
-			handleSelect(allItems[num - 1]!);
+			handleSelect(allItems[num - 1]);
 		}
 	});
 

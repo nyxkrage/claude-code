@@ -27,7 +27,7 @@ export function UserToolSuccessMessage({
 	return (
 		// TODO: Distinguish UserMessage from UserToolResultMessage
 		<Box flexDirection="column" width={width}>
-			{tool.renderToolResultMessage?.(message.toolUseResult!.data as never, {
+			{tool.renderToolResultMessage?.(message.toolUseResult?.data as never, {
 				verbose,
 			})}
 		</Box>

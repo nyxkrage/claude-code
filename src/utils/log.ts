@@ -204,7 +204,7 @@ export function parseLogFilename(filename: string): {
 	forkNumber: number | undefined;
 	sidechainNumber: number | undefined;
 } {
-	const base = filename.split(".")[0]!;
+	const base = filename.split(".")[0];
 	// Default timestamp format has 6 segments: 2025-01-27T01-31-35-104Z
 	const segments = base.split("-");
 	const hasSidechain = base.includes("-sidechain-");
@@ -262,7 +262,7 @@ export function getNextAvailableLogSidechainNumber(
 export function getForkNumberFromFilename(
 	filename: string,
 ): number | undefined {
-	const base = filename.split(".")[0]!;
+	const base = filename.split(".")[0];
 	const segments = base.split("-");
 	const hasSidechain = base.includes("-sidechain-");
 
@@ -332,15 +332,18 @@ export function formatDate(date: Date): string {
 
 export function parseISOString(s: string): Date {
 	const b = s.split(/\D+/);
+	if (b.length < 6) {
+		throw new Error("Invalid date string");
+	}
 	return new Date(
 		Date.UTC(
-			Number.parseInt(b[0]!, 10),
-			Number.parseInt(b[1]!, 10) - 1,
-			Number.parseInt(b[2]!, 10),
-			Number.parseInt(b[3]!, 10),
-			Number.parseInt(b[4]!, 10),
-			Number.parseInt(b[5]!, 10),
-			Number.parseInt(b[6]!, 10),
+			Number.parseInt(b[0], 10),
+			Number.parseInt(b[1], 10) - 1,
+			Number.parseInt(b[2], 10),
+			Number.parseInt(b[3], 10),
+			Number.parseInt(b[4], 10),
+			Number.parseInt(b[5], 10),
+			Number.parseInt(b[6], 10),
 		),
 	);
 }

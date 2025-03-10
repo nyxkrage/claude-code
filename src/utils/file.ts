@@ -183,6 +183,7 @@ function fetch<K extends {}, V extends {}>(
 	value: () => V,
 ): V {
 	if (cache.has(key)) {
+		// biome-ignore lint/style/noNonNullAssertion: check for key was done above
 		return cache.get(key)!;
 	}
 

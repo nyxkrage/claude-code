@@ -169,6 +169,7 @@ export class PersistentShell {
 
 		this.isExecuting = true;
 		const { command, abortSignal, timeout, resolve, reject } =
+			// biome-ignore lint/style/noNonNullAssertion: method returns early in case commandQueue is empty
 			this.commandQueue.shift()!;
 
 		const killChildren = () => this.killChildren();
@@ -335,7 +336,7 @@ export class PersistentShell {
 
 	private sendToShell(command: string) {
 		try {
-			this.shell!.stdin!.write(command + "\n");
+			this.shell.stdin?.write(command + "\n");
 		} catch (error) {
 			const errorString =
 				error instanceof Error
@@ -372,7 +373,7 @@ export class PersistentShell {
 	}
 
 	close(): void {
-		this.shell!.stdin!.end();
+		this.shell.stdin?.end();
 		this.shell.kill();
 	}
 }

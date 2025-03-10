@@ -208,9 +208,9 @@ function getListNumber(listDepth: number, orderedListNumber: number): string {
 		case 1:
 			return orderedListNumber.toString();
 		case 2:
-			return DEPTH_1_LIST_NUMBERS[orderedListNumber - 1]!; // TODO: don't hard code the list
+			return DEPTH_1_LIST_NUMBERS[orderedListNumber - 1]; // TODO: don't hard code the list
 		case 3:
-			return DEPTH_2_LIST_NUMBERS[orderedListNumber - 1]!; // TODO: don't hard code the list
+			return DEPTH_2_LIST_NUMBERS[orderedListNumber - 1]; // TODO: don't hard code the list
 		default:
 			return orderedListNumber.toString();
 	}

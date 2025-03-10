@@ -235,7 +235,7 @@ export function Onboarding({ onDone }: Props): React.ReactNode {
 			return "";
 		}
 		const customApiKeyTruncated = normalizeApiKeyForConfig(
-			process.env.ANTHROPIC_API_KEY!,
+			process.env.ANTHROPIC_API_KEY,
 		);
 		if (getCustomApiKeyStatus(customApiKeyTruncated) === "new") {
 			return customApiKeyTruncated;

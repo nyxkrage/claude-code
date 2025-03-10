@@ -207,7 +207,7 @@ export function Config({ onClose }: Props): React.ReactNode {
 			if (setting.type === "enum") {
 				const currentIndex = setting.options.indexOf(setting.value);
 				const nextIndex = (currentIndex + 1) % setting.options.length;
-				setting.onChange(setting.options[nextIndex]!);
+				setting.onChange(setting.options[nextIndex]);
 				return;
 			}
 		}

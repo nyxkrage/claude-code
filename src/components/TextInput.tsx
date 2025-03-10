@@ -179,7 +179,7 @@ export default function TextInput({
 			setPasteState(({ chunks }) => {
 				const pastedText = chunks.join("");
 				// Schedule callback after current render to avoid state updates during render
-				Promise.resolve().then(() => onPaste!(pastedText));
+				Promise.resolve().then(() => onPaste?.(pastedText));
 				return { chunks: [], timeoutId: null };
 			});
 		}, 100);
