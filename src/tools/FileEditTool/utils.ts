@@ -18,8 +18,8 @@ export function applyEdit(
 		? file_path
 		: resolve(getCwd(), file_path);
 
-	let originalFile;
-	let updatedFile;
+	let originalFile: string;
+	let updatedFile: string;
 	if (old_string === "") {
 		// Create new file
 		originalFile = "";

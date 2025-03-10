@@ -1,4 +1,4 @@
-import { readdirSync } from "node:fs";
+import { Dirent, readdirSync } from "node:fs";
 import { Box, Text } from "ink";
 import { basename, isAbsolute, join, relative, resolve, sep } from "node:path";
 import * as React from "react";
@@ -152,7 +152,7 @@ function listDirectory(
 			results.push(relative(cwd, path) + sep);
 		}
 
-		let children;
+		let children: Dirent[];
 		try {
 			children = readdirSync(path, { withFileTypes: true });
 		} catch (e) {

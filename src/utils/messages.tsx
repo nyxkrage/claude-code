@@ -464,7 +464,7 @@ export function extractTag(html: string, tagName: string): string | null {
 		"gi",
 	);
 
-	let match;
+	let match: RegExpExecArray | null;
 	let depth = 0;
 	let lastIndex = 0;
 	const openingTag = new RegExp(`<${escapedTag}(?:\\s+[^>]*?)?>`, "gi");

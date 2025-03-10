@@ -299,7 +299,9 @@ export async function createAndStoreApiKey(
 			headers: { Authorization: `Bearer ${accessToken}` },
 		});
 
-		let apiKeyData;
+		
+		// biome-ignore lint/suspicious/noExplicitAny: dont know what the createApiKey response looks like, setting any to avoid adding aditional validation logic
+		let apiKeyData: any;
 		let errorText = "";
 
 		try {

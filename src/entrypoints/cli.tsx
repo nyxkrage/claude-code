@@ -846,7 +846,10 @@ ${commandList}`,
 						// Check if identifier is a number or a file path
 						const number = Math.abs(Number.parseInt(identifier));
 						const isNumber = !isNaN(number);
-						let messages, date, forkNumber;
+						// biome-ignore lint/suspicious/noExplicitAny: TODO: unsure about the log messages structure
+						let messages: any[];
+						let date: string
+						let forkNumber: number | undefined;
 						try {
 							if (isNumber) {
 								logEvent("tengu_resume", { number: number.toString() });

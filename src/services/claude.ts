@@ -507,7 +507,7 @@ async function querySonnetWithPromptCaching(
 	const startIncludingRetries = Date.now();
 	let start = Date.now();
 	let attemptNumber = 0;
-	let response;
+	let response: StreamResponse;
 	let stream: BetaMessageStream | undefined = undefined;
 	try {
 		response = await withRetry(async (attempt) => {
