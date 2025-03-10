@@ -80,6 +80,7 @@ function getRetryDelay(
 			return seconds * 1000;
 		}
 	}
+	// biome-ignore lint/style/useExponentiationOperator: infix operator is much less readable in this case and would need more parentheses to be as readable
 	return Math.min(BASE_DELAY_MS * Math.pow(2, attempt - 1), 32000); // Max 32s delay
 }
 
