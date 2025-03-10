@@ -9,11 +9,11 @@ import { memoize, omit } from "lodash-es";
 import { LSTool } from "./tools/lsTool/lsTool.js";
 import { getIsGit } from "./utils/git.js";
 import { ripGrep } from "./utils/ripgrep.js";
-import * as path from "path";
+import * as path from "node:path";
 import { execFileNoThrow } from "./utils/execFileNoThrow.js";
-import { join } from "path";
-import { readFile } from "fs/promises";
-import { existsSync } from "fs";
+import { join } from "node:path";
+import { readFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { getSlowAndCapableModel } from "./utils/model.js";
 import { lastX } from "./utils/generators.js";
 import { getGitEmail } from "./utils/user.js";
@@ -140,8 +140,7 @@ export const getGitStatus = memoize(async (): Promise<string | null> => {
 		const statusLines = status.split("\n").length;
 		const truncatedStatus =
 			statusLines > 200
-				? status.split("\n").slice(0, 200).join("\n") +
-					'\n... (truncated because there are more than 200 lines. If you need more information, run "git status" using BashTool)'
+				? `${status.split("\n").slice(0, 200).join("\n")}\n... (truncated because there are more than 200 lines. If you need more information, run "git status" using BashTool)`
 				: status;
 
 		return `This is the git status at the start of the conversation. Note that this status is a snapshot in time, and will not update during the conversation.\nCurrent branch: ${branch}\n\nMain branch (you will usually use this for PRs): ${mainBranch}\n\nStatus:\n${truncatedStatus || "(clean)"}\n\nRecent commits:\n${log}\n\nYour recent commits:\n${authorLog || "(no recent commits)"}`;
@@ -184,7 +183,7 @@ export const getContext = memoize(
  * tools like LS and View to get more information.
  */
 export const getDirectoryStructure = memoize(
-	async function (): Promise<string> {
+	async (): Promise<string> => {
 		let lines: string;
 		try {
 			const abortController = new AbortController();

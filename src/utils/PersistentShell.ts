@@ -1,11 +1,11 @@
-import * as fs from "fs";
-import { homedir } from "os";
-import { existsSync } from "fs";
+import * as fs from "node:fs";
+import { homedir } from "node:os";
+import { existsSync } from "node:fs";
 import shellquote from "shell-quote";
-import { spawn, execSync, type ChildProcess } from "child_process";
-import { isAbsolute, resolve, join } from "path";
+import { spawn, execSync, type ChildProcess } from "node:child_process";
+import { isAbsolute, resolve, join } from "node:path";
 import { logError } from "./log.js";
-import * as os from "os";
+import * as os from "node:os";
 import { logEvent } from "../services/statsig.js";
 
 type ExecResult = {
@@ -22,7 +22,7 @@ type QueuedCommand = {
 	reject: (error: Error) => void;
 };
 
-const TEMPFILE_PREFIX = os.tmpdir() + "/claude-";
+const TEMPFILE_PREFIX = `${os.tmpdir()}/claude-`;
 const DEFAULT_TIMEOUT = 30 * 60 * 1000;
 const SIGTERM_CODE = 143; // Standard exit code for SIGTERM
 const FILE_SUFFIXES = {
@@ -38,10 +38,10 @@ const SHELL_CONFIGS: Record<string, string> = {
 
 export class PersistentShell {
 	private commandQueue: QueuedCommand[] = [];
-	private isExecuting: boolean = false;
+	private isExecuting = false;
 	private shell: ChildProcess;
-	private isAlive: boolean = true;
-	private commandInterrupted: boolean = false;
+	private isAlive = true;
+	private commandInterrupted = false;
 	private statusFile: string;
 	private stdoutFile: string;
 	private stderrFile: string;
@@ -137,7 +137,7 @@ export class PersistentShell {
 				});
 			}
 
-			childPids.forEach((pid) => {
+			for (const pid of childPids) {
 				try {
 					process.kill(Number(pid), "SIGTERM");
 				} catch (error) {
@@ -146,7 +146,7 @@ export class PersistentShell {
 						error: (error as Error).message.substring(0, 10),
 					});
 				}
-			});
+			};
 		} catch {
 			// pgrep returns non-zero when no processes are found - this is expected
 		} finally {
@@ -169,6 +169,7 @@ export class PersistentShell {
 
 		this.isExecuting = true;
 		const { command, abortSignal, timeout, resolve, reject } =
+			// biome-ignore lint/style/noNonNullAssertion: method returns early in case commandQueue is empty
 			this.commandQueue.shift()!;
 
 		const killChildren = () => this.killChildren();
@@ -273,7 +274,7 @@ export class PersistentShell {
 			);
 
 			// 2. Capture exit code immediately after command execution to avoid losing it
-			commandParts.push(`EXEC_EXIT_CODE=$?`);
+			commandParts.push("EXEC_EXIT_CODE=$?");
 
 			// 3. Update CWD file
 			commandParts.push(`pwd > ${this.cwdFile}`);
@@ -312,7 +313,7 @@ export class PersistentShell {
 							// Timeout occurred - kill any running processes
 							this.killChildren();
 							code = SIGTERM_CODE;
-							stderr += (stderr ? "\n" : "") + "Command execution timed out";
+							stderr += `${stderr ? "\n" : ""}Command execution timed out`;
 							logEvent("persistent_shell_command_timeout", {
 								command: command.substring(0, 10),
 								timeout: commandTimeout.toString(),
@@ -335,7 +336,7 @@ export class PersistentShell {
 
 	private sendToShell(command: string) {
 		try {
-			this.shell!.stdin!.write(command + "\n");
+			this.shell.stdin?.write(`${command}\n`);
 		} catch (error) {
 			const errorString =
 				error instanceof Error
@@ -372,7 +373,7 @@ export class PersistentShell {
 	}
 
 	close(): void {
-		this.shell!.stdin!.end();
+		this.shell.stdin?.end();
 		this.shell.kill();
 	}
 }

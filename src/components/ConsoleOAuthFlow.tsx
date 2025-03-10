@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useCallback } from "react";
+import type React from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Static, Box, Text, useInput } from "ink";
 import TextInput from "./TextInput.js";
 import { OAuthService, createAndStoreApiKey } from "../services/oauth.js";
@@ -118,6 +119,7 @@ export function ConsoleOAuthFlow({ onDone }: Props): React.ReactNode {
 		}
 	}
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: biome doesn't seem to be able to detect that setShowPastePrompt is infact used
 	const startOAuth = useCallback(async () => {
 		try {
 			const result = await oauthService
@@ -154,7 +156,7 @@ export function ConsoleOAuthFlow({ onDone }: Props): React.ReactNode {
 				(err) => {
 					setOAuthStatus({
 						state: "error",
-						message: "Failed to create API key: " + err.message,
+						message: `Failed to create API key: ${err.message}`,
 						toRetry: { state: "ready_to_start" },
 					});
 					logEvent("tengu_oauth_api_key_error", { error: err.message });

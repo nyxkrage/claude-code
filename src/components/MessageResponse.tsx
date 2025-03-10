@@ -1,5 +1,5 @@
 import { Box, Text } from "ink";
-import * as React from "react";
+import type * as React from "react";
 
 type Props = {
 	children: React.ReactNode;

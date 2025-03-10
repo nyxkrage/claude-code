@@ -1,6 +1,6 @@
 import { useInput } from "ink";
 import { useState, useCallback } from "react";
-import { Command, getCommand } from "../commands.js";
+import { type Command, getCommand } from "../commands.js";
 
 type Props = {
 	commands: Command[];
@@ -45,7 +45,7 @@ export function useSlashCommandTypeahead({
 			// Try to preserve the selected suggestion
 			const newIndex =
 				selectedSuggestion > -1
-					? filtered.indexOf(suggestions[selectedSuggestion]!)
+					? filtered.indexOf(suggestions[selectedSuggestion])
 					: 0;
 			if (newIndex > -1) {
 				setSelectedSuggestion(newIndex);
@@ -66,7 +66,9 @@ export function useSlashCommandTypeahead({
 					prev >= suggestions.length - 1 ? 0 : prev + 1,
 				);
 				return true;
-			} else if (key.upArrow) {
+			}
+			
+			if (key.upArrow) {
 				setSelectedSuggestion((prev) =>
 					prev <= 0 ? suggestions.length - 1 : prev - 1,
 				);
@@ -74,7 +76,7 @@ export function useSlashCommandTypeahead({
 			}
 
 			// Handle selection completion via tab or return
-			else if (key.tab || (key.return && selectedSuggestion >= 0)) {
+			if (key.tab || (key.return && selectedSuggestion >= 0)) {
 				// Ensure a suggestion is selected
 				if (selectedSuggestion === -1 && key.tab) {
 					setSelectedSuggestion(0);
@@ -85,7 +87,7 @@ export function useSlashCommandTypeahead({
 				const suggestion = suggestions[suggestionIndex];
 				if (!suggestion) return true;
 
-				const input = "/" + suggestion + " ";
+				const input = `/${suggestion} `;
 				onInputChange(input);
 				// Manually move cursor to end
 				setCursorOffset(input.length);

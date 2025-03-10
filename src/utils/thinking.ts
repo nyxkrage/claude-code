@@ -9,7 +9,7 @@ export async function getMaxThinkingTokens(
 	messages: Message[],
 ): Promise<number> {
 	if (process.env.USER_TYPE === "ant" && process.env.MAX_THINKING_TOKENS) {
-		const tokens = parseInt(process.env.MAX_THINKING_TOKENS, 10);
+		const tokens = Number.parseInt(process.env.MAX_THINKING_TOKENS, 10);
 		logEvent("tengu_thinking", {
 			method: "scratchpad",
 			tokenCount: tokens.toString(),

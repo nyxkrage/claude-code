@@ -1,7 +1,7 @@
 import { getGlobalConfig, getOrCreateUserID } from "./config.js";
 import { memoize } from "lodash-es";
 import { env } from "./env.js";
-import { type StatsigUser } from "@statsig/js-client";
+import type { StatsigUser } from "@statsig/js-client";
 import { execFileNoThrow } from "./execFileNoThrow.js";
 import { logError, SESSION_ID } from "./log.js";
 import { MACRO } from "../constants/macro.js";

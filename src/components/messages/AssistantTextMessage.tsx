@@ -1,5 +1,5 @@
-import { TextBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
-import React from "react";
+import type { TextBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
+import type React from "react";
 import { AssistantBashOutputMessage } from "./AssistantBashOutputMessage.js";
 import { AssistantLocalCommandOutputMessage } from "./AssistantLocalCommandOutputMessage.js";
 import { getTheme } from "../../utils/theme.js";

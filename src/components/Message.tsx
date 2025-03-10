@@ -1,6 +1,6 @@
 import { Box } from "ink";
-import * as React from "react";
-import type { AssistantMessage, Message, UserMessage } from "../query.js";
+import type * as React from "react";
+import type { AssistantMessage as AssistantMessageType, Message as MessageType, UserMessage as UserMessageType } from "../query.js";
 import type {
 	ContentBlock,
 	DocumentBlockParam,
@@ -10,19 +10,19 @@ import type {
 	ToolResultBlockParam,
 	ToolUseBlockParam,
 } from "@anthropic-ai/sdk/resources/index.mjs";
-import { Tool } from "../Tool.js";
+import type { Tool } from "../Tool.js";
 import { logError } from "../utils/log.js";
 import { UserToolResultMessage } from "./messages/UserToolResultMessage/UserToolResultMessage.js";
 import { AssistantToolUseMessage } from "./messages/AssistantToolUseMessage.js";
 import { AssistantTextMessage } from "./messages/AssistantTextMessage.js";
 import { UserTextMessage } from "./messages/UserTextMessage.js";
-import { NormalizedMessage } from "../utils/messages.js";
+import type { NormalizedMessage } from "../utils/messages.js";
 import { AssistantThinkingMessage } from "./messages/AssistantThinkingMessage.js";
 import { AssistantRedactedThinkingMessage } from "./messages/AssistantRedactedThinkingMessage.js";
 import { useTerminalSize } from "../hooks/useTerminalSize.js";
 
 type Props = {
-	message: UserMessage | AssistantMessage;
+	message: UserMessageType | AssistantMessageType;
 	messages: NormalizedMessage[];
 	// TODO: Find a way to remove this, and leave spacing to the consumer
 	addMargin: boolean;
@@ -57,6 +57,7 @@ export function Message({
 			<Box flexDirection="column" width="100%">
 				{message.message.content.map((_, index) => (
 					<AssistantMessage
+						// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better key for this
 						key={index}
 						param={_}
 						costUSD={message.costUSD}
@@ -87,6 +88,7 @@ export function Message({
 		<Box flexDirection="column" width="100%">
 			{content.map((_, index) => (
 				<UserMessage
+					// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better key for this
 					key={index}
 					message={message}
 					messages={messages}
@@ -108,8 +110,8 @@ function UserMessage({
 	param,
 	options: { verbose },
 }: {
-	message: UserMessage;
-	messages: Message[];
+	message: UserMessageType;
+	messages: MessageType[];
 	addMargin: boolean;
 	tools: Tool[];
 	param:

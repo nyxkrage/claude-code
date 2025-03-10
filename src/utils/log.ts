@@ -1,9 +1,9 @@
-import { existsSync, mkdirSync } from "fs";
-import { dirname, join } from "path";
-import { writeFileSync, readFileSync } from "fs";
-import { randomUUID } from "crypto";
+import { existsSync, mkdirSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { writeFileSync, readFileSync } from "node:fs";
+import { randomUUID } from "node:crypto";
 import envPaths from "env-paths";
-import { promises as fsPromises } from "fs";
+import { promises as fsPromises } from "node:fs";
 import type { LogOption, SerializedMessage } from "../types/logs.js";
 import { MACRO } from "../constants/macro.js";
 const IN_MEMORY_ERROR_LOG: Array<{
@@ -34,7 +34,7 @@ export function dateToFilename(date: Date): string {
 const DATE = dateToFilename(new Date());
 
 function getErrorsPath(): string {
-	return join(CACHE_PATHS.errors(), DATE + ".txt");
+	return join(CACHE_PATHS.errors(), `${DATE}.txt`);
 }
 
 export function getMessagesPath(
@@ -204,7 +204,7 @@ export function parseLogFilename(filename: string): {
 	forkNumber: number | undefined;
 	sidechainNumber: number | undefined;
 } {
-	const base = filename.split(".")[0]!;
+	const base = filename.split(".")[0];
 	// Default timestamp format has 6 segments: 2025-01-27T01-31-35-104Z
 	const segments = base.split("-");
 	const hasSidechain = base.includes("-sidechain-");
@@ -243,6 +243,7 @@ export function getNextAvailableLogForkNumber(
 	sidechainNumber: number,
 ): number {
 	while (existsSync(getMessagesPath(date, forkNumber, sidechainNumber))) {
+		// biome-ignore lint/style/noParameterAssign: introducing a new local variable makes this code less readable
 		forkNumber++;
 	}
 	return forkNumber;
@@ -262,7 +263,7 @@ export function getNextAvailableLogSidechainNumber(
 export function getForkNumberFromFilename(
 	filename: string,
 ): number | undefined {
-	const base = filename.split(".")[0]!;
+	const base = filename.split(".")[0];
 	const segments = base.split("-");
 	const hasSidechain = base.includes("-sidechain-");
 
@@ -318,29 +319,32 @@ export function formatDate(date: Date): string {
 
 	if (isToday) {
 		return `Today at ${timeStr}`;
-	} else if (isYesterday) {
+	} 
+	if (isYesterday) {
 		return `Yesterday at ${timeStr}`;
-	} else {
-		return (
-			date.toLocaleDateString("en-US", {
-				month: "short",
-				day: "numeric",
-			}) + ` at ${timeStr}`
-		);
 	}
+	return (
+		`${date.toLocaleDateString("en-US", {
+			month: "short",
+			day: "numeric",
+		})} at ${timeStr}`
+	);
 }
 
 export function parseISOString(s: string): Date {
 	const b = s.split(/\D+/);
+	if (b.length < 6) {
+		throw new Error("Invalid date string");
+	}
 	return new Date(
 		Date.UTC(
-			parseInt(b[0]!, 10),
-			parseInt(b[1]!, 10) - 1,
-			parseInt(b[2]!, 10),
-			parseInt(b[3]!, 10),
-			parseInt(b[4]!, 10),
-			parseInt(b[5]!, 10),
-			parseInt(b[6]!, 10),
+			Number.parseInt(b[0], 10),
+			Number.parseInt(b[1], 10) - 1,
+			Number.parseInt(b[2], 10),
+			Number.parseInt(b[3], 10),
+			Number.parseInt(b[4], 10),
+			Number.parseInt(b[5], 10),
+			Number.parseInt(b[6], 10),
 		),
 	);
 }
@@ -352,7 +356,7 @@ export function logMCPError(serverName: string, error: unknown): void {
 			error instanceof Error ? error.stack || error.message : String(error);
 		const timestamp = new Date().toISOString();
 
-		const logFile = join(logDir, DATE + ".txt");
+		const logFile = join(logDir, `${DATE}.txt`);
 
 		if (!existsSync(logDir)) {
 			mkdirSync(logDir, { recursive: true });

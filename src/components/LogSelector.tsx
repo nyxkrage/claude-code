@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { Box, Text } from "ink";
 import { Select } from "@inkjs/ui";
 import type { LogOption } from "../types/logs.js";
@@ -73,7 +73,7 @@ export function LogSelector({
 			</Box>
 			<Select
 				options={options}
-				onChange={(index) => onSelect(parseInt(index, 10))}
+				onChange={(index) => onSelect(Number.parseInt(index, 10))}
 				visibleOptionCount={visibleCount}
 			/>
 			{hiddenCount > 0 && (

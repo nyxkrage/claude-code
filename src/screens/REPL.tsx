@@ -1,19 +1,19 @@
-import { ToolUseBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { ToolUseBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
 import { Box, Newline, Static } from "ink";
 import ProjectOnboarding, {
 	markProjectOnboardingComplete,
 } from "../ProjectOnboarding.js";
 import { CostThresholdDialog } from "../components/CostThresholdDialog.js";
-import * as React from "react";
+import type * as React from "react";
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
-import { Command } from "../commands.js";
+import type { Command } from "../commands.js";
 import { Logo } from "../components/Logo.js";
 import { Message } from "../components/Message.js";
 import { MessageResponse } from "../components/MessageResponse.js";
 import { MessageSelector } from "../components/MessageSelector.js";
 import {
 	PermissionRequest,
-	ToolUseConfirm,
+	type ToolUseConfirm,
 } from "../components/permissions/PermissionRequest.js";
 import PromptInput from "../components/PromptInput.js";
 import { Spinner } from "../components/Spinner.js";
@@ -28,15 +28,15 @@ import useCanUseTool from "../hooks/useCanUseTool.js";
 import { useLogMessages } from "../hooks/useLogMessages.js";
 import { setMessagesGetter, setMessagesSetter } from "../messages.js";
 import {
-	AssistantMessage,
-	BinaryFeedbackResult,
-	Message as MessageType,
-	ProgressMessage,
+	type AssistantMessage,
+	type BinaryFeedbackResult,
+	type Message as MessageType,
+	type ProgressMessage,
 	query,
 } from "../query.js";
 import type { WrappedClient } from "../services/mcpClient.js";
 import type { Tool } from "../Tool.js";
-import { AutoUpdaterResult } from "../utils/autoUpdater.js";
+import type { AutoUpdaterResult } from "../utils/autoUpdater.js";
 import { getGlobalConfig, saveGlobalConfig } from "../utils/config.js";
 import { logEvent } from "../services/statsig.js";
 import { getNextAvailableLogForkNumber } from "../utils/log.js";
@@ -192,6 +192,7 @@ export function REPL({
 		}
 	}, [forkConvoWithMessagesOnTheNextRender]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: getTotalCost relies on side effects so messages should be a dependency (i think)
 	useEffect(() => {
 		const totalCost = getTotalCost();
 		if (totalCost >= 5 /* $5 */ && !showCostDialog && !haveShownCostDialog) {
@@ -248,7 +249,7 @@ export function REPL({
 
 			// The last message is an assistant message if the user input was a bash command,
 			// or if the user input was an invalid slash command.
-			const lastMessage = newMessages[newMessages.length - 1]!;
+			const lastMessage = newMessages[newMessages.length - 1];
 			if (lastMessage.type === "assistant") {
 				setAbortController(null);
 				setIsLoading(false);
@@ -311,7 +312,7 @@ export function REPL({
 
 		// The last message is an assistant message if the user input was a bash command,
 		// or if the user input was an invalid slash command.
-		const lastMessage = newMessages[newMessages.length - 1]!;
+		const lastMessage = newMessages[newMessages.length - 1];
 
 		// Update terminal title based on user message
 		if (
@@ -381,10 +382,10 @@ export function REPL({
 	useLogStartupTime();
 
 	// Initial load
+	// TODO: fix this
+	// biome-ignore lint/correctness/useExhaustiveDependencies: this was supressed in the original code
 	useEffect(() => {
 		onInit();
-		// TODO: fix this
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const normalizedMessages = useMemo(
@@ -406,7 +407,7 @@ export function REPL({
 		() =>
 			new Set(
 				getErroredToolUseMessages(normalizedMessages).map(
-					(_) => (_.message.content[0]! as ToolUseBlockParam).id,
+					(_) => (_.message.content[0] as ToolUseBlockParam).id,
 				),
 			),
 		[normalizedMessages],
@@ -423,7 +424,7 @@ export function REPL({
 					</Box>
 				),
 			},
-			...reorderMessages(normalizedMessages).map((_) => {
+			...reorderMessages(normalizedMessages).map((_, i) => {
 				const toolUseID = getToolUseID(_);
 				const message =
 					_.type === "progress" ? (
@@ -433,6 +434,8 @@ export function REPL({
 						// TODO: Find a cleaner way to do this.
 						_.content.message.content[0].text === INTERRUPT_MESSAGE ? (
 							<Message
+								// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better option for the key
+								key={i}
 								message={_.content}
 								messages={_.normalizedMessages}
 								addMargin={false}
@@ -446,7 +449,8 @@ export function REPL({
 								shouldShowDot={false}
 							/>
 						) : (
-							<MessageResponse>
+							// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better option for the key
+							<MessageResponse key={i}>
 								<Message
 									message={_.content}
 									messages={_.normalizedMessages}
@@ -458,7 +462,7 @@ export function REPL({
 									inProgressToolUseIDs={new Set()}
 									unresolvedToolUseIDs={
 										new Set([
-											(_.content.message.content[0]! as ToolUseBlockParam).id,
+											(_.content.message.content[0] as ToolUseBlockParam).id,
 										])
 									}
 									shouldAnimate={false}
@@ -468,6 +472,8 @@ export function REPL({
 						)
 					) : (
 						<Message
+							// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better option for the key
+							key={i}
 							message={_}
 							messages={normalizedMessages}
 							addMargin={true}
@@ -611,38 +617,36 @@ export function REPL({
 					!isMessageSelectorVisible &&
 					!binaryFeedbackContext &&
 					!showingCostDialog && (
-						<>
-							<PromptInput
-								commands={commands}
-								forkNumber={forkNumber}
-								messageLogName={messageLogName}
-								tools={tools}
-								isDisabled={apiKeyStatus === "invalid"}
-								isLoading={isLoading}
-								onQuery={onQuery}
-								debug={debug}
-								verbose={verbose}
-								messages={messages}
-								setToolJSX={setToolJSX}
-								onAutoUpdaterResult={setAutoUpdaterResult}
-								autoUpdaterResult={autoUpdaterResult}
-								input={inputValue}
-								onInputChange={setInputValue}
-								mode={inputMode}
-								onModeChange={setInputMode}
-								submitCount={submitCount}
-								onSubmitCountChange={setSubmitCount}
-								setIsLoading={setIsLoading}
-								setAbortController={setAbortController}
-								onShowMessageSelector={() =>
-									setIsMessageSelectorVisible((prev) => !prev)
-								}
-								setForkConvoWithMessagesOnTheNextRender={
-									setForkConvoWithMessagesOnTheNextRender
-								}
-								readFileTimestamps={readFileTimestamps.current}
-							/>
-						</>
+						<PromptInput
+							commands={commands}
+							forkNumber={forkNumber}
+							messageLogName={messageLogName}
+							tools={tools}
+							isDisabled={apiKeyStatus === "invalid"}
+							isLoading={isLoading}
+							onQuery={onQuery}
+							debug={debug}
+							verbose={verbose}
+							messages={messages}
+							setToolJSX={setToolJSX}
+							onAutoUpdaterResult={setAutoUpdaterResult}
+							autoUpdaterResult={autoUpdaterResult}
+							input={inputValue}
+							onInputChange={setInputValue}
+							mode={inputMode}
+							onModeChange={setInputMode}
+							submitCount={submitCount}
+							onSubmitCountChange={setSubmitCount}
+							setIsLoading={setIsLoading}
+							setAbortController={setAbortController}
+							onShowMessageSelector={() =>
+								setIsMessageSelectorVisible((prev) => !prev)
+							}
+							setForkConvoWithMessagesOnTheNextRender={
+								setForkConvoWithMessagesOnTheNextRender
+							}
+							readFileTimestamps={readFileTimestamps.current}
+						/>
 					)}
 			</Box>
 			{isMessageSelectorVisible && (

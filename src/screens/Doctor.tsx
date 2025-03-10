@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
+import type React from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Box, Text, useInput } from "ink";
 import { Select } from "@inkjs/ui";
 import { getTheme } from "../utils/theme.js";
 import { ConfigureNpmPrefix } from "./ConfigureNpmPrefix.js";
-import { platform } from "process";
+import { platform } from "node:process";
 import {
 	checkNpmPermissions,
 	getDefaultNpmPrefix,
@@ -40,7 +41,7 @@ export function Doctor({ onDone, doctorMode = false }: Props): React.ReactNode {
 
 	const options: Option[] = [
 		{
-			label: `Manually fix permissions on current npm prefix (Recommended)`,
+			label: "Manually fix permissions on current npm prefix (Recommended)",
 			value: "manual",
 			description:
 				platform === "win32"

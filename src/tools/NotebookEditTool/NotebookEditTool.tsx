@@ -1,12 +1,12 @@
-import { existsSync, readFileSync } from "fs";
+import { existsSync, readFileSync } from "node:fs";
 import { Box, Text } from "ink";
-import { extname, isAbsolute, relative, resolve } from "path";
+import { extname, isAbsolute, relative, resolve } from "node:path";
 import * as React from "react";
 import { z } from "zod";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";
 import { HighlightedCode } from "../../components/HighlightedCode.js";
 import type { Tool } from "../../Tool.js";
-import { NotebookCellType, NotebookContent } from "../../types/notebook.js";
+import type { NotebookCellType, NotebookContent } from "../../types/notebook.js";
 import {
 	detectFileEncoding,
 	detectLineEndings,
@@ -162,7 +162,9 @@ export const NotebookEditTool = {
 				result: false,
 				message: `Cell number is out of bounds. For insert mode, the maximum value is ${notebook.cells.length} (to append at the end).`,
 			};
-		} else if (
+		}
+		
+		if (
 			(edit_mode === "replace" || edit_mode === "delete") &&
 			(cell_number >= notebook.cells.length || !notebook.cells[cell_number])
 		) {
@@ -195,20 +197,23 @@ export const NotebookEditTool = {
 				// Delete the specified cell
 				notebook.cells.splice(cell_number, 1);
 			} else if (edit_mode === "insert") {
+				if (cell_type === undefined) {
+					throw new Error("cell_type is undefined, validateInput should ensure otherwise, make sure it is called before calling call");
+				}
 				// Insert the new cell
 				const new_cell = {
-					cell_type: cell_type!, // validateInput ensures cell_type is not undefined
+					cell_type: cell_type, // validateInput ensures cell_type is not undefined
 					source: new_source,
 					metadata: {},
 				};
 				notebook.cells.splice(
 					cell_number,
 					0,
-					cell_type == "markdown" ? new_cell : { ...new_cell, outputs: [] },
+					cell_type === "markdown" ? new_cell : { ...new_cell, outputs: [] },
 				);
 			} else {
 				// Find the specified cell
-				const targetCell = notebook.cells[cell_number]!; // validateInput ensures cell_number is in bounds
+				const targetCell = notebook.cells[cell_number]; // validateInput ensures cell_number is in bounds
 				targetCell.source = new_source;
 				// Reset execution count and clear outputs since cell was modified
 				targetCell.execution_count = undefined;
@@ -223,7 +228,7 @@ export const NotebookEditTool = {
 				fullPath,
 				JSON.stringify(notebook, null, 1),
 				enc,
-				endings!,
+				endings,
 			);
 			const data = {
 				cell_number,

@@ -1,7 +1,7 @@
-import * as crypto from "crypto";
-import * as http from "http";
-import { IncomingMessage, ServerResponse } from "http";
-import * as url from "url";
+import * as crypto from "node:crypto";
+import * as http from "node:http";
+import type { IncomingMessage, ServerResponse } from "node:http";
+import * as url from "node:url";
 
 import { OAUTH_CONFIG } from "../constants/oauth.js";
 import { openBrowser } from "../utils/browser.js";
@@ -9,7 +9,7 @@ import { logEvent } from "../services/statsig.js";
 import { logError } from "../utils/log.js";
 import { resetAnthropicClient } from "./claude.js";
 import {
-	AccountInfo,
+	type AccountInfo,
 	getGlobalConfig,
 	saveGlobalConfig,
 	normalizeApiKeyForConfig,
@@ -211,21 +211,21 @@ export class OAuthService {
 					this.pendingCodePromise.reject(error);
 				}
 				return;
-			} else {
-				logError(err);
-				this.closeServer();
-				if (this.pendingCodePromise) {
-					this.pendingCodePromise.reject(err);
-				}
-				return;
 			}
+			
+			logError(err);
+			this.closeServer();
+			if (this.pendingCodePromise) {
+				this.pendingCodePromise.reject(err);
+			}
+			return;
 		});
 	}
 
 	private async exchangeCodeForTokens(
 		authorizationCode: string,
 		state: string,
-		useManualRedirect: boolean = false,
+		useManualRedirect = false,
 	): Promise<OAuthTokenExchangeResponse> {
 		const requestBody = {
 			grant_type: "authorization_code",
@@ -299,7 +299,9 @@ export async function createAndStoreApiKey(
 			headers: { Authorization: `Bearer ${accessToken}` },
 		});
 
-		let apiKeyData;
+		
+		// biome-ignore lint/suspicious/noExplicitAny: dont know what the createApiKey response looks like, setting any to avoid adding aditional validation logic
+		let apiKeyData: any;
 		let errorText = "";
 
 		try {

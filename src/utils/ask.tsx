@@ -1,11 +1,11 @@
 import { last } from "lodash-es";
-import { Command } from "../commands.js";
+import type { Command } from "../commands.js";
 import { getSystemPrompt } from "../constants/prompts.js";
 import { getContext } from "../context.js";
 import { getTotalCost } from "../cost-tracker.js";
-import { Message, query } from "../query.js";
-import { CanUseToolFn } from "../hooks/useCanUseTool.js";
-import { Tool } from "../Tool.js";
+import { type Message, query } from "../query.js";
+import type { CanUseToolFn } from "../hooks/useCanUseTool.js";
+import type { Tool } from "../Tool.js";
 import { getSlowAndCapableModel } from "../utils/model.js";
 import { setCwd } from "./state.js";
 import { getMessagesPath, overwriteLog } from "./log.js";

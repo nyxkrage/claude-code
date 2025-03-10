@@ -3,7 +3,7 @@ import { Text, useInput } from "ink";
 import chalk from "chalk";
 import { useTextInput } from "../hooks/useTextInput.js";
 import { getTheme } from "../utils/theme.js";
-import { type Key } from "ink";
+import type { Key } from "ink";
 
 export type Props = {
 	/**
@@ -179,7 +179,7 @@ export default function TextInput({
 			setPasteState(({ chunks }) => {
 				const pastedText = chunks.join("");
 				// Schedule callback after current render to avoid state updates during render
-				Promise.resolve().then(() => onPaste!(pastedText));
+				Promise.resolve().then(() => onPaste?.(pastedText));
 				return { chunks: [], timeoutId: null };
 			});
 		}, 100);
@@ -221,7 +221,7 @@ export default function TextInput({
 				: chalk.inverse(" ");
 	}
 
-	const showPlaceholder = originalValue.length == 0 && placeholder;
+	const showPlaceholder = originalValue.length === 0 && placeholder;
 	return (
 		<Text wrap="truncate-end" dimColor={isDimmed}>
 			{showPlaceholder ? renderedPlaceholder : renderedValue}

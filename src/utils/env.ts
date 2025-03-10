@@ -1,7 +1,7 @@
 import { execFileNoThrow } from "./execFileNoThrow.js";
 import { memoize } from "lodash-es";
-import { join } from "path";
-import { homedir } from "os";
+import { join } from "node:path";
+import { homedir } from "node:os";
 
 // Base directory for all Claude Code data files (except config.json for backwards compatibility)
 export const CLAUDE_BASE_DIR =

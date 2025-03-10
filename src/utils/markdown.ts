@@ -1,7 +1,7 @@
-import { marked, Token } from "marked";
+import { marked, type Token } from "marked";
 import { stripSystemMessages } from "./messages.js";
 import chalk from "chalk";
-import { EOL } from "os";
+import { EOL } from "node:os";
 import { highlight, supportsLanguage } from "cli-highlight";
 import { logError } from "./log.js";
 
@@ -27,12 +27,11 @@ function format(
 		case "code":
 			if (token.lang && supportsLanguage(token.lang)) {
 				return highlight(token.text, { language: token.lang }) + EOL;
-			} else {
-				logError(
-					`Language not supported while highlighting code, falling back to markdown: ${token.lang}`,
-				);
-				return highlight(token.text, { language: "markdown" }) + EOL;
 			}
+			logError(
+				`Language not supported while highlighting code, falling back to markdown: ${token.lang}`,
+			);
+			return highlight(token.text, { language: "markdown" }) + EOL;
 		case "codespan":
 			// inline code
 			return chalk.blue(token.text);
@@ -96,10 +95,10 @@ function format(
 			return EOL;
 		case "text":
 			if (parent?.type === "list_item") {
-				return `${orderedListNumber === null ? "-" : getListNumber(listDepth, orderedListNumber) + "."} ${token.tokens ? token.tokens.map((_) => format(_, listDepth, orderedListNumber, token)).join("") : token.text}${EOL}`;
-			} else {
-				return token.text;
+				return `${orderedListNumber === null ? "-" : `${getListNumber(listDepth, orderedListNumber)}.`} ${token.tokens ? token.tokens.map((_) => format(_, listDepth, orderedListNumber, token)).join("") : token.text}${EOL}`;
 			}
+			
+			return token.text;
 	}
 	// TODO: tables
 	return "";
@@ -208,9 +207,9 @@ function getListNumber(listDepth: number, orderedListNumber: number): string {
 		case 1:
 			return orderedListNumber.toString();
 		case 2:
-			return DEPTH_1_LIST_NUMBERS[orderedListNumber - 1]!; // TODO: don't hard code the list
+			return DEPTH_1_LIST_NUMBERS[orderedListNumber - 1]; // TODO: don't hard code the list
 		case 3:
-			return DEPTH_2_LIST_NUMBERS[orderedListNumber - 1]!; // TODO: don't hard code the list
+			return DEPTH_2_LIST_NUMBERS[orderedListNumber - 1]; // TODO: don't hard code the list
 		default:
 			return orderedListNumber.toString();
 	}

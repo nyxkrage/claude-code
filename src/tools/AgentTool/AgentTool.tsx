@@ -1,17 +1,17 @@
-import { TextBlock } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { TextBlock } from "@anthropic-ai/sdk/resources/index.mjs";
 import chalk from "chalk";
 import { last, memoize } from "lodash-es";
-import { EOL } from "os";
+import { EOL } from "node:os";
 import * as React from "react";
 import { z } from "zod";
-import { Tool } from "../../Tool.js";
+import type { Tool } from "../../Tool.js";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";
 import { getAgentPrompt } from "../../constants/prompts.js";
 import { getContext } from "../../context.js";
 import { hasPermissionsToUseTool } from "../../permissions.js";
 import {
-	AssistantMessage,
-	Message as MessageType,
+	type AssistantMessage,
+	type Message as MessageType,
 	query,
 } from "../../query.js";
 import { formatDuration, formatNumber } from "../../utils/format.js";
@@ -160,12 +160,12 @@ export const AgentTool = {
 		} else {
 			const result = [
 				toolUseCount === 1 ? "1 tool use" : `${toolUseCount} tool uses`,
-				formatNumber(
+				`${formatNumber(
 					(lastMessage.message.usage.cache_creation_input_tokens ?? 0) +
 						(lastMessage.message.usage.cache_read_input_tokens ?? 0) +
 						lastMessage.message.usage.input_tokens +
 						lastMessage.message.usage.output_tokens,
-				) + " tokens",
+				)} tokens`,
 				formatDuration(Date.now() - startTime),
 			];
 			yield {
@@ -205,7 +205,7 @@ export const AgentTool = {
 	renderToolUseMessage({ prompt }, { verbose }) {
 		const lines = prompt.split(EOL);
 		return applyMarkdown(
-			!verbose && lines.length > 1 ? lines[0] + "…" : prompt,
+			!verbose && lines.length > 1 ? `${lines[0]}…` : prompt,
 		);
 	},
 	renderToolUseRejectedMessage() {

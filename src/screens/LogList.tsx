@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import type React from "react";
+import { useEffect, useState } from "react";
 import { CACHE_PATHS } from "../utils/log.js";
 import { LogSelector } from "../components/LogSelector.js";
 import type { LogOption, LogListProps } from "../types/logs.js";

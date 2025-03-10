@@ -1,7 +1,7 @@
-import { ToolResultBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
-import * as React from "react";
-import { Tool } from "../../../Tool.js";
-import { Message, UserMessage } from "../../../query.js";
+import type { ToolResultBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
+import type * as React from "react";
+import type { Tool } from "../../../Tool.js";
+import type { Message, UserMessage } from "../../../query.js";
 import { CANCEL_MESSAGE, REJECT_MESSAGE } from "../../../utils/messages.js";
 import { UserToolCanceledMessage } from "./UserToolCanceledMessage.js";
 import { UserToolErrorMessage } from "./UserToolErrorMessage.js";

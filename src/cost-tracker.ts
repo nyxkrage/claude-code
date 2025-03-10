@@ -50,7 +50,7 @@ Total duration (wall): ${formatDuration(getTotalDuration())}`,
 export function useCostSummary(): void {
 	useEffect(() => {
 		const f = () => {
-			process.stdout.write("\n" + formatTotalCost() + "\n");
+			process.stdout.write(`\n${formatTotalCost()}\n`);
 
 			// Save last cost and duration to project config
 			const projectConfig = getCurrentProjectConfig();

@@ -1,4 +1,4 @@
-import { Command } from "../commands.js";
+import type { Command } from "../commands.js";
 import { PRODUCT_NAME } from "../constants/product.js";
 import * as React from "react";
 import { Box, Text, useInput } from "ink";
@@ -104,6 +104,7 @@ export function Help({
 
 					<Box flexDirection="column">
 						{filteredCommands.map((cmd, i) => (
+							// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better key for this
 							<Box key={i} marginLeft={1}>
 								<Text bold>{`/${cmd.name}`}</Text>
 								<Text> - {cmd.description}</Text>

@@ -1,6 +1,6 @@
-import { randomUUID, UUID } from "crypto";
+import { randomUUID, type UUID } from "node:crypto";
 import { Box } from "ink";
-import {
+import type {
 	AssistantMessage,
 	Message,
 	ProgressMessage,
@@ -9,13 +9,13 @@ import {
 import { getCommand, hasCommand } from "../commands.js";
 import { MalformedCommandError } from "./errors.js";
 import { logError } from "./log.js";
-import { resolve } from "path";
+import { resolve } from "node:path";
 import { last, memoize } from "lodash-es";
 import { logEvent } from "../services/statsig.js";
 import type { SetToolJSXFn, Tool, ToolUseContext } from "../Tool.js";
 import { lastX } from "../utils/generators.js";
 import { NO_CONTENT_MESSAGE } from "../services/claude.js";
-import {
+import type {
 	ImageBlockParam,
 	TextBlockParam,
 	ToolResultBlockParam,
@@ -31,7 +31,7 @@ import * as React from "react";
 import { UserBashInputMessage } from "../components/messages/UserBashInputMessage.js";
 import { Spinner } from "../components/Spinner.js";
 import { BashTool } from "../tools/BashTool/BashTool.js";
-import { ToolUseBlock } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { ToolUseBlock } from "@anthropic-ai/sdk/resources/index.mjs";
 
 export const INTERRUPT_MESSAGE = "[Request interrupted by user]";
 export const INTERRUPT_MESSAGE_FOR_TOOL_USE =
@@ -237,7 +237,7 @@ export async function processUserInput(
 		const words = input.slice(1).split(" ");
 		let commandName = words[0];
 		if (words.length > 1 && words[1] === "(MCP)") {
-			commandName = commandName + " (MCP)";
+			commandName = `${commandName} (MCP)`;
 		}
 		if (!commandName) {
 			logEvent("tengu_input_slash_missing", { input });
@@ -270,11 +270,11 @@ export async function processUserInput(
 		// For invalid commands, preserve both the user message and error
 		if (
 			newMessages.length === 2 &&
-			newMessages[0]!.type === "user" &&
-			newMessages[1]!.type === "assistant" &&
-			typeof newMessages[1]!.message.content === "string" &&
+			newMessages[0].type === "user" &&
+			newMessages[1].type === "assistant" &&
+			typeof newMessages[1].message.content === "string" &&
 			// @ts-expect-error: TODO: this is probably a bug
-			newMessages[1]!.message.content.startsWith("Unknown command:")
+			newMessages[1].message.content.startsWith("Unknown command:")
 		) {
 			logEvent("tengu_input_slash_invalid", { input });
 			return newMessages;
@@ -460,18 +460,17 @@ export function extractTag(html: string, tagName: string): string | null {
 	// 3. Nested tags of the same type
 	// 4. Multiline content
 	const pattern = new RegExp(
-		`<${escapedTag}(?:\\s+[^>]*)?>` + // Opening tag with optional attributes
-			"([\\s\\S]*?)" + // Content (non-greedy match)
-			`<\\/${escapedTag}>`, // Closing tag
+		`<${escapedTag}(?:\\s+[^>]*)?>([\\s\\S]*?)<\\/${escapedTag}>`, // Closing tag
 		"gi",
 	);
 
-	let match;
+	let match: RegExpExecArray | null;
 	let depth = 0;
 	let lastIndex = 0;
 	const openingTag = new RegExp(`<${escapedTag}(?:\\s+[^>]*?)?>`, "gi");
 	const closingTag = new RegExp(`<\\/${escapedTag}>`, "gi");
 
+	// biome-ignore lint/suspicious/noAssignInExpressions: common pattern for dealing with RegExp.exec
 	while ((match = pattern.exec(html)) !== null) {
 		// Check for nested tags
 		const content = match[1];
@@ -521,14 +520,14 @@ export function isNotEmptyMessage(message: Message): boolean {
 		return true;
 	}
 
-	if (message.message.content[0]!.type !== "text") {
+	if (message.message.content[0].type !== "text") {
 		return true;
 	}
 
 	return (
-		message.message.content[0]!.text.trim().length > 0 &&
-		message.message.content[0]!.text !== NO_CONTENT_MESSAGE &&
-		message.message.content[0]!.text !== INTERRUPT_MESSAGE_FOR_TOOL_USE
+		message.message.content[0].text.trim().length > 0 &&
+		message.message.content[0].text !== NO_CONTENT_MESSAGE &&
+		message.message.content[0].text !== INTERRUPT_MESSAGE_FOR_TOOL_USE
 	);
 }
 
@@ -664,7 +663,6 @@ export function reorderMessages(
 			);
 			if (toolUseMessage) {
 				ms.splice(ms.indexOf(toolUseMessage) + 1, 0, message);
-				continue;
 			}
 		}
 
@@ -684,8 +682,8 @@ const getToolResultIDs = memoize(
 				_.type === "user" && _.message.content[0]?.type === "tool_result"
 					? [
 							[
-								_.message.content[0]!.tool_use_id,
-								_.message.content[0]!.is_error ?? false,
+								_.message.content[0].tool_use_id,
+								_.message.content[0].is_error ?? false,
 							],
 						]
 					: ([] as [string, boolean][]),
@@ -753,7 +751,7 @@ export function getInProgressToolUseIDs(
 
 				return false;
 			}) as AssistantMessage[]
-		).map((_) => (_.message.content[0]! as ToolUseBlockParam).id),
+		).map((_) => (_.message.content[0] as ToolUseBlockParam).id),
 	);
 }
 
@@ -775,50 +773,48 @@ export function normalizeMessagesForAPI(
 	messages: Message[],
 ): (UserMessage | AssistantMessage)[] {
 	const result: (UserMessage | AssistantMessage)[] = [];
-	messages
-		.filter((_) => _.type !== "progress")
-		.forEach((message) => {
-			switch (message.type) {
-				case "user": {
-					// If the current message is not a tool result, add it to the result
-					if (
-						!Array.isArray(message.message.content) ||
-						message.message.content[0]?.type !== "tool_result"
-					) {
-						result.push(message);
-						return;
-					}
-
-					// If the last message is not a tool result, add it to the result
-					const lastMessage = last(result);
-					if (
-						!lastMessage ||
-						lastMessage?.type === "assistant" ||
-						!Array.isArray(lastMessage.message.content) ||
-						lastMessage.message.content[0]?.type !== "tool_result"
-					) {
-						result.push(message);
-						return;
-					}
-
-					// Otherwise, merge the current message with the last message
-					result[result.indexOf(lastMessage)] = {
-						...lastMessage,
-						message: {
-							...lastMessage.message,
-							content: [
-								...lastMessage.message.content,
-								...message.message.content,
-							],
-						},
-					};
-					return;
-				}
-				case "assistant":
+	for (const message of messages.filter((_) => _.type !== "progress")) {
+		switch (message.type) {
+			case "user": {
+				// If the current message is not a tool result, add it to the result
+				if (
+					!Array.isArray(message.message.content) ||
+					message.message.content[0]?.type !== "tool_result"
+				) {
 					result.push(message);
-					return;
+					continue;
+				}
+
+				// If the last message is not a tool result, add it to the result
+				const lastMessage = last(result);
+				if (
+					!lastMessage ||
+					lastMessage?.type === "assistant" ||
+					!Array.isArray(lastMessage.message.content) ||
+					lastMessage.message.content[0]?.type !== "tool_result"
+				) {
+					result.push(message);
+					continue;
+				}
+
+				// Otherwise, merge the current message with the last message
+				result[result.indexOf(lastMessage)] = {
+					...lastMessage,
+					message: {
+						...lastMessage.message,
+						content: [
+							...lastMessage.message.content,
+							...message.message.content,
+						],
+					},
+				};
+				break;
 			}
-		});
+			case "assistant":
+				result.push(message);
+				break;
+		}
+	}
 	return result;
 }
 

@@ -1,10 +1,10 @@
-import { existsSync, readFileSync, writeFileSync } from "fs";
-import { resolve, join } from "path";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { resolve, join } from "node:path";
 import { cloneDeep, memoize, pick } from "lodash-es";
-import { homedir } from "os";
+import { homedir } from "node:os";
 import { GLOBAL_CLAUDE_FILE } from "./env.js";
 import { getCwd } from "./state.js";
-import { randomBytes } from "crypto";
+import { randomBytes } from "node:crypto";
 import { safeParseJSON } from "./json.js";
 import { checkGate, logEvent } from "../services/statsig.js";
 import { GATE_USE_EXTERNAL_UPDATER } from "../constants/betas.js";
@@ -386,9 +386,9 @@ export const TEST_MCPRC_CONFIG_FOR_TESTING: Record<string, McpServerConfig> =
 
 export function clearMcprcConfigForTesting(): void {
 	if (process.env.NODE_ENV === "test") {
-		Object.keys(TEST_MCPRC_CONFIG_FOR_TESTING).forEach((key) => {
+		for (const key of Object.keys(TEST_MCPRC_CONFIG_FOR_TESTING)) {
 			delete TEST_MCPRC_CONFIG_FOR_TESTING[key];
-		});
+		};
 	}
 }
 
@@ -475,15 +475,15 @@ export function getConfigForCLI(key: string, global: boolean): unknown {
 			process.exit(1);
 		}
 		return getGlobalConfig()[key];
-	} else {
-		if (!isProjectConfigKey(key)) {
-			console.error(
-				`Error: '${key}' is not a valid config key. Valid keys are: ${PROJECT_CONFIG_KEYS.join(", ")}`,
-			);
-			process.exit(1);
-		}
-		return getCurrentProjectConfig()[key];
 	}
+	
+	if (!isProjectConfigKey(key)) {
+		console.error(
+			`Error: '${key}' is not a valid config key. Valid keys are: ${PROJECT_CONFIG_KEYS.join(", ")}`,
+		);
+		process.exit(1);
+	}
+	return getCurrentProjectConfig()[key];
 }
 
 export function setConfigForCLI(
@@ -505,7 +505,7 @@ export function setConfigForCLI(
 
 		if (key === "autoUpdaterStatus" && !isAutoUpdaterStatus(value as string)) {
 			console.error(
-				`Error: Invalid value for autoUpdaterStatus. Must be one of: disabled, enabled, no_permissions, not_configured`,
+				"Error: Invalid value for autoUpdaterStatus. Must be one of: disabled, enabled, no_permissions, not_configured",
 			);
 			process.exit(1);
 		}
@@ -572,7 +572,7 @@ export function listConfigForCLI(global: boolean): object {
 	if (global) {
 		const currentConfig = pick(getGlobalConfig(), GLOBAL_CONFIG_KEYS);
 		return currentConfig;
-	} else {
-		return pick(getCurrentProjectConfig(), PROJECT_CONFIG_KEYS);
 	}
+
+	return pick(getCurrentProjectConfig(), PROJECT_CONFIG_KEYS);
 }

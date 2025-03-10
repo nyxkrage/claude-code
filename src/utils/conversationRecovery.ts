@@ -1,16 +1,12 @@
-import fs from "fs/promises";
+import fs from "node:fs/promises";
 import { logError } from "./log.js";
-import { Tool } from "../Tool.ts";
+import type { Tool } from "../Tool.ts";
 
-/**
- * Load messages from a log file
- * @param logPath Path to the log file
- * @param tools Available tools for deserializing tool usage
- * @returns Array of deserialized messages
- */
+
 export async function loadMessagesFromLog(
 	logPath: string,
 	tools: Tool[],
+// biome-ignore lint/suspicious/noExplicitAny: unsure what format the saved messages are in so we use any to not break downstream code that might not do any validation
 ): Promise<any[]> {
 	try {
 		const content = await fs.readFile(logPath, "utf-8");
@@ -22,13 +18,8 @@ export async function loadMessagesFromLog(
 	}
 }
 
-/**
- * Deserialize messages from a saved format, reconnecting any tool references
- * @param messages The serialized message array
- * @param tools Available tools to reconnect
- * @returns Deserialized messages with reconnected tool references
- */
-export function deserializeMessages(messages: any[], tools: Tool[]): any[] {
+// biome-ignore lint/suspicious/noExplicitAny: unsure what format the saved messages are in so we use any to not break downstream code that might not do any validation
+export  function deserializeMessages(messages: any[], tools: Tool[]): any[] {
 	// Map of tool names to actual tool instances for reconnection
 	const toolMap = new Map(tools.map((tool) => [tool.name, tool]));
 
@@ -38,6 +29,7 @@ export function deserializeMessages(messages: any[], tools: Tool[]): any[] {
 
 		// If the message has tool calls, reconnect them to actual tool instances
 		if (clonedMessage.toolCalls) {
+			// biome-ignore lint/suspicious/noExplicitAny: unsure what format the saved messages are in so we use any to not break downstream code that might not do any validation
 			clonedMessage.toolCalls = clonedMessage.toolCalls.map((toolCall: any) => {
 				// Reconnect tool reference if it exists
 				if (toolCall.tool && typeof toolCall.tool === "string") {

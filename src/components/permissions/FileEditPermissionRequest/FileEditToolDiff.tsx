@@ -1,12 +1,12 @@
-import * as React from "react";
-import { existsSync, readFileSync } from "fs";
+import type * as React from "react";
+import { existsSync, readFileSync } from "node:fs";
 import { useMemo } from "react";
 import { StructuredDiff } from "../../StructuredDiff.js";
 import { Box, Text } from "ink";
 import { getTheme } from "../../../utils/theme.js";
 import { intersperse } from "../../../utils/array.js";
 import { getCwd } from "../../../utils/state.js";
-import { relative } from "path";
+import { relative } from "node:path";
 import { getPatch } from "../../../utils/diff.js";
 
 type Props = {

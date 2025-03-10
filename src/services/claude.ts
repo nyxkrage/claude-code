@@ -4,13 +4,13 @@ import { AnthropicBedrock } from "@anthropic-ai/bedrock-sdk";
 import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 import type { BetaUsage } from "@anthropic-ai/sdk/resources/beta/messages/messages.mjs";
 import chalk from "chalk";
-import { createHash, randomUUID } from "crypto";
+import { createHash, randomUUID } from "node:crypto";
 import "dotenv/config";
 import { getBetas } from "../utils/betas.js";
 
 import { addToTotalCost } from "../cost-tracker.js";
 import type { AssistantMessage, UserMessage } from "../query.js";
-import { Tool } from "../Tool.js";
+import type { Tool } from "../Tool.js";
 import { getAnthropicApiKey, getOrCreateUserID } from "../utils/config.js";
 import { logError, SESSION_ID } from "../utils/log.js";
 import { USER_AGENT } from "../utils/http.js";
@@ -75,11 +75,12 @@ function getRetryDelay(
 	retryAfterHeader?: string | null,
 ): number {
 	if (retryAfterHeader) {
-		const seconds = parseInt(retryAfterHeader, 10);
-		if (!isNaN(seconds)) {
+		const seconds = Number.parseInt(retryAfterHeader, 10);
+		if (!Number.isNaN(seconds)) {
 			return seconds * 1000;
 		}
 	}
+	// biome-ignore lint/style/useExponentiationOperator: infix operator is much less readable in this case and would need more parentheses to be as readable
 	return Math.min(BASE_DELAY_MS * Math.pow(2, attempt - 1), 32000); // Max 32s delay
 }
 
@@ -240,14 +241,14 @@ export function getAnthropicClient(model?: string): Anthropic {
 		"User-Agent": USER_AGENT,
 	};
 	if (process.env.ANTHROPIC_AUTH_TOKEN) {
-		defaultHeaders["Authorization"] =
+		defaultHeaders.Authorization =
 			`Bearer ${process.env.ANTHROPIC_AUTH_TOKEN}`;
 	}
 
 	const ARGS = {
 		defaultHeaders,
 		maxRetries: 0, // Disabled auto-retry in favor of manual implementation
-		timeout: parseInt(process.env.API_TIMEOUT_MS || String(60 * 1000), 10),
+		timeout: Number.parseInt(process.env.API_TIMEOUT_MS || String(60 * 1000), 10),
 	};
 	if (USE_BEDROCK) {
 		const client = new AnthropicBedrock(ARGS);
@@ -331,19 +332,19 @@ export function userMessageToMessageParam(
 					},
 				],
 			};
-		} else {
-			return {
-				role: "user",
-				content: message.message.content.map((_, i) => ({
-					..._,
-					...(i === message.message.content.length - 1
-						? PROMPT_CACHING_ENABLED
-							? { cache_control: { type: "ephemeral" } }
-							: {}
-						: {}),
-				})),
-			};
 		}
+
+		return {
+			role: "user",
+			content: message.message.content.map((_, i) => ({
+				..._,
+				...(i === message.message.content.length - 1
+					? PROMPT_CACHING_ENABLED
+						? { cache_control: { type: "ephemeral" } }
+						: {}
+					: {}),
+			})),
+		};
 	}
 	return {
 		role: "user",
@@ -369,21 +370,21 @@ export function assistantMessageToMessageParam(
 					},
 				],
 			};
-		} else {
-			return {
-				role: "assistant",
-				content: message.message.content.map((_, i) => ({
-					..._,
-					...(i === message.message.content.length - 1 &&
-					_.type !== "thinking" &&
-					_.type !== "redacted_thinking"
-						? PROMPT_CACHING_ENABLED
-							? { cache_control: { type: "ephemeral" } }
-							: {}
-						: {}),
-				})),
-			};
 		}
+
+		return {
+			role: "assistant",
+			content: message.message.content.map((_, i) => ({
+				..._,
+				...(i === message.message.content.length - 1 &&
+				_.type !== "thinking" &&
+				_.type !== "redacted_thinking"
+					? PROMPT_CACHING_ENABLED
+						? { cache_control: { type: "ephemeral" } }
+						: {}
+					: {}),
+			})),
+		};
 	}
 	return {
 		role: "assistant",
@@ -466,6 +467,7 @@ async function querySonnetWithPromptCaching(
 				: "",
 		});
 
+		// biome-ignore lint/style/noParameterAssign: introducing a new variable makes this code less readable
 		systemPrompt = [getCLISyspromptPrefix(), ...systemPrompt];
 	}
 
@@ -507,7 +509,7 @@ async function querySonnetWithPromptCaching(
 	const startIncludingRetries = Date.now();
 	let start = Date.now();
 	let attemptNumber = 0;
-	let response;
+	let response: StreamResponse;
 	let stream: BetaMessageStream | undefined = undefined;
 	try {
 		response = await withRetry(async (attempt) => {

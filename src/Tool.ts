@@ -1,13 +1,13 @@
-import {
+import type {
 	ImageBlockParam,
 	TextBlockParam,
 } from "@anthropic-ai/sdk/resources/index.mjs";
-import { type Command } from "./commands.ts";
+import type { Command } from "./commands.ts";
 import { UnaryEvent } from "./hooks/usePermissionRequestLogging.ts";
-import { AssistantMessage, type Message } from "./query.js";
-import { z } from "zod";
-import { NormalizedMessage } from "./utils/messages.tsx";
-import { CanUseToolFn } from "./hooks/useCanUseTool.ts";
+import type { AssistantMessage, Message } from "./query.js";
+import type { z } from "zod";
+import type { NormalizedMessage } from "./utils/messages.tsx";
+import type { CanUseToolFn } from "./hooks/useCanUseTool.ts";
 
 export type ToolUseContext = {
 	options: {
@@ -62,16 +62,18 @@ export type Tool<
 		z.ZodRawShape,
 		z.UnknownKeysParam,
 		z.ZodTypeAny,
+		// biome-ignore lint/suspicious/noExplicitAny: Errors even with unknown, unsure if there is a way to properly type this so that comparisons dont give type errors
 		any,
 		Record<string, unknown>
 	>,
+	// biome-ignore lint/suspicious/noExplicitAny: see above comment
 	Out = any,
 > = {
 	name: string;
 	userFacingName(arg0: never): string;
 	description(arg0: z.infer<In>): Promise<string>;
 	inputSchema: In;
-	inputJSONSchema?: any;
+	inputJSONSchema?: unknown;
 	isEnabled(): Promise<boolean>;
 	isReadOnly(): boolean;
 	needsPermissions(input: z.infer<In>): boolean;

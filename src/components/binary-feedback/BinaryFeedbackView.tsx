@@ -1,4 +1,4 @@
-import { Option, SelectProps } from "@inkjs/ui";
+import type { Option, SelectProps } from "@inkjs/ui";
 import chalk from "chalk";
 import { Box, Text, useInput } from "ink";
 import Link from "ink-link";
@@ -7,11 +7,11 @@ import { getTheme } from "../../utils/theme.js";
 import { Select } from "../CustomSelect/index.js";
 import type { Tool } from "../../Tool.js";
 import type { NormalizedMessage } from "../../utils/messages.js";
-import { BinaryFeedbackOption } from "./BinaryFeedbackOption.js";
+import { BinaryFeedbackOption as BinaryFeedbackOptionComponent } from "./BinaryFeedbackOption.js";
 import type { AssistantMessage } from "../../query.js";
 import type { BinaryFeedbackChoose } from "./utils.js";
 import { useExitOnCtrlCD } from "../../hooks/useExitOnCtrlCD.js";
-import { BinaryFeedbackChoice } from "./utils.js";
+import type { BinaryFeedbackChoice } from "./utils.js";
 
 const HELP_URL = "https://go/cli-feedback";
 
@@ -113,7 +113,7 @@ export function BinaryFeedbackView({
 						marginRight={1}
 						padding={1}
 					>
-						<BinaryFeedbackOption
+						<BinaryFeedbackOptionComponent
 							erroredToolUseIDs={erroredToolUseIDs}
 							debug={debug}
 							inProgressToolUseIDs={inProgressToolUseIDs}
@@ -136,7 +136,7 @@ export function BinaryFeedbackView({
 						marginLeft={1}
 						padding={1}
 					>
-						<BinaryFeedbackOption
+						<BinaryFeedbackOptionComponent
 							erroredToolUseIDs={erroredToolUseIDs}
 							debug={debug}
 							inProgressToolUseIDs={inProgressToolUseIDs}

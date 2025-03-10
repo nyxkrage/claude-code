@@ -1,5 +1,6 @@
 import { Box, Text } from "ink";
-import React, { useMemo } from "react";
+import type React from "react";
+import { useMemo } from "react";
 import { Select } from "@inkjs/ui";
 import { getTheme } from "../../../utils/theme.js";
 import {
@@ -8,13 +9,13 @@ import {
 } from "../PermissionRequestTitle.js";
 import { logUnaryEvent } from "../../../utils/unaryLogging.js";
 import { env } from "../../../utils/env.js";
-import {
-	type PermissionRequestProps,
-	type ToolUseConfirm,
+import type {
+	PermissionRequestProps,
+	ToolUseConfirm,
 } from "../PermissionRequest.js";
 import chalk from "chalk";
 import {
-	UnaryEvent,
+	type UnaryEvent,
 	usePermissionRequestLogging,
 } from "../../../hooks/usePermissionRequestLogging.js";
 import { FileEditTool } from "../../../tools/FileEditTool/FileEditTool.js";
@@ -70,9 +71,8 @@ function pathFromToolUse(toolUseConfirm: ToolUseConfirm): string | null {
 	if (pathArgName && pathArgName in input) {
 		if (typeof input[pathArgName] === "string") {
 			return toAbsolutePath(input[pathArgName]);
-		} else {
-			return toAbsolutePath(getCwd());
 		}
+		return toAbsolutePath(getCwd());
 	}
 	return null;
 }

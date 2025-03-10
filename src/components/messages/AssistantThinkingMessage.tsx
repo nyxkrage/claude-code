@@ -1,8 +1,8 @@
-import React from "react";
+import type React from "react";
 import { Box, Text } from "ink";
 import { getTheme } from "../../utils/theme.js";
 import { applyMarkdown } from "../../utils/markdown.js";
-import {
+import type {
 	ThinkingBlock,
 	ThinkingBlockParam,
 } from "@anthropic-ai/sdk/resources/index.mjs";

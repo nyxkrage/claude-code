@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import BashToolResultMessage from "../../tools/BashTool/BashToolResultMessage.js";
 import { extractTag } from "../../utils/messages.js";
 

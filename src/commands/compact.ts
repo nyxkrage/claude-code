@@ -1,4 +1,4 @@
-import { Command } from "../commands.js";
+import type { Command } from "../commands.js";
 import { getContext } from "../context.js";
 import { getMessagesGetter, getMessagesSetter } from "../messages.js";
 import { API_ERROR_MESSAGE_PREFIX, querySonnet } from "../services/claude.js";
@@ -57,7 +57,9 @@ const compact = {
 			throw new Error(
 				`Failed to generate conversation summary - response did not contain valid text content - ${summaryResponse}`,
 			);
-		} else if (summary.startsWith(API_ERROR_MESSAGE_PREFIX)) {
+		}
+		
+		if (summary.startsWith(API_ERROR_MESSAGE_PREFIX)) {
 			throw new Error(summary);
 		}
 
@@ -77,7 +79,7 @@ const compact = {
 		getMessagesSetter()([]);
 		setForkConvoWithMessagesOnTheNextRender([
 			createUserMessage(
-				`Use the /compact command to clear the conversation history, and start a new conversation with the summary in context.`,
+				"Use the /compact command to clear the conversation history, and start a new conversation with the summary in context.",
 			),
 			summaryResponse,
 		]);

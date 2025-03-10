@@ -5,8 +5,8 @@ import { BashTool, inputSchema } from "../tools/BashTool/BashTool.js";
 import { getCommandSubcommandPrefix } from "../utils/commands.js";
 import { REJECT_MESSAGE } from "../utils/messages.js";
 import type { Tool as ToolType, ToolUseContext } from "../Tool.js";
-import { AssistantMessage } from "../query.js";
-import { ToolUseConfirm } from "../components/permissions/PermissionRequest.js";
+import type { AssistantMessage } from "../query.js";
+import type { ToolUseConfirm } from "../components/permissions/PermissionRequest.js";
 import { AbortError } from "../utils/errors.js";
 import { logError } from "../utils/log.js";
 

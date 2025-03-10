@@ -1,5 +1,5 @@
 import { Box, Text } from "ink";
-import * as React from "react";
+import type * as React from "react";
 import { getTheme } from "../utils/theme.js";
 import { PRODUCT_NAME } from "../constants/product.js";
 import { isDefaultApiKey, getAnthropicApiKey } from "../utils/config.js";
@@ -50,7 +50,7 @@ export function Logo({
 					<Box paddingLeft={2} flexDirection="column" gap={1}>
 						<Text color={theme.secondaryText} italic>
 							/help for help
-							{process.env.USER_TYPE === "ant" && <> · https://go/claude-cli</>}
+							{process.env.USER_TYPE === "ant" && "· https://go/claude-cli"}
 						</Text>
 						<Text color={theme.secondaryText}>cwd: {getCwd()}</Text>
 					</Box>
@@ -78,7 +78,7 @@ export function Logo({
 							{isCustomApiKey && apiKey ? (
 								<Text color={theme.secondaryText}>
 									• API Key:{" "}
-									<Text bold>sk-ant-…{apiKey!.slice(-width + 25)}</Text>
+									<Text bold>sk-ant-…{apiKey.slice(-width + 25)}</Text>
 								</Text>
 							) : null}
 							{process.env.DISABLE_PROMPT_CACHING ? (
@@ -127,7 +127,7 @@ export function Logo({
 							<Text color={theme.secondaryText}>MCP Servers:</Text>
 						</Box>
 						{mcpClients.map((client, idx) => (
-							<Box key={idx} width={width - 6}>
+							<Box key={client.name} width={width - 6}>
 								<Text color={theme.secondaryText}>• {client.name}</Text>
 								<Box flexGrow={1} />
 								<Text

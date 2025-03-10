@@ -1,5 +1,5 @@
-import { TextBlock, ToolUseBlock } from "@anthropic-ai/sdk/resources/index.mjs";
-import { AssistantMessage, BinaryFeedbackResult } from "../../query.js";
+import type { TextBlock, ToolUseBlock } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { AssistantMessage, BinaryFeedbackResult } from "../../query.js";
 import { MAIN_QUERY_TEMPERATURE } from "../../services/claude.js";
 import { getDynamicConfig, logEvent } from "../../services/statsig.js";
 
@@ -104,6 +104,7 @@ function contentBlocksEqual(
 	if (cb1.type === "text") {
 		return textContentBlocksEqual(cb1, cb2 as TextBlock);
 	}
+	// biome-ignore lint/style/noParameterAssign: this is just a type cast
 	cb2 = cb2 as ToolUseBlock;
 	return cb1.name === cb2.name && isEqual(cb1.input, cb2.input);
 }
@@ -116,6 +117,7 @@ function allContentBlocksEqual(
 		return false;
 	}
 	return zip(content1, content2).every(([cb1, cb2]) =>
+		// biome-ignore lint/style/noNonNullAssertion: content1 and content2 are guaranteed to be the same length
 		contentBlocksEqual(cb1!, cb2!),
 	);
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { Box, Text, useInput } from "ink";
 import { getTheme } from "../utils/theme.js";
 import { MultiSelect } from "@inkjs/ui";

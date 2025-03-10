@@ -10,7 +10,7 @@ export class Cursor {
 	readonly offset: number;
 	constructor(
 		readonly measuredText: MeasuredText,
-		offset: number = 0,
+		offset = 0,
 		readonly selection: number = 0,
 	) {
 		// it's ok for the cursor to be 1 char beyond the end of the string
@@ -20,8 +20,8 @@ export class Cursor {
 	static fromText(
 		text: string,
 		columns: number,
-		offset: number = 0,
-		selection: number = 0,
+		offset = 0,
+		selection = 0,
 	): Cursor {
 		// make MeasuredText on less than columns width, to account for cursor
 		return new Cursor(new MeasuredText(text, columns - 1), offset, selection);
@@ -38,7 +38,7 @@ export class Cursor {
 					displayText = mask.repeat(lastSixStart) + text.slice(lastSixStart);
 				}
 				// looking for the line with the cursor
-				if (line != currentLine) return displayText.trimEnd();
+				if (line !== currentLine) return displayText.trimEnd();
 
 				return (
 					displayText.slice(0, column) +
@@ -59,7 +59,7 @@ export class Cursor {
 
 	up(): Cursor {
 		const { line, column } = this.getPosition();
-		if (line == 0) {
+		if (line === 0) {
 			return new Cursor(this.measuredText, 0, 0);
 		}
 
@@ -134,7 +134,7 @@ export class Cursor {
 		return cursor;
 	}
 
-	private modifyText(end: Cursor, insertString: string = ""): Cursor {
+	private modifyText(end: Cursor, insertString = ""): Cursor {
 		const startOffset = this.offset;
 		const endOffset = end.offset;
 
@@ -204,15 +204,15 @@ export class Cursor {
 
 	equals(other: Cursor): boolean {
 		return (
-			this.offset === other.offset && this.measuredText == other.measuredText
+			this.offset === other.offset && this.measuredText === other.measuredText
 		);
 	}
 
 	private isAtStart(): boolean {
-		return this.offset == 0;
+		return this.offset === 0;
 	}
 	private isAtEnd(): boolean {
-		return this.offset == this.text.length;
+		return this.offset === this.text.length;
 	}
 
 	public get text(): string {
@@ -271,9 +271,9 @@ export class MeasuredText {
 
 		const lines = wrappedText.split("\n");
 		for (let i = 0; i < lines.length; i++) {
-			const text = lines[i]!;
+			const text = lines[i];
 			const isPrecededByNewline = (startOffset: number) =>
-				i == 0 || (startOffset > 0 && this.text[startOffset - 1] === "\n");
+				i === 0 || (startOffset > 0 && this.text[startOffset - 1] === "\n");
 
 			if (text.length === 0) {
 				// For blank lines, find the next newline character after the last one
@@ -350,7 +350,7 @@ export class MeasuredText {
 	private getLine(line: number): WrappedLine {
 		return this.wrappedLines[
 			Math.max(0, Math.min(line, this.wrappedLines.length - 1))
-		]!;
+		];
 	}
 
 	public getOffsetFromPosition(position: Position): number {
@@ -383,7 +383,7 @@ export class MeasuredText {
 	public getPositionFromOffset(offset: number): Position {
 		const lines = this.wrappedLines;
 		for (let line = 0; line < lines.length; line++) {
-			const currentLine = lines[line]!;
+			const currentLine = lines[line];
 			const nextLine = lines[line + 1];
 			if (
 				offset >= currentLine.startOffset &&
@@ -410,7 +410,7 @@ export class MeasuredText {
 		const line = lines.length - 1;
 		return {
 			line,
-			column: this.wrappedLines[line]!.text.length,
+			column: this.wrappedLines[line].text.length,
 		};
 	}
 

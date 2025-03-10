@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { Text } from "ink";
 import Link from "ink-link";
 

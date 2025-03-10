@@ -1,4 +1,4 @@
-import { Command } from "../commands.js";
+import type { Command } from "../commands.js";
 import { Bug } from "../components/Bug.js";
 import * as React from "react";
 import { PRODUCT_NAME } from "../constants/product.js";

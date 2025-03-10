@@ -1,5 +1,5 @@
-import { promises as fs } from "fs";
-import { join } from "path";
+import { promises as fs } from "node:fs";
+import { join } from "node:path";
 import { logError } from "./log.js";
 import { CACHE_PATHS } from "./log.js";
 
@@ -11,8 +11,11 @@ export type CleanupResult = {
 };
 
 export function convertFileNameToDate(filename: string): Date {
-	const isoStr = filename
-		.split(".")[0]!
+	const filenameParts = filename.split(".");
+	if (filenameParts.length !== 1) {
+		throw new Error(`Invalid filename: ${filename}`);
+	}
+	const isoStr = filenameParts[0]
 		.replace(/T(\d{2})-(\d{2})-(\d{2})-(\d{3})Z/, "T$1:$2:$3.$4Z");
 	return new Date(isoStr);
 }

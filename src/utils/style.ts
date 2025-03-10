@@ -1,5 +1,5 @@
-import { existsSync, readFileSync } from "fs";
-import { join, parse, dirname } from "path";
+import { existsSync, readFileSync } from "node:fs";
+import { join, parse, dirname } from "node:path";
 import { memoize } from "lodash-es";
 import { getCwd } from "./state.js";
 

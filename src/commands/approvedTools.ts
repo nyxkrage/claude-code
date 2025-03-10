@@ -1,5 +1,5 @@
 import {
-	ProjectConfig,
+	type ProjectConfig,
 	getCurrentProjectConfig as getCurrentProjectConfigDefault,
 	saveCurrentProjectConfig as saveCurrentProjectConfigDefault,
 } from "../utils/config.js";
@@ -46,10 +46,10 @@ export function handleRemoveApprovedTool(
 			success: true,
 			message: `Removed ${tool} from the list of approved tools`,
 		};
-	} else {
-		return {
-			success: false,
-			message: `${tool} was not in the list of approved tools`,
-		};
 	}
+	
+	return {
+		success: false,
+		message: `${tool} was not in the list of approved tools`,
+	};
 }

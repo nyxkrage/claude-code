@@ -1,6 +1,6 @@
 import { memoize } from "lodash-es";
 import { API_ERROR_MESSAGE_PREFIX, queryHaiku } from "../services/claude.js";
-import { type ControlOperator, parse, ParseEntry } from "shell-quote";
+import { type ControlOperator, parse, type ParseEntry } from "shell-quote";
 import { PRODUCT_NAME } from "../constants/product.js";
 
 const SINGLE_QUOTE = "__SINGLE_QUOTE__";
@@ -33,7 +33,7 @@ export function splitCommand(command: string): string[] {
 	)) {
 		if (typeof part === "string") {
 			if (parts.length > 0 && typeof parts[parts.length - 1] === "string") {
-				parts[parts.length - 1] += " " + part;
+				parts[parts.length - 1] += ` ${part}`;
 				continue;
 			}
 		}
@@ -48,7 +48,7 @@ export function splitCommand(command: string): string[] {
 			}
 			if ("comment" in part) {
 				// TODO: make this less hacky
-				return "#" + part.comment;
+				return `#${part.comment}`;
 			}
 			if ("op" in part && part.op === "glob") {
 				return part.pattern;
@@ -244,7 +244,8 @@ function isCommandList(command: string): boolean {
 			if (part.op === "glob") {
 				// Globs are safe
 				continue;
-			} else if (COMMAND_LIST_SEPARATORS.has(part.op)) {
+			}
+			if (COMMAND_LIST_SEPARATORS.has(part.op)) {
 				// Command list separators are safe
 				continue;
 			}

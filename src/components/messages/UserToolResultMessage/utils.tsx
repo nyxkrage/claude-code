@@ -1,7 +1,7 @@
-import { ToolUseBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
-import { Message } from "../../../query.js";
+import type { ToolUseBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { Message } from "../../../query.js";
 import { useMemo } from "react";
-import { Tool } from "../../../Tool.js";
+import type { Tool } from "../../../Tool.js";
 import { GlobTool } from "../../../tools/GlobTool/GlobTool.js";
 import { GrepTool } from "../../../tools/GrepTool/GrepTool.js";
 import { logEvent } from "../../../services/statsig.js";

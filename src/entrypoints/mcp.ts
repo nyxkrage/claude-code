@@ -2,10 +2,10 @@ import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
 	CallToolRequestSchema,
-	CallToolResultSchema,
+	type CallToolResultSchema,
 	ListToolsRequestSchema,
-	ListToolsResultSchema,
-	ToolSchema,
+	type ListToolsResultSchema,
+	type ToolSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
@@ -21,8 +21,8 @@ import { FileReadTool } from "../tools/FileReadTool/FileReadTool.js";
 import { GlobTool } from "../tools/GlobTool/GlobTool.js";
 import { GrepTool } from "../tools/GrepTool/GrepTool.js";
 import { FileWriteTool } from "../tools/FileWriteTool/FileWriteTool.js";
-import { Tool } from "../Tool.js";
-import { Command } from "../commands.js";
+import type { Tool } from "../Tool.js";
+import type { Command } from "../commands.js";
 import review from "../commands/review.js";
 import { lastX } from "../utils/generators.js";
 import { MACRO } from "../constants/macro.js";

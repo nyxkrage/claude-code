@@ -1,7 +1,7 @@
 import { z } from "zod";
 import React from "react";
 import { Text } from "ink";
-import { Tool } from "../../Tool.js";
+import type { Tool } from "../../Tool.js";
 import { DESCRIPTION, PROMPT } from "./prompt.js";
 import { getTheme } from "../../utils/theme.js";
 import { MessageResponse } from "../../components/MessageResponse.js";

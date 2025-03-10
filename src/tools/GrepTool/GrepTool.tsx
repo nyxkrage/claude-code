@@ -1,10 +1,10 @@
-import { stat } from "fs/promises";
+import { stat } from "node:fs/promises";
 import { Box, Text } from "ink";
 import React from "react";
 import { z } from "zod";
 import { Cost } from "../../components/Cost.js";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";
-import { Tool } from "../../Tool.js";
+import type { Tool } from "../../Tool.js";
 import { getCwd } from "../../utils/state.js";
 import {
 	getAbsolutePath,
@@ -72,8 +72,10 @@ export const GrepTool = {
 	renderToolResultMessage(output) {
 		// Handle string content for backward compatibility
 		if (typeof output === "string") {
+			// pretty sure the code beneath this is wrong, so rather fail in case this is reachable.
+			throw new Error("Unexpected string output from GrepTool");
 			// Convert string to Output type using tmpDeserializeOldLogResult if needed
-			output = output as unknown as Output;
+			// output = output as unknown as Output;
 		}
 
 		return (
@@ -114,7 +116,7 @@ export const GrepTool = {
 		const stats = await Promise.all(results.map((_) => stat(_)));
 		const matches = results
 			// Sort by modification time
-			.map((_, i) => [_, stats[i]!] as const)
+			.map((_, i) => [_, stats[i]] as const)
 			.sort((a, b) => {
 				if (process.env.NODE_ENV === "test") {
 					// In tests, we always want to sort by filename, so that results are deterministic

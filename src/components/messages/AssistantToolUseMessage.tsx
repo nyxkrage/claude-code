@@ -1,8 +1,8 @@
 import { Box, Text } from "ink";
-import React from "react";
+import type React from "react";
 import { logError } from "../../utils/log.js";
-import { ToolUseBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
-import { Tool } from "../../Tool.js";
+import type { ToolUseBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { Tool } from "../../Tool.js";
 import { Cost } from "../Cost.js";
 import { ToolUseLoader } from "../ToolUseLoader.js";
 import { getTheme } from "../../utils/theme.js";
@@ -15,7 +15,7 @@ type Props = {
 	costUSD: number;
 	durationMs: number;
 	addMargin: boolean;
-	tools: Tool<any>[];
+	tools: Tool[];
 	debug: boolean;
 	verbose: boolean;
 	erroredToolUseIDs: Set<string>;

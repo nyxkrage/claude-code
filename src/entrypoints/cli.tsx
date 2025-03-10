@@ -8,9 +8,9 @@ import * as dontcare from "@anthropic-ai/sdk/shims/node";
 Object.keys(dontcare);
 
 import React from "react";
-import { ReadStream } from "tty";
-import { openSync, existsSync } from "fs";
-import { render, RenderOptions } from "ink";
+import { ReadStream } from "node:tty";
+import { openSync, existsSync } from "node:fs";
+import { render, type RenderOptions } from "ink";
 import { REPL } from "../screens/REPL.js";
 import { addToHistory } from "../history.js";
 import { getContext, setContext, removeContext } from "../context.js";
@@ -31,7 +31,7 @@ import {
 	listConfigForCLI,
 	enableConfigs,
 } from "../utils/config.js";
-import { cwd } from "process";
+import { cwd } from "node:process";
 import { dateToFilename, logError, parseLogFilename } from "../utils/log.js";
 import { Onboarding } from "../components/Onboarding.js";
 import { Doctor } from "../screens/Doctor.js";
@@ -121,7 +121,7 @@ async function showSetupScreens(
 	// Check for custom API key (only allowed for ants)
 	if (process.env.ANTHROPIC_API_KEY && process.env.USER_TYPE === "ant") {
 		const customApiKeyTruncated = normalizeApiKeyForConfig(
-			process.env.ANTHROPIC_API_KEY!,
+			process.env.ANTHROPIC_API_KEY,
 		);
 		const keyStatus = getCustomApiKeyStatus(customApiKeyTruncated);
 		if (keyStatus === "new") {
@@ -191,7 +191,7 @@ async function setup(
 			process.getuid() === 0
 		) {
 			console.error(
-				`--dangerously-skip-permissions cannot be used with root/sudo privileges for security reasons`,
+				"--dangerously-skip-permissions cannot be used with root/sudo privileges for security reasons",
 			);
 			process.exit(1);
 		}
@@ -230,7 +230,7 @@ async function setup(
 			shiftEnterKeyBindingInstalled: true,
 		};
 		// Remove the old config property
-		delete updatedConfig.iterm2KeyBindingInstalled;
+		updatedConfig.iterm2KeyBindingInstalled = undefined;
 		saveGlobalConfig(updatedConfig);
 	}
 
@@ -671,10 +671,10 @@ ${commandList}`,
 			console.log(`${name}:`);
 			console.log(`  Scope: ${server.scope}`);
 			if (server.type === "sse") {
-				console.log(`  Type: sse`);
+				console.log("  Type: sse");
 				console.log(`  URL: ${server.url}`);
 			} else {
-				console.log(`  Type: stdio`);
+				console.log("  Type: stdio");
 				console.log(`  Command: ${server.command}`);
 				console.log(`  Args: ${server.args.join(" ")}`);
 				if (server.env) {
@@ -791,7 +791,7 @@ ${commandList}`,
 			.argument(
 				"[number]",
 				"A number (0, 1, 2, etc.) to display a specific log",
-				parseInt,
+				Number.parseInt,
 			)
 			.option("-c, --cwd <cwd>", "The current working directory", String, cwd())
 			.action(async (number, { cwd }) => {
@@ -844,9 +844,12 @@ ${commandList}`,
 					// If a specific conversation is requested, load and resume it directly
 					if (identifier !== undefined) {
 						// Check if identifier is a number or a file path
-						const number = Math.abs(parseInt(identifier));
-						const isNumber = !isNaN(number);
-						let messages, date, forkNumber;
+						const number = Math.abs(Number.parseInt(identifier));
+						const isNumber = !Number.isNaN(number);
+						// biome-ignore lint/suspicious/noExplicitAny: TODO: unsure about the log messages structure
+						let messages: any[];
+						let date: string
+						let forkNumber: number | undefined;
 						try {
 							if (isNumber) {
 								logEvent("tengu_resume", { number: number.toString() });
@@ -922,7 +925,7 @@ ${commandList}`,
 			.argument(
 				"[number]",
 				"A number (0, 1, 2, etc.) to display a specific log",
-				parseInt,
+				Number.parseInt,
 			)
 			.option("-c, --cwd <cwd>", "The current working directory", String, cwd())
 			.action(async (number, { cwd }) => {

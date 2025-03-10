@@ -1,7 +1,7 @@
 import figures from "figures";
 import { Box, Text } from "ink";
 import React, { type ReactNode } from "react";
-import { type Theme } from "./index.js";
+import type { Theme } from "./index.js";
 import { useComponentTheme } from "@inkjs/ui";
 
 export type SelectOptionProps = {

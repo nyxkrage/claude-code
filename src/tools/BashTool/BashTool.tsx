@@ -1,12 +1,12 @@
-import { statSync } from "fs";
-import { EOL } from "os";
-import { isAbsolute, relative, resolve } from "path";
+import { statSync } from "node:fs";
+import { EOL } from "node:os";
+import { isAbsolute, relative, resolve } from "node:path";
 import * as React from "react";
 import { z } from "zod";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";
 import { PRODUCT_NAME } from "../../constants/product.js";
 import { queryHaiku } from "../../services/claude.js";
-import { Tool, ValidationResult } from "../../Tool.js";
+import type { Tool, ValidationResult } from "../../Tool.js";
 import { splitCommand } from "../../utils/commands.js";
 import { isInDirectory } from "../../utils/file.js";
 import { logError } from "../../utils/log.js";
@@ -99,7 +99,7 @@ export const BashTool = {
 
 			// Special handling for cd command
 			if (baseCmd === "cd" && parts[1]) {
-				const targetDir = parts[1]!.replace(/^['"]|['"]$/g, ""); // Remove quotes if present
+				const targetDir = parts[1].replace(/^['"]|['"]$/g, ""); // Remove quotes if present
 				const fullTargetDir = isAbsolute(targetDir)
 					? targetDir
 					: resolve(getCwd(), targetDir);
@@ -125,6 +125,7 @@ export const BashTool = {
 			const match = command.match(
 				/^(.*?)"?\$\(cat <<'EOF'\n([\s\S]*?)\n\s*EOF\n\s*\)"(.*)$/,
 			);
+			// biome-ignore lint/complexity/useOptionalChain: this reads much better than with optional chaining
 			if (match && match[1] && match[2]) {
 				const prefix = match[1];
 				const content = match[2];

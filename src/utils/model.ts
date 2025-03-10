@@ -84,9 +84,11 @@ export function getVertexRegionForModel(
 ): string | undefined {
 	if (model?.startsWith("claude-3-5-haiku")) {
 		return process.env.VERTEX_REGION_CLAUDE_3_5_HAIKU;
-	} else if (model?.startsWith("claude-3-5-sonnet")) {
+	} 
+	if (model?.startsWith("claude-3-5-sonnet")) {
 		return process.env.VERTEX_REGION_CLAUDE_3_5_SONNET;
-	} else if (model?.startsWith("claude-3-7-sonnet")) {
+	} 
+	if (model?.startsWith("claude-3-7-sonnet")) {
 		return process.env.VERTEX_REGION_CLAUDE_3_7_SONNET;
 	}
 }

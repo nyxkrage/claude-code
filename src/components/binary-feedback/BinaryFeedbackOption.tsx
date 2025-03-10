@@ -10,7 +10,7 @@ import { useTerminalSize } from "../../hooks/useTerminalSize.js";
 import { FileWriteTool } from "../../tools/FileWriteTool/FileWriteTool.js";
 import { FileWriteToolDiff } from "../permissions/FileWritePermissionRequest/FileWriteToolDiff.js";
 import type { AssistantMessage } from "../../query.js";
-import * as React from "react";
+import type * as React from "react";
 import { Box } from "ink";
 
 type Props = {
@@ -38,6 +38,7 @@ export function BinaryFeedbackOption({
 	return normalizeMessages([message])
 		.filter((_) => _.type !== "progress")
 		.map((_, index) => (
+			// biome-ignore lint/suspicious/noArrayIndexKey: there probably isn't a better key for this, though I dont think messages should ever be modified in the middle of the list anyway
 			<Box flexDirection="column" key={index}>
 				<Message
 					addMargin={false}
@@ -69,7 +70,7 @@ function AdditionalContext({
 	if (message.type !== "assistant") {
 		return null;
 	}
-	const content = message.message.content[0]!;
+	const content = message.message.content[0];
 	switch (content.type) {
 		case "tool_use":
 			switch (content.name) {

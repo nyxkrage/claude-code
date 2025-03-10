@@ -3,14 +3,14 @@ import type {
 	TextBlockParam,
 } from "@anthropic-ai/sdk/resources/index.mjs";
 
-import { existsSync, readFileSync } from "fs";
+import { existsSync, readFileSync } from "node:fs";
 import { Text } from "ink";
-import { extname, isAbsolute, relative, resolve } from "path";
+import { extname, isAbsolute, relative, resolve } from "node:path";
 import * as React from "react";
 import { z } from "zod";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";
-import { Tool } from "../../Tool.js";
-import {
+import type { Tool } from "../../Tool.js";
+import type {
 	NotebookCellSource,
 	NotebookContent,
 	NotebookCell,
@@ -47,11 +47,13 @@ function renderResultForAssistant(data: NotebookCellSource[]) {
 			const prev = acc[acc.length - 1];
 			if (prev && prev.type === "text" && curr.type === "text") {
 				// Merge the text blocks
-				prev.text += "\n" + curr.text;
+				prev.text += `\n${curr.text}`;
 				return acc;
 			}
 
-			return [...acc, curr];
+			acc.push(curr);
+
+			return acc;
 		},
 		[],
 	);

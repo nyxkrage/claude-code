@@ -1,6 +1,6 @@
-import * as React from "react";
-import { Tool } from "../../../Tool.js";
-import { Message } from "../../../query.js";
+import type * as React from "react";
+import type { Tool } from "../../../Tool.js";
+import type { Message } from "../../../query.js";
 import { FallbackToolUseRejectedMessage } from "../../FallbackToolUseRejectedMessage.js";
 import { useGetToolFromMessages } from "./utils.js";
 import { useTerminalSize } from "../../../hooks/useTerminalSize.js";

@@ -1,7 +1,7 @@
 import { Box, Text } from "ink";
-import * as React from "react";
-import { Hunk } from "diff";
-import { getTheme, ThemeNames } from "../utils/theme.js";
+import type * as React from "react";
+import type { Hunk } from "diff";
+import { getTheme, type ThemeNames } from "../utils/theme.js";
 import { useMemo } from "react";
 import { wrapText } from "../utils/format.js";
 
@@ -22,7 +22,7 @@ export function StructuredDiff({
 		() => formatDiff(patch.lines, patch.oldStart, width, dim, overrideTheme),
 		[patch.lines, patch.oldStart, width, dim, overrideTheme],
 	);
-
+	// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better key for this
 	return diff.map((_, i) => <Box key={i}>{_}</Box>);
 }
 
@@ -39,14 +39,14 @@ function formatDiff(
 		lines.map((code) => {
 			if (code.startsWith("+")) {
 				return {
-					code: " " + code.slice(1),
+					code: ` ${code.slice(1)}`,
 					i: 0,
 					type: "add",
 				};
 			}
 			if (code.startsWith("-")) {
 				return {
-					code: " " + code.slice(1),
+					code: ` ${code.slice(1)}`,
 					i: 0,
 					type: "remove",
 				};
@@ -143,6 +143,7 @@ function numberDiffLines(
 	const queue = [...diff];
 
 	while (queue.length > 0) {
+		// biome-ignore lint/style/noNonNullAssertion: while condition ensures that there is at least an element in the queue
 		const { code, type } = queue.shift()!;
 		const line = {
 			code: code,
@@ -165,6 +166,7 @@ function numberDiffLines(
 				let numRemoved = 0;
 				while (queue[0]?.type === "remove") {
 					i++;
+					// biome-ignore lint/style/noNonNullAssertion: while condition ensures that there is at least an element in the queue
 					const { code, type } = queue.shift()!;
 					const line = {
 						code: code,

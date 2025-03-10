@@ -1,8 +1,8 @@
-import { ImageBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
-import { existsSync, readFileSync, statSync } from "fs";
+import type { ImageBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
+import { existsSync, readFileSync, statSync } from "node:fs";
 import { Box, Text } from "ink";
-import * as path from "path";
-import { extname, relative } from "path";
+import * as path from "node:path";
+import { extname, relative } from "node:path";
 import * as React from "react";
 import { z } from "zod";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";

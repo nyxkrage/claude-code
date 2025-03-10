@@ -8,7 +8,7 @@ import {
 	useEffect,
 } from "react";
 import OptionMap from "./option-map.js";
-import { Option } from "@inkjs/ui";
+import type { Option } from "@inkjs/ui";
 import type { OptionHeader, OptionSubtree } from "./index.js";
 
 type State = {
@@ -359,7 +359,7 @@ export const useSelectState = ({
 		if (state.value && state.previousValue !== state.value) {
 			onChange?.(state.value);
 		}
-	}, [state.previousValue, state.value, options, onChange]);
+	}, [state.previousValue, state.value, onChange]);
 
 	useEffect(() => {
 		if (state.focusedValue) {

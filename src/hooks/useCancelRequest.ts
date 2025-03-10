@@ -1,7 +1,7 @@
 import { useInput } from "ink";
-import { ToolUseConfirm } from "../components/permissions/PermissionRequest.js";
+import type { ToolUseConfirm } from "../components/permissions/PermissionRequest.js";
 import { logEvent } from "../services/statsig.js";
-import { BinaryFeedbackContext } from "../screens/REPL.js";
+import type { BinaryFeedbackContext } from "../screens/REPL.js";
 import type { SetToolJSXFn } from "../Tool.js";
 
 export function useCancelRequest(

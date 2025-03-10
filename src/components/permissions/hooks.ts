@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { logUnaryEvent, CompletionType } from "../../utils/unaryLogging.js";
-import { ToolUseConfirm } from "../../components/permissions/PermissionRequest.js";
+import { logUnaryEvent, type CompletionType } from "../../utils/unaryLogging.js";
+import type { ToolUseConfirm } from "../../components/permissions/PermissionRequest.js";
 import { env } from "../../utils/env.js";
 import { logEvent } from "../../services/statsig.js";
 

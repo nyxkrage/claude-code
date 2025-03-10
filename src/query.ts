@@ -1,15 +1,15 @@
-import {
+import type {
 	Message as APIAssistantMessage,
 	MessageParam,
 	ToolUseBlock,
 } from "@anthropic-ai/sdk/resources/index.mjs";
-import { UUID } from "crypto";
+import type { UUID } from "node:crypto";
 import type { Tool, ToolUseContext } from "./Tool.js";
 import {
 	messagePairValidForBinaryFeedback,
 	shouldUseBinaryFeedback,
 } from "./components/binary-feedback/utils.js";
-import { CanUseToolFn } from "./hooks/useCanUseTool.js";
+import type { CanUseToolFn } from "./hooks/useCanUseTool.js";
 import {
 	formatSystemPromptWithContext,
 	querySonnet,
@@ -22,10 +22,10 @@ import {
 	createProgressMessage,
 	createToolResultStopMessage,
 	createUserMessage,
-	FullToolUseResult,
+	type FullToolUseResult,
 	INTERRUPT_MESSAGE,
 	INTERRUPT_MESSAGE_FOR_TOOL_USE,
-	NormalizedMessage,
+	type NormalizedMessage,
 	normalizeMessagesForAPI,
 } from "./utils/messages.js";
 import { BashTool } from "./tools/BashTool/BashTool.js";
@@ -413,7 +413,7 @@ async function* checkPermissionsAndCallTool(
 		yield createUserMessage([
 			{
 				type: "tool_result",
-				content: isValidCall!.message,
+				content: isValidCall.message,
 				is_error: true,
 				tool_use_id: toolUseID,
 			},

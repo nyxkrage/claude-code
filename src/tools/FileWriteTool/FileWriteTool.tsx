@@ -1,8 +1,8 @@
-import { Hunk } from "diff";
-import { existsSync, mkdirSync, readFileSync, statSync } from "fs";
+import type { Hunk } from "diff";
+import { existsSync, mkdirSync, readFileSync, statSync } from "node:fs";
 import { Box, Text } from "ink";
-import { EOL } from "os";
-import { dirname, extname, isAbsolute, relative, resolve, sep } from "path";
+import { EOL } from "node:os";
+import { dirname, extname, isAbsolute, relative, resolve, sep } from "node:path";
 import * as React from "react";
 import { z } from "zod";
 import { FileEditToolUpdatedMessage } from "../../components/FileEditToolUpdatedMessage.js";
@@ -205,8 +205,12 @@ export const FileWriteTool = {
 			? detectLineEndings(fullFilePath)
 			: await detectRepoLineEndings(getCwd());
 
+		if (!endings) {
+			throw new Error("Failed to detect line endings");
+		}
+
 		mkdirSync(dir, { recursive: true });
-		writeTextContent(fullFilePath, content, enc, endings!);
+		writeTextContent(fullFilePath, content, enc, endings);
 
 		// Update read timestamp, to invalidate stale writes
 		readFileTimestamps[fullFilePath] = statSync(fullFilePath).mtimeMs;

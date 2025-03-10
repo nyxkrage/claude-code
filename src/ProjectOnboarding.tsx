@@ -7,9 +7,9 @@ import {
 	saveCurrentProjectConfig,
 	saveGlobalConfig,
 } from "./utils/config.js";
-import { existsSync } from "fs";
-import { join } from "path";
-import { homedir } from "os";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+import { homedir } from "node:os";
 import terminalSetup from "./commands/terminalSetup.js";
 import { getTheme } from "./utils/theme.js";
 import { RELEASE_NOTES } from "./constants/releaseNotes.js";
@@ -156,6 +156,7 @@ export default function ProjectOnboarding({
 						</Box>
 						<Box flexDirection="column" marginLeft={1}>
 							{releaseNotesToShow.map((note, noteIndex) => (
+								// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better key for this
 								<Text key={noteIndex} color={getTheme().secondaryText}>
 									• {note}
 								</Text>

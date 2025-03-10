@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { extractTag } from "../../utils/messages.js";
 import { getTheme } from "../../utils/theme.js";
 import { Box, Text } from "ink";
@@ -29,6 +29,7 @@ export function AssistantLocalCommandOutputMessage({
 				<Text color={theme.secondaryText}>{"  "}⎿ </Text>
 			</Box>
 			{insides.map((_, index) => (
+				// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better key for this
 				<Box key={index} flexDirection="column">
 					{_}
 				</Box>

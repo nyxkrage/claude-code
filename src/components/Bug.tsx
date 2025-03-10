@@ -1,5 +1,5 @@
 import { Box, Text, useInput } from "ink";
-import * as React from "react";
+import type * as React from "react";
 import { useState, useCallback, useEffect } from "react";
 import { getTheme } from "../utils/theme.js";
 import { getMessagesGetter } from "../messages.js";
@@ -7,7 +7,7 @@ import type { Message } from "../query.js";
 import TextInput from "./TextInput.js";
 import { logError, getInMemoryErrors } from "../utils/log.js";
 import { env } from "../utils/env.js";
-import { getGitState, getIsGit, GitRepoState } from "../utils/git.js";
+import { getGitState, getIsGit, type GitRepoState } from "../utils/git.js";
 import { useTerminalSize } from "../hooks/useTerminalSize.js";
 import { getAnthropicApiKey } from "../utils/config.js";
 import { USER_AGENT } from "../utils/http.js";
@@ -261,8 +261,9 @@ function createGitHubIssueUrl(
 	description: string,
 ): string {
 	const body = encodeURIComponent(
+		// biome-ignore lint/style/useTemplate: more readable than a single template literal
 		`**Bug Description**\n${description}\n\n` +
-			`**Environment Info**\n` +
+			"**Environment Info**\n" +
 			`- Platform: ${env.platform}\n` +
 			`- Terminal: ${env.terminal}\n` +
 			`- Version: ${MACRO.VERSION || "unknown"}\n` +
@@ -321,12 +322,11 @@ async function submitFeedback(
 			return { success: false };
 		}
 
-		logError("Failed to submit feedback:" + response.status);
+		logError(`Failed to submit feedback:${response.status}`);
 		return { success: false };
 	} catch (err) {
 		logError(
-			"Error submitting feedback: " +
-				(err instanceof Error ? err.message : "Unknown error"),
+			`Error submitting feedback: ${err instanceof Error ? err.message : "Unknown error"}`,
 		);
 		return { success: false };
 	}

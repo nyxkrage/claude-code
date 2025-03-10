@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { type Key } from "ink";
+import type { Key } from "ink";
 import { useDoublePress } from "./useDoublePress.js";
 import { Cursor } from "../utils/Cursor.js";
 import {
@@ -9,11 +9,11 @@ import {
 
 const IMAGE_PLACEHOLDER = "[Image pasted]";
 
-type MaybeCursor = void | Cursor;
+type MaybeCursor = Cursor | undefined;
 type InputHandler = (input: string) => MaybeCursor;
 type InputMapper = (input: string) => MaybeCursor;
 function mapInput(input_map: Array<[string, InputHandler]>): InputMapper {
-	return function (input: string): MaybeCursor {
+	return (input: string): MaybeCursor => {
 		const handler = new Map(input_map).get(input) ?? (() => {});
 		return handler(input);
 	};
@@ -103,7 +103,7 @@ export function useTextInput({
 	const handleEscape = useDoublePress(
 		(show) => {
 			maybeClearImagePasteErrorTimeout();
-			onMessage?.(!!originalValue && show, `Press Escape again to clear`);
+			onMessage?.(!!originalValue && show, "Press Escape again to clear");
 		},
 		() => {
 			if (originalValue) {
@@ -251,13 +251,13 @@ export function useTextInput({
 			case key.rightArrow:
 				return () => cursor.right();
 		}
-		return function (input: string) {
+		return (input: string) => {
 			switch (true) {
 				// Home key
-				case input == "\x1b[H" || input == "\x1b[1~":
+				case input === "\x1b[H" || input === "\x1b[1~":
 					return cursor.startOfLine();
 				// End key
-				case input == "\x1b[F" || input == "\x1b[4~":
+				case input === "\x1b[F" || input === "\x1b[4~":
 					return cursor.endOfLine();
 				default:
 					return cursor.insert(input.replace(/\r/g, "\n"));
@@ -270,7 +270,7 @@ export function useTextInput({
 		if (nextCursor) {
 			if (!cursor.equals(nextCursor)) {
 				setOffset(nextCursor.offset);
-				if (cursor.text != nextCursor.text) {
+				if (cursor.text !== nextCursor.text) {
 					onChange(nextCursor.text);
 				}
 			}

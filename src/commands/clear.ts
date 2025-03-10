@@ -1,10 +1,10 @@
-import { Command } from "../commands.js";
+import type { Command } from "../commands.js";
 import { getMessagesSetter } from "../messages.js";
 import { getContext } from "../context.js";
 import { getCodeStyle } from "../utils/style.js";
 import { clearTerminal } from "../utils/terminal.js";
 import { getOriginalCwd, setCwd } from "../utils/state.js";
-import { Message } from "../query.js";
+import type { Message } from "../query.js";
 
 export async function clearConversation(context: {
 	setForkConvoWithMessagesOnTheNextRender: (

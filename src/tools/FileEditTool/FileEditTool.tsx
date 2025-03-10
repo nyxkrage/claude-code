@@ -1,13 +1,13 @@
-import { Hunk } from "diff";
-import { existsSync, mkdirSync, readFileSync, statSync } from "fs";
+import type { Hunk } from "diff";
+import { existsSync, mkdirSync, readFileSync, statSync } from "node:fs";
 import { Box, Text } from "ink";
-import { dirname, isAbsolute, relative, resolve, sep } from "path";
+import { dirname, isAbsolute, relative, resolve, sep } from "node:path";
 import * as React from "react";
 import { z } from "zod";
 import { FileEditToolUpdatedMessage } from "../../components/FileEditToolUpdatedMessage.js";
 import { StructuredDiff } from "../../components/StructuredDiff.js";
 import { logEvent } from "../../services/statsig.js";
-import { Tool, ValidationResult } from "../../Tool.js";
+import type { Tool, ValidationResult } from "../../Tool.js";
 import { intersperse } from "../../utils/array.js";
 import {
 	addLineNumbers,
@@ -195,7 +195,7 @@ export const FileEditTool = {
 		if (!file.includes(old_string)) {
 			return {
 				result: false,
-				message: `String to replace not found in file.`,
+				message: "String to replace not found in file.",
 				meta: {
 					isFilePathAbsolute: String(isAbsolute(file_path)),
 				},

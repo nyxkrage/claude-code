@@ -1,8 +1,8 @@
-import { isAbsolute, resolve } from "path";
+import { isAbsolute, resolve } from "node:path";
 import { getCwd } from "../../utils/state.js";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 import { detectFileEncoding } from "../../utils/file.js";
-import { type Hunk } from "diff";
+import type { Hunk } from "diff";
 import { getPatch } from "../../utils/diff.js";
 
 /**
@@ -18,8 +18,8 @@ export function applyEdit(
 		? file_path
 		: resolve(getCwd(), file_path);
 
-	let originalFile;
-	let updatedFile;
+	let originalFile: string;
+	let updatedFile: string;
 	if (old_string === "") {
 		// Create new file
 		originalFile = "";
@@ -31,9 +31,9 @@ export function applyEdit(
 		if (new_string === "") {
 			if (
 				!old_string.endsWith("\n") &&
-				originalFile.includes(old_string + "\n")
+				originalFile.includes(`${old_string}\n`)
 			) {
-				updatedFile = originalFile.replace(old_string + "\n", () => new_string);
+				updatedFile = originalFile.replace(`${old_string}\n`, () => new_string);
 			} else {
 				updatedFile = originalFile.replace(old_string, () => new_string);
 			}

@@ -12,8 +12,8 @@ export async function lastX<A>(as: AsyncGenerator<A>): Promise<A> {
 }
 
 type QueuedGenerator<A> = {
-	done: boolean | void;
-	value: A | void;
+	done?: boolean;
+	value?: A;
 	generator: AsyncGenerator<A, void>;
 	promise: Promise<QueuedGenerator<A>>;
 };
@@ -21,7 +21,7 @@ type QueuedGenerator<A> = {
 // Run all generators concurrently up to a concurrency cap, yielding values as they come in
 export async function* all<A>(
 	generators: AsyncGenerator<A, void>[],
-	concurrencyCap = Infinity,
+	concurrencyCap = Number.POSITIVE_INFINITY,
 ): AsyncGenerator<A, void> {
 	const next = (generator: AsyncGenerator<A, void>) => {
 		const promise: Promise<QueuedGenerator<A>> = generator
@@ -39,6 +39,7 @@ export async function* all<A>(
 
 	// Start initial batch up to concurrency cap
 	while (promises.size < concurrencyCap && waiting.length > 0) {
+		// biome-ignore lint/style/noNonNullAssertion: while condition checks for waiting to be non-empty
 		const gen = waiting.shift()!;
 		promises.add(next(gen));
 	}
@@ -55,6 +56,7 @@ export async function* all<A>(
 			}
 		} else if (waiting.length > 0) {
 			// Start a new generator when one finishes
+			// biome-ignore lint/style/noNonNullAssertion: branch requires waiting to be non-empty
 			const nextGen = waiting.shift()!;
 			promises.add(next(nextGen));
 		}
