@@ -24,36 +24,37 @@ let client: StatsigClient | null = null;
 
 export const initializeStatsig = memoize(
 	async (): Promise<StatsigClient | null> => {
-		return null;
-		if (env.isCI || process.env.NODE_ENV === "test") {
-			return null;
-		}
-
-		const user = await getUser();
-		const options: StatsigOptions = {
-			networkConfig: {
-				api: "https://statsig.anthropic.com/v1/",
-			},
-			environment: {
-				tier:
-					env.isCI ||
-					["test", "development"].includes(process.env.NODE_ENV ?? "")
-						? "dev"
-						: "production",
-			},
-			logLevel: LogLevel.None,
-			storageProvider: new FileSystemStorageProvider(),
-		};
-
-		client = new StatsigClient(STATSIG_CLIENT_KEY, user, options);
-		client.on("error", (errorEvent) => {
-			logError(`Statsig error: ${errorEvent}`);
-		});
-		await client.initializeAsync();
-		process.on("exit", () => {
-			client?.flush();
-		});
+		client = null;
 		return client;
+		// if (env.isCI || process.env.NODE_ENV === "test") {
+		// 	return null;
+		// }
+
+		// const user = await getUser();
+		// const options: StatsigOptions = {
+		// 	networkConfig: {
+		// 		api: "https://statsig.anthropic.com/v1/",
+		// 	},
+		// 	environment: {
+		// 		tier:
+		// 			env.isCI ||
+		// 			["test", "development"].includes(process.env.NODE_ENV ?? "")
+		// 				? "dev"
+		// 				: "production",
+		// 	},
+		// 	logLevel: LogLevel.None,
+		// 	storageProvider: new FileSystemStorageProvider(),
+		// };
+
+		// client = new StatsigClient(STATSIG_CLIENT_KEY, user, options);
+		// client.on("error", (errorEvent) => {
+		// 	logError(`Statsig error: ${errorEvent}`);
+		// });
+		// await client.initializeAsync();
+		// process.on("exit", () => {
+		// 	client?.flush();
+		// });
+		// return client;
 	},
 );
 
