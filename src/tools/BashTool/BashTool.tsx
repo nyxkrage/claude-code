@@ -125,6 +125,7 @@ export const BashTool = {
 			const match = command.match(
 				/^(.*?)"?\$\(cat <<'EOF'\n([\s\S]*?)\n\s*EOF\n\s*\)"(.*)$/,
 			);
+			// biome-ignore lint/complexity/useOptionalChain: this reads much better than with optional chaining
 			if (match && match[1] && match[2]) {
 				const prefix = match[1];
 				const content = match[2];
