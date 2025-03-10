@@ -617,38 +617,36 @@ export function REPL({
 					!isMessageSelectorVisible &&
 					!binaryFeedbackContext &&
 					!showingCostDialog && (
-						<>
-							<PromptInput
-								commands={commands}
-								forkNumber={forkNumber}
-								messageLogName={messageLogName}
-								tools={tools}
-								isDisabled={apiKeyStatus === "invalid"}
-								isLoading={isLoading}
-								onQuery={onQuery}
-								debug={debug}
-								verbose={verbose}
-								messages={messages}
-								setToolJSX={setToolJSX}
-								onAutoUpdaterResult={setAutoUpdaterResult}
-								autoUpdaterResult={autoUpdaterResult}
-								input={inputValue}
-								onInputChange={setInputValue}
-								mode={inputMode}
-								onModeChange={setInputMode}
-								submitCount={submitCount}
-								onSubmitCountChange={setSubmitCount}
-								setIsLoading={setIsLoading}
-								setAbortController={setAbortController}
-								onShowMessageSelector={() =>
-									setIsMessageSelectorVisible((prev) => !prev)
-								}
-								setForkConvoWithMessagesOnTheNextRender={
-									setForkConvoWithMessagesOnTheNextRender
-								}
-								readFileTimestamps={readFileTimestamps.current}
-							/>
-						</>
+						<PromptInput
+							commands={commands}
+							forkNumber={forkNumber}
+							messageLogName={messageLogName}
+							tools={tools}
+							isDisabled={apiKeyStatus === "invalid"}
+							isLoading={isLoading}
+							onQuery={onQuery}
+							debug={debug}
+							verbose={verbose}
+							messages={messages}
+							setToolJSX={setToolJSX}
+							onAutoUpdaterResult={setAutoUpdaterResult}
+							autoUpdaterResult={autoUpdaterResult}
+							input={inputValue}
+							onInputChange={setInputValue}
+							mode={inputMode}
+							onModeChange={setInputMode}
+							submitCount={submitCount}
+							onSubmitCountChange={setSubmitCount}
+							setIsLoading={setIsLoading}
+							setAbortController={setAbortController}
+							onShowMessageSelector={() =>
+								setIsMessageSelectorVisible((prev) => !prev)
+							}
+							setForkConvoWithMessagesOnTheNextRender={
+								setForkConvoWithMessagesOnTheNextRender
+							}
+							readFileTimestamps={readFileTimestamps.current}
+						/>
 					)}
 			</Box>
 			{isMessageSelectorVisible && (
