@@ -42,6 +42,7 @@ function getContextSections(text: string): Section[] {
 	const regex = /<context\s+name="([^"]*)">([\s\S]*?)<\/context>/g;
 	let match: RegExpExecArray | null;
 
+	// biome-ignore lint/suspicious/noAssignInExpressions: common pattern for dealing with RegExp.exec
 	while ((match = regex.exec(text)) !== null) {
 		// Collect text between context tags
 		if (match.index > currentPos) {
