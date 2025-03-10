@@ -15,7 +15,7 @@ type Props = {
 	costUSD: number;
 	durationMs: number;
 	addMargin: boolean;
-	tools: Tool<any>[];
+	tools: Tool[];
 	debug: boolean;
 	verbose: boolean;
 	erroredToolUseIDs: Set<string>;

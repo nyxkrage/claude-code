@@ -37,7 +37,7 @@ type LocalCommand = {
 		context: {
 			options: {
 				commands: Command[];
-				tools: Tool<any>[];
+				tools: Tool[];
 				slowAndCapableModel: string;
 			};
 			abortController: AbortController;
