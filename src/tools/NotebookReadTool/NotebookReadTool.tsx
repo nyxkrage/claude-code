@@ -51,7 +51,9 @@ function renderResultForAssistant(data: NotebookCellSource[]) {
 				return acc;
 			}
 
-			return [...acc, curr];
+			acc.push(curr);
+
+			return acc;
 		},
 		[],
 	);
