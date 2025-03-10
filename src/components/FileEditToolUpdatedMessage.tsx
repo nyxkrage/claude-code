@@ -5,7 +5,7 @@ import { intersperse } from "../utils/array.js";
 import { StructuredDiff } from "./StructuredDiff.js";
 import { getTheme } from "../utils/theme.js";
 import { getCwd } from "../utils/state.js";
-import { relative } from "path";
+import { relative } from "node:path";
 import { useTerminalSize } from "../hooks/useTerminalSize.js";
 
 type Props = {

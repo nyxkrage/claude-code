@@ -7,7 +7,7 @@ import type { Tool } from "../../Tool.js";
 import { getCwd } from "../../utils/state.js";
 import { glob } from "../../utils/file.js";
 import { DESCRIPTION, TOOL_NAME_FOR_PROMPT } from "./prompt.js";
-import { isAbsolute, relative, resolve } from "path";
+import { isAbsolute, relative, resolve } from "node:path";
 import { hasReadPermission } from "../../utils/permissions/filesystem.js";
 
 const inputSchema = z.strictObject({

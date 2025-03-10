@@ -1,6 +1,6 @@
-import { readdirSync } from "fs";
+import { readdirSync } from "node:fs";
 import { Box, Text } from "ink";
-import { basename, isAbsolute, join, relative, resolve, sep } from "path";
+import { basename, isAbsolute, join, relative, resolve, sep } from "node:path";
 import * as React from "react";
 import { z } from "zod";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";

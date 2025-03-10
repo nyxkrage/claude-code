@@ -1,7 +1,7 @@
 import type { Hunk } from "diff";
-import { existsSync, mkdirSync, readFileSync, statSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, statSync } from "node:fs";
 import { Box, Text } from "ink";
-import { dirname, isAbsolute, relative, resolve, sep } from "path";
+import { dirname, isAbsolute, relative, resolve, sep } from "node:path";
 import * as React from "react";
 import { z } from "zod";
 import { FileEditToolUpdatedMessage } from "../../components/FileEditToolUpdatedMessage.js";

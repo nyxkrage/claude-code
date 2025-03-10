@@ -1,10 +1,10 @@
-import { existsSync, readFileSync, writeFileSync } from "fs";
-import { resolve, join } from "path";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { resolve, join } from "node:path";
 import { cloneDeep, memoize, pick } from "lodash-es";
-import { homedir } from "os";
+import { homedir } from "node:os";
 import { GLOBAL_CLAUDE_FILE } from "./env.js";
 import { getCwd } from "./state.js";
-import { randomBytes } from "crypto";
+import { randomBytes } from "node:crypto";
 import { safeParseJSON } from "./json.js";
 import { checkGate, logEvent } from "../services/statsig.js";
 import { GATE_USE_EXTERNAL_UPDATER } from "../constants/betas.js";

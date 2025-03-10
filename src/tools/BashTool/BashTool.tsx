@@ -1,6 +1,6 @@
-import { statSync } from "fs";
-import { EOL } from "os";
-import { isAbsolute, relative, resolve } from "path";
+import { statSync } from "node:fs";
+import { EOL } from "node:os";
+import { isAbsolute, relative, resolve } from "node:path";
 import * as React from "react";
 import { z } from "zod";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";

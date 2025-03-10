@@ -8,8 +8,8 @@ import * as dontcare from "@anthropic-ai/sdk/shims/node";
 Object.keys(dontcare);
 
 import React from "react";
-import { ReadStream } from "tty";
-import { openSync, existsSync } from "fs";
+import { ReadStream } from "node:tty";
+import { openSync, existsSync } from "node:fs";
 import { render, type RenderOptions } from "ink";
 import { REPL } from "../screens/REPL.js";
 import { addToHistory } from "../history.js";
@@ -31,7 +31,7 @@ import {
 	listConfigForCLI,
 	enableConfigs,
 } from "../utils/config.js";
-import { cwd } from "process";
+import { cwd } from "node:process";
 import { dateToFilename, logError, parseLogFilename } from "../utils/log.js";
 import { Onboarding } from "../components/Onboarding.js";
 import { Doctor } from "../screens/Doctor.js";

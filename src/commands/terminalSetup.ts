@@ -1,13 +1,13 @@
 import type { Command } from "../commands.js";
-import { EOL, platform, homedir } from "os";
+import { EOL, platform, homedir } from "node:os";
 import { execFileNoThrow } from "../utils/execFileNoThrow.js";
 import chalk from "chalk";
 import { getTheme } from "../utils/theme.js";
 import { env } from "../utils/env.js";
 import { getGlobalConfig, saveGlobalConfig } from "../utils/config.js";
 import { markProjectOnboardingComplete } from "../ProjectOnboarding.js";
-import { readFileSync, writeFileSync } from "fs";
-import { join } from "path";
+import { readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 import { safeParseJSON } from "../utils/json.js";
 import { logError } from "../utils/log.js";
 

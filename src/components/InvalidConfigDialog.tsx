@@ -3,7 +3,7 @@ import { Box, Newline, Text, useInput } from "ink";
 import { getTheme } from "../utils/theme.js";
 import { Select } from "@inkjs/ui";
 import { render } from "ink";
-import { writeFileSync } from "fs";
+import { writeFileSync } from "node:fs";
 import type { ConfigParseError } from "../utils/errors.js";
 import { useExitOnCtrlCD } from "../hooks/useExitOnCtrlCD.js";
 interface InvalidConfigHandlerProps {

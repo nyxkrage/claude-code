@@ -1,4 +1,4 @@
-import { cwd } from "process";
+import { cwd } from "node:process";
 import { PersistentShell } from "./PersistentShell.js";
 
 // DO NOT ADD MORE STATE HERE OR BORIS WILL CURSE YOU

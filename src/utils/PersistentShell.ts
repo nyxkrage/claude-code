@@ -1,11 +1,11 @@
-import * as fs from "fs";
-import { homedir } from "os";
-import { existsSync } from "fs";
+import * as fs from "node:fs";
+import { homedir } from "node:os";
+import { existsSync } from "node:fs";
 import shellquote from "shell-quote";
-import { spawn, execSync, type ChildProcess } from "child_process";
-import { isAbsolute, resolve, join } from "path";
+import { spawn, execSync, type ChildProcess } from "node:child_process";
+import { isAbsolute, resolve, join } from "node:path";
 import { logError } from "./log.js";
-import * as os from "os";
+import * as os from "node:os";
 import { logEvent } from "../services/statsig.js";
 
 type ExecResult = {

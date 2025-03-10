@@ -1,4 +1,4 @@
-import fs from "fs/promises";
+import fs from "node:fs/promises";
 import { logError } from "./log.js";
 import type { Tool } from "../Tool.ts";
 

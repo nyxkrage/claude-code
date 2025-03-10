@@ -1,7 +1,7 @@
 import type { TextBlock } from "@anthropic-ai/sdk/resources/index.mjs";
 import chalk from "chalk";
 import { last, memoize } from "lodash-es";
-import { EOL } from "os";
+import { EOL } from "node:os";
 import * as React from "react";
 import { z } from "zod";
 import type { Tool } from "../../Tool.js";

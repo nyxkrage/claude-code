@@ -7,9 +7,9 @@ import {
 	saveCurrentProjectConfig,
 	saveGlobalConfig,
 } from "./utils/config.js";
-import { existsSync } from "fs";
-import { join } from "path";
-import { homedir } from "os";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+import { homedir } from "node:os";
 import terminalSetup from "./commands/terminalSetup.js";
 import { getTheme } from "./utils/theme.js";
 import { RELEASE_NOTES } from "./constants/releaseNotes.js";

@@ -1,11 +1,11 @@
-import { createHash, type UUID } from "crypto";
-import { mkdirSync, readFileSync, writeFileSync } from "fs";
-import { dirname } from "path";
+import { createHash, type UUID } from "node:crypto";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname } from "node:path";
 import type { AssistantMessage, UserMessage } from "../query.js";
-import { existsSync } from "fs";
+import { existsSync } from "node:fs";
 import { env } from "../utils/env.js";
 import { getCwd } from "../utils/state.js";
-import * as path from "path";
+import * as path from "node:path";
 import { mapValues } from "lodash-es";
 import type { ContentBlock } from "@anthropic-ai/sdk/resources/index.mjs";
 

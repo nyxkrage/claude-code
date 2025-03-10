@@ -4,7 +4,7 @@ import { AnthropicBedrock } from "@anthropic-ai/bedrock-sdk";
 import { AnthropicVertex } from "@anthropic-ai/vertex-sdk";
 import type { BetaUsage } from "@anthropic-ai/sdk/resources/beta/messages/messages.mjs";
 import chalk from "chalk";
-import { createHash, randomUUID } from "crypto";
+import { createHash, randomUUID } from "node:crypto";
 import "dotenv/config";
 import { getBetas } from "../utils/betas.js";
 

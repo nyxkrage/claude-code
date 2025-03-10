@@ -9,7 +9,7 @@ import {
 import { PRODUCT_NAME } from "../constants/product.js";
 import { logEvent } from "../services/statsig.js";
 import { useExitOnCtrlCD } from "../hooks/useExitOnCtrlCD.js";
-import { homedir } from "os";
+import { homedir } from "node:os";
 import { getCwd } from "../utils/state.js";
 import Link from "./Link.js";
 

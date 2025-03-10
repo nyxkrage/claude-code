@@ -1,4 +1,4 @@
-import { isAbsolute, resolve } from "path";
+import { isAbsolute, resolve } from "node:path";
 import { getCwd, getOriginalCwd } from "../state.js";
 
 // In-memory storage for file permissions that resets each session

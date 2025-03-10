@@ -1,4 +1,4 @@
-import { stat } from "fs/promises";
+import { stat } from "node:fs/promises";
 import { Box, Text } from "ink";
 import React from "react";
 import { z } from "zod";

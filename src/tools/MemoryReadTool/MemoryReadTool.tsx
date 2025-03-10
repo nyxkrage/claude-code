@@ -4,9 +4,9 @@ import {
 	mkdirSync,
 	readdirSync,
 	readFileSync,
-} from "fs";
+} from "node:fs";
 import { Box, Text } from "ink";
-import { join } from "path";
+import { join } from "node:path";
 import * as React from "react";
 import { z } from "zod";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";

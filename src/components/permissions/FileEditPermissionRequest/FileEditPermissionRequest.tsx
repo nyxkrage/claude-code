@@ -1,7 +1,7 @@
 import { Select } from "@inkjs/ui";
 import chalk from "chalk";
 import { Box, Text } from "ink";
-import { basename, extname } from "path";
+import { basename, extname } from "node:path";
 import type React from "react";
 import { useMemo } from "react";
 import {

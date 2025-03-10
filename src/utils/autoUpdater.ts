@@ -1,5 +1,5 @@
-import { homedir } from "os";
-import { join } from "path";
+import { homedir } from "node:os";
+import { join } from "node:path";
 import {
 	existsSync,
 	mkdirSync,
@@ -9,11 +9,11 @@ import {
 	writeFileSync,
 	unlinkSync,
 	statSync,
-} from "fs";
-import { platform } from "process";
+} from "node:fs";
+import { platform } from "node:process";
 import { execFileNoThrow } from "./execFileNoThrow.js";
 import { logError } from "./log.js";
-import { accessSync } from "fs";
+import { accessSync } from "node:fs";
 import { CLAUDE_BASE_DIR } from "./env.js";
 import { logEvent, getDynamicConfig } from "../services/statsig.js";
 import { lt } from "semver";

@@ -1,4 +1,4 @@
-import { randomUUID, type UUID } from "crypto";
+import { randomUUID, type UUID } from "node:crypto";
 import { Box } from "ink";
 import type {
 	AssistantMessage,
@@ -9,7 +9,7 @@ import type {
 import { getCommand, hasCommand } from "../commands.js";
 import { MalformedCommandError } from "./errors.js";
 import { logError } from "./log.js";
-import { resolve } from "path";
+import { resolve } from "node:path";
 import { last, memoize } from "lodash-es";
 import { logEvent } from "../services/statsig.js";
 import type { SetToolJSXFn, Tool, ToolUseContext } from "../Tool.js";

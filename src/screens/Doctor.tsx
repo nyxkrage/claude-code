@@ -4,7 +4,7 @@ import { Box, Text, useInput } from "ink";
 import { Select } from "@inkjs/ui";
 import { getTheme } from "../utils/theme.js";
 import { ConfigureNpmPrefix } from "./ConfigureNpmPrefix.js";
-import { platform } from "process";
+import { platform } from "node:process";
 import {
 	checkNpmPermissions,
 	getDefaultNpmPrefix,

@@ -1,9 +1,9 @@
-import { existsSync, mkdirSync } from "fs";
-import { dirname, join } from "path";
-import { writeFileSync, readFileSync } from "fs";
-import { randomUUID } from "crypto";
+import { existsSync, mkdirSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { writeFileSync, readFileSync } from "node:fs";
+import { randomUUID } from "node:crypto";
 import envPaths from "env-paths";
-import { promises as fsPromises } from "fs";
+import { promises as fsPromises } from "node:fs";
 import type { LogOption, SerializedMessage } from "../types/logs.js";
 import { MACRO } from "../constants/macro.js";
 const IN_MEMORY_ERROR_LOG: Array<{

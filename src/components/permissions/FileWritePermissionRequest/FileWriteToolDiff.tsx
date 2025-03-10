@@ -1,12 +1,12 @@
 import type * as React from "react";
-import { existsSync, readFileSync } from "fs";
+import { existsSync, readFileSync } from "node:fs";
 import { useMemo } from "react";
 import { StructuredDiff } from "../../StructuredDiff.js";
 import { Box, Text } from "ink";
 import { getTheme } from "../../../utils/theme.js";
 import { intersperse } from "../../../utils/array.js";
 import { getCwd } from "../../../utils/state.js";
-import { extname, relative } from "path";
+import { extname, relative } from "node:path";
 import { detectFileEncoding } from "../../../utils/file.js";
 import { HighlightedCode } from "../../HighlightedCode.js";
 import { getPatch } from "../../../utils/diff.js";

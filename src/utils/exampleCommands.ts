@@ -7,10 +7,10 @@ import {
 import { env } from "./env.js";
 import { getCwd } from "./state.js";
 import { queryHaiku } from "../services/claude.js";
-import { exec } from "child_process";
+import { exec } from "node:child_process";
 import { logError } from "./log.js";
 import { memoize, sample } from "lodash-es";
-import { promisify } from "util";
+import { promisify } from "node:util";
 import { getIsGit } from "./git.js";
 
 const execPromise = promisify(exec);

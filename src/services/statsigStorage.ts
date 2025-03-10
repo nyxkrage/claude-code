@@ -1,9 +1,9 @@
 import type { StorageProvider } from "@statsig/client-core";
-import * as fs from "fs";
-import * as path from "path";
-import { homedir } from "os";
+import * as fs from "node:fs";
+import * as path from "node:path";
+import { homedir } from "node:os";
 import { logError } from "../utils/log.js";
-import { existsSync, unlinkSync } from "fs";
+import { existsSync, unlinkSync } from "node:fs";
 
 const STATSIG_DIR = path.join(homedir(), ".claude", "statsig");
 

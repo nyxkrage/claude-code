@@ -7,7 +7,7 @@ import {
 	existsSync,
 	readdirSync,
 	opendirSync,
-} from "fs";
+} from "node:fs";
 import { logError } from "./log.js";
 import {
 	isAbsolute,
@@ -20,9 +20,9 @@ import {
 	dirname,
 	extname,
 	join,
-} from "path";
+} from "node:path";
 import { glob as globLib } from "glob";
-import { cwd } from "process";
+import { cwd } from "node:process";
 import { listAllContentFiles } from "./ripgrep.js";
 import { LRUCache } from "lru-cache";
 import { getCwd } from "./state.js";

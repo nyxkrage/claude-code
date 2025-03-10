@@ -1,5 +1,5 @@
-import { promises as fs } from "fs";
-import { join } from "path";
+import { promises as fs } from "node:fs";
+import { join } from "node:path";
 import { logError } from "./log.js";
 import { CACHE_PATHS } from "./log.js";
 

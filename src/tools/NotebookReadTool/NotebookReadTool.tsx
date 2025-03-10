@@ -3,9 +3,9 @@ import type {
 	TextBlockParam,
 } from "@anthropic-ai/sdk/resources/index.mjs";
 
-import { existsSync, readFileSync } from "fs";
+import { existsSync, readFileSync } from "node:fs";
 import { Text } from "ink";
-import { extname, isAbsolute, relative, resolve } from "path";
+import { extname, isAbsolute, relative, resolve } from "node:path";
 import * as React from "react";
 import { z } from "zod";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";

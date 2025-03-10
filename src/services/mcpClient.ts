@@ -9,8 +9,8 @@ import {
 	addMcprcServerForTesting,
 	removeMcprcServerForTesting,
 } from "../utils/config.js";
-import { existsSync, readFileSync, writeFileSync } from "fs";
-import { join } from "path";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 import { getCwd } from "../utils/state.js";
 import { safeParseJSON } from "../utils/json.js";
 import type {

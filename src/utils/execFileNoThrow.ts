@@ -1,4 +1,4 @@
-import { execFile } from "child_process";
+import { execFile } from "node:child_process";
 import { getCwd } from "./state.js";
 import { logError } from "./log.js";
 

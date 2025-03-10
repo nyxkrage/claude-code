@@ -1,6 +1,6 @@
-import { isAbsolute, resolve } from "path";
+import { isAbsolute, resolve } from "node:path";
 import { getCwd } from "../../utils/state.js";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 import { detectFileEncoding } from "../../utils/file.js";
 import type { Hunk } from "diff";
 import { getPatch } from "../../utils/diff.js";

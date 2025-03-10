@@ -1,7 +1,7 @@
-import * as crypto from "crypto";
-import * as http from "http";
-import type { IncomingMessage, ServerResponse } from "http";
-import * as url from "url";
+import * as crypto from "node:crypto";
+import * as http from "node:http";
+import type { IncomingMessage, ServerResponse } from "node:http";
+import * as url from "node:url";
 
 import { OAUTH_CONFIG } from "../constants/oauth.js";
 import { openBrowser } from "../utils/browser.js";
