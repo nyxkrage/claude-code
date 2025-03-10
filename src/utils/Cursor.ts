@@ -10,7 +10,7 @@ export class Cursor {
 	readonly offset: number;
 	constructor(
 		readonly measuredText: MeasuredText,
-		offset: number = 0,
+		offset = 0,
 		readonly selection: number = 0,
 	) {
 		// it's ok for the cursor to be 1 char beyond the end of the string
@@ -20,8 +20,8 @@ export class Cursor {
 	static fromText(
 		text: string,
 		columns: number,
-		offset: number = 0,
-		selection: number = 0,
+		offset = 0,
+		selection = 0,
 	): Cursor {
 		// make MeasuredText on less than columns width, to account for cursor
 		return new Cursor(new MeasuredText(text, columns - 1), offset, selection);
@@ -134,7 +134,7 @@ export class Cursor {
 		return cursor;
 	}
 
-	private modifyText(end: Cursor, insertString: string = ""): Cursor {
+	private modifyText(end: Cursor, insertString = ""): Cursor {
 		const startOffset = this.offset;
 		const endOffset = end.offset;
 

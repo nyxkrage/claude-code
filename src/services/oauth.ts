@@ -225,7 +225,7 @@ export class OAuthService {
 	private async exchangeCodeForTokens(
 		authorizationCode: string,
 		state: string,
-		useManualRedirect: boolean = false,
+		useManualRedirect = false,
 	): Promise<OAuthTokenExchangeResponse> {
 		const requestBody = {
 			grant_type: "authorization_code",

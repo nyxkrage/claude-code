@@ -38,10 +38,10 @@ const SHELL_CONFIGS: Record<string, string> = {
 
 export class PersistentShell {
 	private commandQueue: QueuedCommand[] = [];
-	private isExecuting: boolean = false;
+	private isExecuting = false;
 	private shell: ChildProcess;
-	private isAlive: boolean = true;
-	private commandInterrupted: boolean = false;
+	private isAlive = true;
+	private commandInterrupted = false;
 	private statusFile: string;
 	private stdoutFile: string;
 	private stderrFile: string;
