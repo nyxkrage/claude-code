@@ -470,6 +470,7 @@ export function extractTag(html: string, tagName: string): string | null {
 	const openingTag = new RegExp(`<${escapedTag}(?:\\s+[^>]*?)?>`, "gi");
 	const closingTag = new RegExp(`<\\/${escapedTag}>`, "gi");
 
+	// biome-ignore lint/suspicious/noAssignInExpressions: common pattern for dealing with RegExp.exec
 	while ((match = pattern.exec(html)) !== null) {
 		// Check for nested tags
 		const content = match[1];
