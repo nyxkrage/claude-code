@@ -1,4 +1,4 @@
-import { Dirent, readdirSync } from "node:fs";
+import { type Dirent, readdirSync } from "node:fs";
 import { Box, Text } from "ink";
 import { basename, isAbsolute, join, relative, resolve, sep } from "node:path";
 import * as React from "react";
