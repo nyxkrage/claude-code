@@ -183,7 +183,7 @@ export const getContext = memoize(
  * tools like LS and View to get more information.
  */
 export const getDirectoryStructure = memoize(
-	async function (): Promise<string> {
+	async (): Promise<string> => {
 		let lines: string;
 		try {
 			const abortController = new AbortController();

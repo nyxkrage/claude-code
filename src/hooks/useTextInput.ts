@@ -13,7 +13,7 @@ type MaybeCursor = void | Cursor;
 type InputHandler = (input: string) => MaybeCursor;
 type InputMapper = (input: string) => MaybeCursor;
 function mapInput(input_map: Array<[string, InputHandler]>): InputMapper {
-	return function (input: string): MaybeCursor {
+	return (input: string): MaybeCursor => {
 		const handler = new Map(input_map).get(input) ?? (() => {});
 		return handler(input);
 	};
@@ -251,7 +251,7 @@ export function useTextInput({
 			case key.rightArrow:
 				return () => cursor.right();
 		}
-		return function (input: string) {
+		return (input: string) => {
 			switch (true) {
 				// Home key
 				case input == "\x1b[H" || input == "\x1b[1~":
