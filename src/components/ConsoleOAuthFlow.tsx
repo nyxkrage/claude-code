@@ -119,6 +119,7 @@ export function ConsoleOAuthFlow({ onDone }: Props): React.ReactNode {
 		}
 	}
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: biome doesn't seem to be able to detect that setShowPastePrompt is infact used
 	const startOAuth = useCallback(async () => {
 		try {
 			const result = await oauthService

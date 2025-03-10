@@ -192,6 +192,7 @@ export function REPL({
 		}
 	}, [forkConvoWithMessagesOnTheNextRender]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: getTotalCost relies on side effects so messages should be a dependency (i think)
 	useEffect(() => {
 		const totalCost = getTotalCost();
 		if (totalCost >= 5 /* $5 */ && !showCostDialog && !haveShownCostDialog) {
@@ -381,10 +382,10 @@ export function REPL({
 	useLogStartupTime();
 
 	// Initial load
+	// TODO: fix this
+	// biome-ignore lint/correctness/useExhaustiveDependencies: this was supressed in the original code
 	useEffect(() => {
 		onInit();
-		// TODO: fix this
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const normalizedMessages = useMemo(
