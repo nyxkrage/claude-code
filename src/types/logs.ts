@@ -5,7 +5,7 @@ export type LogOption = {
 	firstPrompt: string;
 	forkNumber?: number;
 	sidechainNumber?: number;
-	value: any;
+	value: number;
 	messages: SerializedMessage[];
 	fullPath: string;
 	date: string;
