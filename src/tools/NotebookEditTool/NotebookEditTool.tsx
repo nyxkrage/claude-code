@@ -6,7 +6,7 @@ import { z } from "zod";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";
 import { HighlightedCode } from "../../components/HighlightedCode.js";
 import type { Tool } from "../../Tool.js";
-import { NotebookCellType, NotebookContent } from "../../types/notebook.js";
+import type { NotebookCellType, NotebookContent } from "../../types/notebook.js";
 import {
 	detectFileEncoding,
 	detectLineEndings,

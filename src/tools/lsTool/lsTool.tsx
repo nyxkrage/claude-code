@@ -4,7 +4,7 @@ import { basename, isAbsolute, join, relative, resolve, sep } from "path";
 import * as React from "react";
 import { z } from "zod";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";
-import { Tool } from "../../Tool.js";
+import type { Tool } from "../../Tool.js";
 import { logError } from "../../utils/log.js";
 import { getCwd } from "../../utils/state.js";
 import { getTheme } from "../../utils/theme.js";

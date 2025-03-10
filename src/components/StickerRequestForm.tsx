@@ -3,14 +3,14 @@ import { Box, Text, useInput } from "ink";
 import TextInput from "./TextInput.js";
 import Link from "ink-link";
 // import figures from 'figures' (not used after refactoring)
-import { validateField, ValidationError } from "../utils/validate.js";
+import { validateField, type ValidationError } from "../utils/validate.js";
 import { openBrowser } from "../utils/browser.js";
 import { getTheme } from "../utils/theme.js";
 import { logEvent } from "../services/statsig.js";
 import { logError } from "../utils/log.js";
 import {
 	AnimatedClaudeAsterisk,
-	ClaudeAsteriskSize,
+	type ClaudeAsteriskSize,
 } from "./AnimatedClaudeAsterisk.js";
 import { useTerminalSize } from "../hooks/useTerminalSize.js";
 

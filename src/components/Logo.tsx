@@ -1,5 +1,5 @@
 import { Box, Text } from "ink";
-import * as React from "react";
+import type * as React from "react";
 import { getTheme } from "../utils/theme.js";
 import { PRODUCT_NAME } from "../constants/product.js";
 import { isDefaultApiKey, getAnthropicApiKey } from "../utils/config.js";

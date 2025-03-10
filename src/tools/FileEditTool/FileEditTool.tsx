@@ -1,4 +1,4 @@
-import { Hunk } from "diff";
+import type { Hunk } from "diff";
 import { existsSync, mkdirSync, readFileSync, statSync } from "fs";
 import { Box, Text } from "ink";
 import { dirname, isAbsolute, relative, resolve, sep } from "path";
@@ -7,7 +7,7 @@ import { z } from "zod";
 import { FileEditToolUpdatedMessage } from "../../components/FileEditToolUpdatedMessage.js";
 import { StructuredDiff } from "../../components/StructuredDiff.js";
 import { logEvent } from "../../services/statsig.js";
-import { Tool, ValidationResult } from "../../Tool.js";
+import type { Tool, ValidationResult } from "../../Tool.js";
 import { intersperse } from "../../utils/array.js";
 import {
 	addLineNumbers,

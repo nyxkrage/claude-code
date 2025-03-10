@@ -1,4 +1,4 @@
-import { ImageBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { ImageBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
 import { existsSync, readFileSync, statSync } from "fs";
 import { Box, Text } from "ink";
 import * as path from "path";

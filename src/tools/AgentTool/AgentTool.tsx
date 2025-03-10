@@ -1,17 +1,17 @@
-import { TextBlock } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { TextBlock } from "@anthropic-ai/sdk/resources/index.mjs";
 import chalk from "chalk";
 import { last, memoize } from "lodash-es";
 import { EOL } from "os";
 import * as React from "react";
 import { z } from "zod";
-import { Tool } from "../../Tool.js";
+import type { Tool } from "../../Tool.js";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";
 import { getAgentPrompt } from "../../constants/prompts.js";
 import { getContext } from "../../context.js";
 import { hasPermissionsToUseTool } from "../../permissions.js";
 import {
-	AssistantMessage,
-	Message as MessageType,
+	type AssistantMessage,
+	type Message as MessageType,
 	query,
 } from "../../query.js";
 import { formatDuration, formatNumber } from "../../utils/format.js";

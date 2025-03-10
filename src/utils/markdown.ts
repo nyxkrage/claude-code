@@ -1,4 +1,4 @@
-import { marked, Token } from "marked";
+import { marked, type Token } from "marked";
 import { stripSystemMessages } from "./messages.js";
 import chalk from "chalk";
 import { EOL } from "os";

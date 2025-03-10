@@ -1,7 +1,7 @@
 import { useInput } from "ink";
-import * as React from "react";
-import { Tool } from "../../Tool.js";
-import { AssistantMessage } from "../../query.js";
+import type * as React from "react";
+import type { Tool } from "../../Tool.js";
+import type { AssistantMessage } from "../../query.js";
 import { FileEditTool } from "../../tools/FileEditTool/FileEditTool.js";
 import { FileWriteTool } from "../../tools/FileWriteTool/FileWriteTool.js";
 import { BashTool } from "../../tools/BashTool/BashTool.js";
@@ -10,7 +10,7 @@ import { BashPermissionRequest } from "./BashPermissionRequest/BashPermissionReq
 import { FallbackPermissionRequest } from "./FallbackPermissionRequest.js";
 import { useNotifyAfterTimeout } from "../../hooks/useNotifyAfterTimeout.js";
 import { FileWritePermissionRequest } from "./FileWritePermissionRequest/FileWritePermissionRequest.js";
-import { type CommandSubcommandPrefixResult } from "../../utils/commands.js";
+import type { CommandSubcommandPrefixResult } from "../../utils/commands.js";
 import { FilesystemPermissionRequest } from "./FilesystemPermissionRequest/FilesystemPermissionRequest.js";
 import { NotebookEditTool } from "../../tools/NotebookEditTool/NotebookEditTool.js";
 import { GlobTool } from "../../tools/GlobTool/GlobTool.js";

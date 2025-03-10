@@ -4,7 +4,7 @@ import { useState } from "react";
 import figures from "figures";
 import { getTheme } from "../utils/theme.js";
 import {
-	GlobalConfig,
+	type GlobalConfig,
 	saveGlobalConfig,
 	normalizeApiKeyForConfig,
 } from "../utils/config.js";

@@ -1,4 +1,4 @@
-import { StorageProvider } from "@statsig/client-core";
+import type { StorageProvider } from "@statsig/client-core";
 import * as fs from "fs";
 import * as path from "path";
 import { homedir } from "os";

@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import { logError } from "./log.js";
-import { Tool } from "../Tool.ts";
+import type { Tool } from "../Tool.ts";
 
 /**
  * Load messages from a log file

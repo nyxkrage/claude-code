@@ -1,5 +1,5 @@
-import { TextBlock, ToolUseBlock } from "@anthropic-ai/sdk/resources/index.mjs";
-import { AssistantMessage, BinaryFeedbackResult } from "../../query.js";
+import type { TextBlock, ToolUseBlock } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { AssistantMessage, BinaryFeedbackResult } from "../../query.js";
 import { MAIN_QUERY_TEMPERATURE } from "../../services/claude.js";
 import { getDynamicConfig, logEvent } from "../../services/statsig.js";
 

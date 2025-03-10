@@ -1,8 +1,8 @@
-import { ToolResultBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { ToolResultBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
 import { Box } from "ink";
-import * as React from "react";
-import { Tool } from "../../../Tool.js";
-import { Message, UserMessage } from "../../../query.js";
+import type * as React from "react";
+import type { Tool } from "../../../Tool.js";
+import type { Message, UserMessage } from "../../../query.js";
 import { useGetToolFromMessages } from "./utils.js";
 
 type Props = {

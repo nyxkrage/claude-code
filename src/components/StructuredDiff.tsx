@@ -1,7 +1,7 @@
 import { Box, Text } from "ink";
-import * as React from "react";
-import { Hunk } from "diff";
-import { getTheme, ThemeNames } from "../utils/theme.js";
+import type * as React from "react";
+import type { Hunk } from "diff";
+import { getTheme, type ThemeNames } from "../utils/theme.js";
 import { useMemo } from "react";
 import { wrapText } from "../utils/format.js";
 

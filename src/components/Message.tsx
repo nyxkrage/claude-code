@@ -1,5 +1,5 @@
 import { Box } from "ink";
-import * as React from "react";
+import type * as React from "react";
 import type { AssistantMessage, Message, UserMessage } from "../query.js";
 import type {
 	ContentBlock,
@@ -10,13 +10,13 @@ import type {
 	ToolResultBlockParam,
 	ToolUseBlockParam,
 } from "@anthropic-ai/sdk/resources/index.mjs";
-import { Tool } from "../Tool.js";
+import type { Tool } from "../Tool.js";
 import { logError } from "../utils/log.js";
 import { UserToolResultMessage } from "./messages/UserToolResultMessage/UserToolResultMessage.js";
 import { AssistantToolUseMessage } from "./messages/AssistantToolUseMessage.js";
 import { AssistantTextMessage } from "./messages/AssistantTextMessage.js";
 import { UserTextMessage } from "./messages/UserTextMessage.js";
-import { NormalizedMessage } from "../utils/messages.js";
+import type { NormalizedMessage } from "../utils/messages.js";
 import { AssistantThinkingMessage } from "./messages/AssistantThinkingMessage.js";
 import { AssistantRedactedThinkingMessage } from "./messages/AssistantRedactedThinkingMessage.js";
 import { useTerminalSize } from "../hooks/useTerminalSize.js";

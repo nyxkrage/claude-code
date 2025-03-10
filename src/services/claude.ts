@@ -10,7 +10,7 @@ import { getBetas } from "../utils/betas.js";
 
 import { addToTotalCost } from "../cost-tracker.js";
 import type { AssistantMessage, UserMessage } from "../query.js";
-import { Tool } from "../Tool.js";
+import type { Tool } from "../Tool.js";
 import { getAnthropicApiKey, getOrCreateUserID } from "../utils/config.js";
 import { logError, SESSION_ID } from "../utils/log.js";
 import { USER_AGENT } from "../utils/http.js";

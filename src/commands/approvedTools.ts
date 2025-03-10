@@ -1,5 +1,5 @@
 import {
-	ProjectConfig,
+	type ProjectConfig,
 	getCurrentProjectConfig as getCurrentProjectConfigDefault,
 	saveCurrentProjectConfig as saveCurrentProjectConfigDefault,
 } from "../utils/config.js";

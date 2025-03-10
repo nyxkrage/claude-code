@@ -1,10 +1,10 @@
-import React from "react";
+import type React from "react";
 import { Box, Newline, Text, useInput } from "ink";
 import { getTheme } from "../utils/theme.js";
 import { Select } from "@inkjs/ui";
 import { render } from "ink";
 import { writeFileSync } from "fs";
-import { ConfigParseError } from "../utils/errors.js";
+import type { ConfigParseError } from "../utils/errors.js";
 import { useExitOnCtrlCD } from "../hooks/useExitOnCtrlCD.js";
 interface InvalidConfigHandlerProps {
 	error: ConfigParseError;

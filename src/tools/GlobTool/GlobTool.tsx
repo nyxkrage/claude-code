@@ -3,7 +3,7 @@ import React from "react";
 import { z } from "zod";
 import { Cost } from "../../components/Cost.js";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";
-import { Tool } from "../../Tool.js";
+import type { Tool } from "../../Tool.js";
 import { getCwd } from "../../utils/state.js";
 import { glob } from "../../utils/file.js";
 import { DESCRIPTION, TOOL_NAME_FOR_PROMPT } from "./prompt.js";

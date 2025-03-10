@@ -10,7 +10,7 @@ import { useTerminalSize } from "../../hooks/useTerminalSize.js";
 import { FileWriteTool } from "../../tools/FileWriteTool/FileWriteTool.js";
 import { FileWriteToolDiff } from "../permissions/FileWritePermissionRequest/FileWriteToolDiff.js";
 import type { AssistantMessage } from "../../query.js";
-import * as React from "react";
+import type * as React from "react";
 import { Box } from "ink";
 
 type Props = {

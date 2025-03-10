@@ -1,6 +1,6 @@
 import { memoize } from "lodash-es";
 import { API_ERROR_MESSAGE_PREFIX, queryHaiku } from "../services/claude.js";
-import { type ControlOperator, parse, ParseEntry } from "shell-quote";
+import { type ControlOperator, parse, type ParseEntry } from "shell-quote";
 import { PRODUCT_NAME } from "../constants/product.js";
 
 const SINGLE_QUOTE = "__SINGLE_QUOTE__";

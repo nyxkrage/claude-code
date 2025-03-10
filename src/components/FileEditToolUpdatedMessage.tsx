@@ -1,6 +1,6 @@
-import { Hunk } from "diff";
+import type { Hunk } from "diff";
 import { Box, Text } from "ink";
-import * as React from "react";
+import type * as React from "react";
 import { intersperse } from "../utils/array.js";
 import { StructuredDiff } from "./StructuredDiff.js";
 import { getTheme } from "../utils/theme.js";

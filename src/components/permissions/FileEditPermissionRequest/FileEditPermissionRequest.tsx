@@ -2,9 +2,10 @@ import { Select } from "@inkjs/ui";
 import chalk from "chalk";
 import { Box, Text } from "ink";
 import { basename, extname } from "path";
-import React, { useMemo } from "react";
+import type React from "react";
+import { useMemo } from "react";
 import {
-	UnaryEvent,
+	type UnaryEvent,
 	usePermissionRequestLogging,
 } from "../../../hooks/usePermissionRequestLogging.js";
 import { savePermission } from "../../../permissions.js";

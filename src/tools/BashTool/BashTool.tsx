@@ -6,7 +6,7 @@ import { z } from "zod";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";
 import { PRODUCT_NAME } from "../../constants/product.js";
 import { queryHaiku } from "../../services/claude.js";
-import { Tool, ValidationResult } from "../../Tool.js";
+import type { Tool, ValidationResult } from "../../Tool.js";
 import { splitCommand } from "../../utils/commands.js";
 import { isInDirectory } from "../../utils/file.js";
 import { logError } from "../../utils/log.js";

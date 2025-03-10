@@ -1,19 +1,19 @@
-import { ToolUseBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { ToolUseBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
 import { Box, Newline, Static } from "ink";
 import ProjectOnboarding, {
 	markProjectOnboardingComplete,
 } from "../ProjectOnboarding.js";
 import { CostThresholdDialog } from "../components/CostThresholdDialog.js";
-import * as React from "react";
+import type * as React from "react";
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
-import { Command } from "../commands.js";
+import type { Command } from "../commands.js";
 import { Logo } from "../components/Logo.js";
 import { Message } from "../components/Message.js";
 import { MessageResponse } from "../components/MessageResponse.js";
 import { MessageSelector } from "../components/MessageSelector.js";
 import {
 	PermissionRequest,
-	ToolUseConfirm,
+	type ToolUseConfirm,
 } from "../components/permissions/PermissionRequest.js";
 import PromptInput from "../components/PromptInput.js";
 import { Spinner } from "../components/Spinner.js";
@@ -28,15 +28,15 @@ import useCanUseTool from "../hooks/useCanUseTool.js";
 import { useLogMessages } from "../hooks/useLogMessages.js";
 import { setMessagesGetter, setMessagesSetter } from "../messages.js";
 import {
-	AssistantMessage,
-	BinaryFeedbackResult,
-	Message as MessageType,
-	ProgressMessage,
+	type AssistantMessage,
+	type BinaryFeedbackResult,
+	type Message as MessageType,
+	type ProgressMessage,
 	query,
 } from "../query.js";
 import type { WrappedClient } from "../services/mcpClient.js";
 import type { Tool } from "../Tool.js";
-import { AutoUpdaterResult } from "../utils/autoUpdater.js";
+import type { AutoUpdaterResult } from "../utils/autoUpdater.js";
 import { getGlobalConfig, saveGlobalConfig } from "../utils/config.js";
 import { logEvent } from "../services/statsig.js";
 import { getNextAvailableLogForkNumber } from "../utils/log.js";

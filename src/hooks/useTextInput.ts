@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { type Key } from "ink";
+import type { Key } from "ink";
 import { useDoublePress } from "./useDoublePress.js";
 import { Cursor } from "../utils/Cursor.js";
 import {

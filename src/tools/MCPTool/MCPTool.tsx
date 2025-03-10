@@ -2,7 +2,7 @@ import { Box, Text } from "ink";
 import * as React from "react";
 import { z } from "zod";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";
-import { type Tool } from "../../Tool.js";
+import type { Tool } from "../../Tool.js";
 import { getTheme } from "../../utils/theme.js";
 import { DESCRIPTION, PROMPT } from "./prompt.js";
 import { OutputLine } from "../BashTool/OutputLine.js";

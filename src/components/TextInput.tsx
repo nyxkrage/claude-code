@@ -3,7 +3,7 @@ import { Text, useInput } from "ink";
 import chalk from "chalk";
 import { useTextInput } from "../hooks/useTextInput.js";
 import { getTheme } from "../utils/theme.js";
-import { type Key } from "ink";
+import type { Key } from "ink";
 
 export type Props = {
 	/**

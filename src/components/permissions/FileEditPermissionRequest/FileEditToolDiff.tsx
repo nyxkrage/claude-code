@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { existsSync, readFileSync } from "fs";
 import { useMemo } from "react";
 import { StructuredDiff } from "../../StructuredDiff.js";

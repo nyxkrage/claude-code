@@ -1,4 +1,4 @@
-import { ImageBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { ImageBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
 
 export type NotebookCellType = "code" | "markdown";
 

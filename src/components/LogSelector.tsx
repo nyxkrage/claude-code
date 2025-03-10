@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { Box, Text } from "ink";
 import { Select } from "@inkjs/ui";
 import type { LogOption } from "../types/logs.js";

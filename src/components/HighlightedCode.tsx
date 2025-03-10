@@ -1,6 +1,7 @@
 import { highlight, supportsLanguage } from "cli-highlight";
 import { Text } from "ink";
-import React, { useMemo } from "react";
+import type React from "react";
+import { useMemo } from "react";
 import { logError } from "../utils/log.js";
 
 type Props = {

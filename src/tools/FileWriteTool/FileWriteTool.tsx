@@ -1,4 +1,4 @@
-import { Hunk } from "diff";
+import type { Hunk } from "diff";
 import { existsSync, mkdirSync, readFileSync, statSync } from "fs";
 import { Box, Text } from "ink";
 import { EOL } from "os";

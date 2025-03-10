@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { extractTag } from "../../utils/messages.js";
 import { getTheme } from "../../utils/theme.js";
 import { Box, Text } from "ink";

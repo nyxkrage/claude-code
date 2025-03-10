@@ -1,6 +1,7 @@
 import { Box, Text } from "ink";
-import React, { useMemo } from "react";
-import { UnaryEvent } from "../../../hooks/usePermissionRequestLogging.js";
+import type React from "react";
+import { useMemo } from "react";
+import type { UnaryEvent } from "../../../hooks/usePermissionRequestLogging.js";
 import { savePermission } from "../../../permissions.js";
 import { BashTool } from "../../../tools/BashTool/BashTool.js";
 import { getTheme } from "../../../utils/theme.js";

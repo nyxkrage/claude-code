@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from "react";
+import type React from "react";
+import { useMemo, useState } from "react";
 import { PRODUCT_NAME } from "../constants/product.js";
 import { Box, Newline, Text, useInput } from "ink";
 import {
@@ -15,7 +16,7 @@ import { ConsoleOAuthFlow } from "./ConsoleOAuthFlow.js";
 import { ApproveApiKey } from "./ApproveApiKey.js";
 import { Select } from "./CustomSelect/index.js";
 import { StructuredDiff } from "./StructuredDiff.js";
-import { getTheme, ThemeNames } from "../utils/theme.js";
+import { getTheme, type ThemeNames } from "../utils/theme.js";
 import { isAnthropicAuthEnabled } from "../utils/auth.js";
 import Link from "./Link.js";
 import { clearTerminal } from "../utils/terminal.js";

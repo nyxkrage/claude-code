@@ -2,9 +2,9 @@ import React from "react";
 import { memoize } from "lodash-es";
 import chalk from "chalk";
 import {
-	StatsigClient,
+	type StatsigClient,
 	StatsigOptions,
-	StatsigEvent,
+	type StatsigEvent,
 	LogLevel,
 } from "@statsig/js-client";
 import "./browserMocks.js"; // Initialize browser mocks

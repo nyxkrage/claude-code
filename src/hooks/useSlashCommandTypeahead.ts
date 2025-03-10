@@ -1,6 +1,6 @@
 import { useInput } from "ink";
 import { useState, useCallback } from "react";
-import { Command, getCommand } from "../commands.js";
+import { type Command, getCommand } from "../commands.js";
 
 type Props = {
 	commands: Command[];

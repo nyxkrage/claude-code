@@ -1,7 +1,7 @@
 import { zipObject } from "lodash-es";
 import {
 	getCurrentProjectConfig,
-	McpServerConfig,
+	type McpServerConfig,
 	saveCurrentProjectConfig,
 	getGlobalConfig,
 	saveGlobalConfig,
@@ -13,7 +13,7 @@ import { existsSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 import { getCwd } from "../utils/state.js";
 import { safeParseJSON } from "../utils/json.js";
-import {
+import type {
 	ImageBlockParam,
 	MessageParam,
 	ToolResultBlockParam,
@@ -23,19 +23,19 @@ import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
 import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js";
 import {
 	CallToolResultSchema,
-	ClientRequest,
-	ListPromptsResult,
+	type ClientRequest,
+	type ListPromptsResult,
 	ListPromptsResultSchema,
-	ListToolsResult,
+	type ListToolsResult,
 	ListToolsResultSchema,
-	Result,
-	ResultSchema,
+	type Result,
+	type ResultSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { memoize, pickBy } from "lodash-es";
 import type { Tool } from "../Tool.js";
 import { MCPTool } from "../tools/MCPTool/MCPTool.js";
 import { logMCPError } from "../utils/log.js";
-import { Command } from "../commands.js";
+import type { Command } from "../commands.js";
 import { logEvent } from "../services/statsig.js";
 
 type McpName = string;

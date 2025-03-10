@@ -1,13 +1,13 @@
-import {
+import type {
 	ImageBlockParam,
 	TextBlockParam,
 } from "@anthropic-ai/sdk/resources/index.mjs";
-import { type Command } from "./commands.ts";
+import type { Command } from "./commands.ts";
 import { UnaryEvent } from "./hooks/usePermissionRequestLogging.ts";
-import { AssistantMessage, type Message } from "./query.js";
-import { z } from "zod";
-import { NormalizedMessage } from "./utils/messages.tsx";
-import { CanUseToolFn } from "./hooks/useCanUseTool.ts";
+import type { AssistantMessage, Message } from "./query.js";
+import type { z } from "zod";
+import type { NormalizedMessage } from "./utils/messages.tsx";
+import type { CanUseToolFn } from "./hooks/useCanUseTool.ts";
 
 export type ToolUseContext = {
 	options: {

@@ -1,5 +1,5 @@
 import type { CanUseToolFn } from "./hooks/useCanUseTool.js";
-import { Tool, ToolUseContext } from "./Tool.js";
+import type { Tool, ToolUseContext } from "./Tool.js";
 import { BashTool, inputSchema } from "./tools/BashTool/BashTool.js";
 import { FileEditTool } from "./tools/FileEditTool/FileEditTool.js";
 import { FileWriteTool } from "./tools/FileWriteTool/FileWriteTool.js";

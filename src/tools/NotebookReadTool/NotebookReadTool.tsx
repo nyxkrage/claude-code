@@ -9,8 +9,8 @@ import { extname, isAbsolute, relative, resolve } from "path";
 import * as React from "react";
 import { z } from "zod";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";
-import { Tool } from "../../Tool.js";
-import {
+import type { Tool } from "../../Tool.js";
+import type {
 	NotebookCellSource,
 	NotebookContent,
 	NotebookCell,

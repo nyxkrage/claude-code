@@ -15,7 +15,7 @@ import pr_comments from "./commands/pr_comments.js";
 import releaseNotes from "./commands/release-notes.js";
 import review from "./commands/review.js";
 import terminalSetup from "./commands/terminalSetup.js";
-import { Tool, ToolUseContext } from "./Tool.js";
+import type { Tool, ToolUseContext } from "./Tool.js";
 import resume from "./commands/resume.js";
 import { getMCPCommands } from "./services/mcpClient.js";
 import type { MessageParam } from "@anthropic-ai/sdk/resources/index.mjs";

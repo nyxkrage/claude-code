@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { render } from "ink";
 import { REPL } from "./REPL.js";
 import { deserializeMessages } from "../utils/conversationRecovery.js";
@@ -6,7 +6,7 @@ import { LogSelector } from "../components/LogSelector.js";
 import type { LogOption } from "../types/logs.js";
 import { logError, getNextAvailableLogForkNumber } from "../utils/log.js";
 import type { Tool } from "../Tool.js";
-import { Command } from "../commands.js";
+import type { Command } from "../commands.js";
 import { isDefaultSlowAndCapableModel } from "../utils/model.js";
 
 type Props = {

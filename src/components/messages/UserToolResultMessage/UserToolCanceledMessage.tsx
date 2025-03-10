@@ -1,5 +1,5 @@
 import { Text } from "ink";
-import * as React from "react";
+import type * as React from "react";
 import { getTheme } from "../../../utils/theme.js";
 
 export function UserToolCanceledMessage(): React.ReactNode {

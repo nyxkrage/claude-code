@@ -1,5 +1,5 @@
-import { type BoxProps, type TextProps } from "ink";
-import { type ComponentTheme } from "@inkjs/ui";
+import type { BoxProps, TextProps } from "ink";
+import type { ComponentTheme } from "@inkjs/ui";
 
 const theme = {
 	styles: {

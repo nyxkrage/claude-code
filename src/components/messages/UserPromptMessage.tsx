@@ -1,5 +1,5 @@
-import React from "react";
-import { TextBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
+import type React from "react";
+import type { TextBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
 import { Box, Text } from "ink";
 import { getTheme } from "../../utils/theme.js";
 import { logError } from "../../utils/log.js";

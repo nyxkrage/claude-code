@@ -1,8 +1,8 @@
 import { Box, Text } from "ink";
 import { OutputLine } from "./OutputLine.js";
-import React from "react";
+import type React from "react";
 import { getTheme } from "../../utils/theme.js";
-import { Out as BashOut } from "./BashTool.js";
+import type { Out as BashOut } from "./BashTool.js";
 
 type Props = {
 	content: Omit<BashOut, "interrupted">;

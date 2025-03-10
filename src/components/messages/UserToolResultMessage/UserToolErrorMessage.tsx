@@ -1,6 +1,6 @@
-import { ToolResultBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { ToolResultBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
 import { Box, Text } from "ink";
-import * as React from "react";
+import type * as React from "react";
 import { getTheme } from "../../../utils/theme.js";
 
 const MAX_RENDERED_LINES = 10;

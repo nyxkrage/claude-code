@@ -1,4 +1,4 @@
-import { Command } from "../commands.js";
+import type { Command } from "../commands.js";
 import { EOL, platform, homedir } from "os";
 import { execFileNoThrow } from "../utils/execFileNoThrow.js";
 import chalk from "chalk";

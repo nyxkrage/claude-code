@@ -1,8 +1,8 @@
 import { Box, Text } from "ink";
-import React from "react";
+import type React from "react";
 import { logError } from "../../utils/log.js";
-import { ToolUseBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
-import { Tool } from "../../Tool.js";
+import type { ToolUseBlockParam } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { Tool } from "../../Tool.js";
 import { Cost } from "../Cost.js";
 import { ToolUseLoader } from "../ToolUseLoader.js";
 import { getTheme } from "../../utils/theme.js";

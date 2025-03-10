@@ -1,4 +1,4 @@
-import { Command } from "../commands.js";
+import type { Command } from "../commands.js";
 import { PRODUCT_NAME } from "../constants/product.js";
 import * as React from "react";
 import { Box, Text, useInput } from "ink";

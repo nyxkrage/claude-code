@@ -5,7 +5,7 @@ import { gte } from "semver";
 import { useEffect, useState } from "react";
 import { isAutoUpdaterDisabled } from "../utils/config.js";
 import {
-	AutoUpdaterResult,
+	type AutoUpdaterResult,
 	getLatestVersion,
 	installGlobalPackage,
 } from "../utils/autoUpdater.js";

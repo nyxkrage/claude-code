@@ -10,7 +10,7 @@ Object.keys(dontcare);
 import React from "react";
 import { ReadStream } from "tty";
 import { openSync, existsSync } from "fs";
-import { render, RenderOptions } from "ink";
+import { render, type RenderOptions } from "ink";
 import { REPL } from "../screens/REPL.js";
 import { addToHistory } from "../history.js";
 import { getContext, setContext, removeContext } from "../context.js";

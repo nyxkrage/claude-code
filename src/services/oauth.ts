@@ -1,6 +1,6 @@
 import * as crypto from "crypto";
 import * as http from "http";
-import { IncomingMessage, ServerResponse } from "http";
+import type { IncomingMessage, ServerResponse } from "http";
 import * as url from "url";
 
 import { OAUTH_CONFIG } from "../constants/oauth.js";
@@ -9,7 +9,7 @@ import { logEvent } from "../services/statsig.js";
 import { logError } from "../utils/log.js";
 import { resetAnthropicClient } from "./claude.js";
 import {
-	AccountInfo,
+	type AccountInfo,
 	getGlobalConfig,
 	saveGlobalConfig,
 	normalizeApiKeyForConfig,

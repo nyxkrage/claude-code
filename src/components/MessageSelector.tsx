@@ -1,11 +1,11 @@
 import { Box, Text, useInput } from "ink";
-import * as React from "react";
+import type * as React from "react";
 import { useMemo, useState, useEffect } from "react";
 import figures from "figures";
 import { getTheme } from "../utils/theme.js";
 import { Message as MessageComponent } from "./Message.js";
 import { randomUUID } from "crypto";
-import { type Tool } from "../Tool.js";
+import type { Tool } from "../Tool.js";
 import {
 	createUserMessage,
 	isEmptyMessageText,

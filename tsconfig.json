@@ -7,7 +7,7 @@
 		"skipLibCheck": true,
 		"module": "nodenext",
 		"moduleResolution": "nodenext",
-		"jsx": "react",
+		"jsx": "react-jsx",
 		"esModuleInterop": true,
 		"noEmit": true,
 		"allowImportingTsExtensions": true

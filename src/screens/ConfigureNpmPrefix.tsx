@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import type React from "react";
+import { useState } from "react";
 import { Box, Text } from "ink";
 import { Select } from "@inkjs/ui";
 import TextInput from "../components/TextInput.js";

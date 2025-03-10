@@ -1,5 +1,5 @@
 import { Box, Text, useInput } from "ink";
-import * as React from "react";
+import type * as React from "react";
 import { useState, useCallback, useEffect } from "react";
 import { getTheme } from "../utils/theme.js";
 import { getMessagesGetter } from "../messages.js";
@@ -7,7 +7,7 @@ import type { Message } from "../query.js";
 import TextInput from "./TextInput.js";
 import { logError, getInMemoryErrors } from "../utils/log.js";
 import { env } from "../utils/env.js";
-import { getGitState, getIsGit, GitRepoState } from "../utils/git.js";
+import { getGitState, getIsGit, type GitRepoState } from "../utils/git.js";
 import { useTerminalSize } from "../hooks/useTerminalSize.js";
 import { getAnthropicApiKey } from "../utils/config.js";
 import { USER_AGENT } from "../utils/http.js";

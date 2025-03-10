@@ -6,7 +6,7 @@ import type { Tool } from "../../Tool.js";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";
 import { HighlightedCode } from "../../components/HighlightedCode.js";
 import { getContext } from "../../context.js";
-import { Message, query } from "../../query.js";
+import { type Message, query } from "../../query.js";
 import { lastX } from "../../utils/generators.js";
 import { createUserMessage } from "../../utils/messages.js";
 import { BashTool } from "../BashTool/BashTool.js";

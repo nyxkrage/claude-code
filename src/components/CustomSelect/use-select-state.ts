@@ -8,7 +8,7 @@ import {
 	useEffect,
 } from "react";
 import OptionMap from "./option-map.js";
-import { Option } from "@inkjs/ui";
+import type { Option } from "@inkjs/ui";
 import type { OptionHeader, OptionSubtree } from "./index.js";
 
 type State = {

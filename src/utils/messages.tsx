@@ -1,6 +1,6 @@
-import { randomUUID, UUID } from "crypto";
+import { randomUUID, type UUID } from "crypto";
 import { Box } from "ink";
-import {
+import type {
 	AssistantMessage,
 	Message,
 	ProgressMessage,
@@ -15,7 +15,7 @@ import { logEvent } from "../services/statsig.js";
 import type { SetToolJSXFn, Tool, ToolUseContext } from "../Tool.js";
 import { lastX } from "../utils/generators.js";
 import { NO_CONTENT_MESSAGE } from "../services/claude.js";
-import {
+import type {
 	ImageBlockParam,
 	TextBlockParam,
 	ToolResultBlockParam,
@@ -31,7 +31,7 @@ import * as React from "react";
 import { UserBashInputMessage } from "../components/messages/UserBashInputMessage.js";
 import { Spinner } from "../components/Spinner.js";
 import { BashTool } from "../tools/BashTool/BashTool.js";
-import { ToolUseBlock } from "@anthropic-ai/sdk/resources/index.mjs";
+import type { ToolUseBlock } from "@anthropic-ai/sdk/resources/index.mjs";
 
 export const INTERRUPT_MESSAGE = "[Request interrupted by user]";
 export const INTERRUPT_MESSAGE_FOR_TOOL_USE =

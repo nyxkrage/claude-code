@@ -1,6 +1,6 @@
-import { default as React, useCallback } from "react";
+import { type default as React, useCallback } from "react";
 import { useNotifyAfterTimeout } from "../../hooks/useNotifyAfterTimeout.js";
-import { AssistantMessage, BinaryFeedbackResult } from "../../query.js";
+import type { AssistantMessage, BinaryFeedbackResult } from "../../query.js";
 import type { Tool } from "../../Tool.js";
 import type { NormalizedMessage } from "../../utils/messages.js";
 import { BinaryFeedbackView } from "./BinaryFeedbackView.js";

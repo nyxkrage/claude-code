@@ -1,4 +1,4 @@
-import { type Tool } from "../../Tool.js";
+import type { Tool } from "../../Tool.js";
 import { getTools, getReadOnlyTools } from "../../tools.js";
 import { AgentTool } from "../AgentTool/AgentTool.js";
 import { BashTool } from "../BashTool/BashTool.js";

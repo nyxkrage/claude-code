@@ -1,11 +1,11 @@
 import { z } from "zod";
 import React from "react";
 import { Text } from "ink";
-import { Tool, ToolUseContext } from "../../Tool.js";
+import type { Tool, ToolUseContext } from "../../Tool.js";
 import { DESCRIPTION, PROMPT } from "./prompt.js";
 import {
 	StickerRequestForm,
-	FormData,
+	type FormData,
 } from "../../components/StickerRequestForm.js";
 import { checkGate, logEvent } from "../../services/statsig.js";
 import { getTheme } from "../../utils/theme.js";

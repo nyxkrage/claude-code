@@ -1,6 +1,6 @@
 import { env } from "../../utils/env.js";
-import { CompletionType, logUnaryEvent } from "../../utils/unaryLogging.js";
-import { ToolUseConfirm } from "./PermissionRequest.js";
+import { type CompletionType, logUnaryEvent } from "../../utils/unaryLogging.js";
+import type { ToolUseConfirm } from "./PermissionRequest.js";
 
 export function logUnaryPermissionEvent(
 	completion_type: CompletionType,

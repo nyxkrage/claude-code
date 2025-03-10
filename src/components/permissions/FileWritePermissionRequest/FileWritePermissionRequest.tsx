@@ -1,5 +1,6 @@
 import { Box, Text } from "ink";
-import React, { useMemo } from "react";
+import type React from "react";
+import { useMemo } from "react";
 import { Select } from "@inkjs/ui";
 import { basename, extname } from "path";
 import { getTheme } from "../../../utils/theme.js";
@@ -17,7 +18,7 @@ import {
 import { existsSync } from "fs";
 import chalk from "chalk";
 import {
-	UnaryEvent,
+	type UnaryEvent,
 	usePermissionRequestLogging,
 } from "../../../hooks/usePermissionRequestLogging.js";
 import { FileWriteToolDiff } from "./FileWriteToolDiff.js";

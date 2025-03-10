@@ -1,6 +1,6 @@
 import InkLink from "ink-link";
 import { Text } from "ink";
-import React from "react";
+import type React from "react";
 import { env } from "../utils/env.js";
 
 type LinkProps = {

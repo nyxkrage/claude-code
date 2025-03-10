@@ -1,4 +1,4 @@
-import { Command } from "../commands.js";
+import type { Command } from "../commands.js";
 import { getContext } from "../context.js";
 import { getMessagesGetter, getMessagesSetter } from "../messages.js";
 import { API_ERROR_MESSAGE_PREFIX, querySonnet } from "../services/claude.js";

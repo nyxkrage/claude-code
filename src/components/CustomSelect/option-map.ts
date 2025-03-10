@@ -1,4 +1,4 @@
-import { type Option } from "@inkjs/ui";
+import type { Option } from "@inkjs/ui";
 import { optionHeaderKey, type OptionHeader } from "./index.js";
 
 type OptionMapItem = (Option | OptionHeader) & {

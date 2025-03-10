@@ -1,4 +1,4 @@
-import { Option, SelectProps } from "@inkjs/ui";
+import type { Option, SelectProps } from "@inkjs/ui";
 import chalk from "chalk";
 import { Box, Text, useInput } from "ink";
 import Link from "ink-link";
@@ -11,7 +11,7 @@ import { BinaryFeedbackOption } from "./BinaryFeedbackOption.js";
 import type { AssistantMessage } from "../../query.js";
 import type { BinaryFeedbackChoose } from "./utils.js";
 import { useExitOnCtrlCD } from "../../hooks/useExitOnCtrlCD.js";
-import { BinaryFeedbackChoice } from "./utils.js";
+import type { BinaryFeedbackChoice } from "./utils.js";
 
 const HELP_URL = "https://go/cli-feedback";
 

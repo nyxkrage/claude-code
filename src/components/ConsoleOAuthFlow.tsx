@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useCallback } from "react";
+import type React from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Static, Box, Text, useInput } from "ink";
 import TextInput from "./TextInput.js";
 import { OAuthService, createAndStoreApiKey } from "../services/oauth.js";

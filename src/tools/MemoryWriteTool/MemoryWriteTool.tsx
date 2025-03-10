@@ -4,7 +4,7 @@ import { dirname, join } from "path";
 import * as React from "react";
 import { z } from "zod";
 import { FallbackToolUseRejectedMessage } from "../../components/FallbackToolUseRejectedMessage.js";
-import { Tool } from "../../Tool.js";
+import type { Tool } from "../../Tool.js";
 import { MEMORY_DIR } from "../../utils/env.js";
 import { DESCRIPTION, PROMPT } from "./prompt.js";
 
