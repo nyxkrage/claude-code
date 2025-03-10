@@ -663,7 +663,6 @@ export function reorderMessages(
 			);
 			if (toolUseMessage) {
 				ms.splice(ms.indexOf(toolUseMessage) + 1, 0, message);
-				continue;
 			}
 		}
 
