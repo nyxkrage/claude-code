@@ -240,7 +240,7 @@ export function getAnthropicClient(model?: string): Anthropic {
 		"User-Agent": USER_AGENT,
 	};
 	if (process.env.ANTHROPIC_AUTH_TOKEN) {
-		defaultHeaders["Authorization"] =
+		defaultHeaders.Authorization =
 			`Bearer ${process.env.ANTHROPIC_AUTH_TOKEN}`;
 	}
 
@@ -332,7 +332,7 @@ export function userMessageToMessageParam(
 				],
 			};
 		}
-		
+
 		return {
 			role: "user",
 			content: message.message.content.map((_, i) => ({
