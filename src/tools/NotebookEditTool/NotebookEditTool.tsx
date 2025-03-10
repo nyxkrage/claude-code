@@ -209,7 +209,7 @@ export const NotebookEditTool = {
 				notebook.cells.splice(
 					cell_number,
 					0,
-					cell_type == "markdown" ? new_cell : { ...new_cell, outputs: [] },
+					cell_type === "markdown" ? new_cell : { ...new_cell, outputs: [] },
 				);
 			} else {
 				// Find the specified cell

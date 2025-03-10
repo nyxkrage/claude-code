@@ -221,7 +221,7 @@ export default function TextInput({
 				: chalk.inverse(" ");
 	}
 
-	const showPlaceholder = originalValue.length == 0 && placeholder;
+	const showPlaceholder = originalValue.length === 0 && placeholder;
 	return (
 		<Text wrap="truncate-end" dimColor={isDimmed}>
 			{showPlaceholder ? renderedPlaceholder : renderedValue}

@@ -254,10 +254,10 @@ export function useTextInput({
 		return (input: string) => {
 			switch (true) {
 				// Home key
-				case input == "\x1b[H" || input == "\x1b[1~":
+				case input === "\x1b[H" || input === "\x1b[1~":
 					return cursor.startOfLine();
 				// End key
-				case input == "\x1b[F" || input == "\x1b[4~":
+				case input === "\x1b[F" || input === "\x1b[4~":
 					return cursor.endOfLine();
 				default:
 					return cursor.insert(input.replace(/\r/g, "\n"));
@@ -270,7 +270,7 @@ export function useTextInput({
 		if (nextCursor) {
 			if (!cursor.equals(nextCursor)) {
 				setOffset(nextCursor.offset);
-				if (cursor.text != nextCursor.text) {
+				if (cursor.text !== nextCursor.text) {
 					onChange(nextCursor.text);
 				}
 			}
