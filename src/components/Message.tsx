@@ -1,6 +1,6 @@
 import { Box } from "ink";
 import type * as React from "react";
-import type { AssistantMessage, Message, UserMessage } from "../query.js";
+import type { AssistantMessage as AssistantMessageType, Message as MessageType, UserMessage as UserMessageType } from "../query.js";
 import type {
 	ContentBlock,
 	DocumentBlockParam,
@@ -22,7 +22,7 @@ import { AssistantRedactedThinkingMessage } from "./messages/AssistantRedactedTh
 import { useTerminalSize } from "../hooks/useTerminalSize.js";
 
 type Props = {
-	message: UserMessage | AssistantMessage;
+	message: UserMessageType | AssistantMessageType;
 	messages: NormalizedMessage[];
 	// TODO: Find a way to remove this, and leave spacing to the consumer
 	addMargin: boolean;
@@ -110,8 +110,8 @@ function UserMessage({
 	param,
 	options: { verbose },
 }: {
-	message: UserMessage;
-	messages: Message[];
+	message: UserMessageType;
+	messages: MessageType[];
 	addMargin: boolean;
 	tools: Tool[];
 	param:
