@@ -155,7 +155,7 @@ export function ConsoleOAuthFlow({ onDone }: Props): React.ReactNode {
 				(err) => {
 					setOAuthStatus({
 						state: "error",
-						message: "Failed to create API key: " + err.message,
+						message: `Failed to create API key: ${err.message}`,
 						toRetry: { state: "ready_to_start" },
 					});
 					logEvent("tengu_oauth_api_key_error", { error: err.message });

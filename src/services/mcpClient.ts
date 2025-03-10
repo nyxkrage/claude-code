@@ -411,7 +411,7 @@ export const getMCPTools = memoize(async (): Promise<Tool[]> => {
 		tools.map(
 			(tool): Tool => ({
 				...MCPTool,
-				name: "mcp__" + client.name + "__" + tool.name,
+				name: `mcp__${client.name}__${tool.name}`,
 				async description() {
 					return tool.description ?? "";
 				},
@@ -500,7 +500,7 @@ export const getMCPCommands = memoize(async (): Promise<Command[]> => {
 			const argNames = Object.values(_.arguments ?? {}).map((k) => k.name);
 			return {
 				type: "prompt",
-				name: "mcp__" + client.name + "__" + _.name,
+				name: `mcp__${client.name}__${_.name}`,
 				description: _.description ?? "",
 				isEnabled: true,
 				isHidden: false,

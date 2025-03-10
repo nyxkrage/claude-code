@@ -31,9 +31,9 @@ export function applyEdit(
 		if (new_string === "") {
 			if (
 				!old_string.endsWith("\n") &&
-				originalFile.includes(old_string + "\n")
+				originalFile.includes(`${old_string}\n`)
 			) {
-				updatedFile = originalFile.replace(old_string + "\n", () => new_string);
+				updatedFile = originalFile.replace(`${old_string}\n`, () => new_string);
 			} else {
 				updatedFile = originalFile.replace(old_string, () => new_string);
 			}

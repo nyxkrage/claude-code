@@ -33,7 +33,7 @@ export function splitCommand(command: string): string[] {
 	)) {
 		if (typeof part === "string") {
 			if (parts.length > 0 && typeof parts[parts.length - 1] === "string") {
-				parts[parts.length - 1] += " " + part;
+				parts[parts.length - 1] += ` ${part}`;
 				continue;
 			}
 		}
@@ -48,7 +48,7 @@ export function splitCommand(command: string): string[] {
 			}
 			if ("comment" in part) {
 				// TODO: make this less hacky
-				return "#" + part.comment;
+				return `#${part.comment}`;
 			}
 			if ("op" in part && part.op === "glob") {
 				return part.pattern;

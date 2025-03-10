@@ -29,7 +29,7 @@ async function getFrequentlyModifiedFiles(): Promise<string[]> {
 			{ cwd: getCwd(), encoding: "utf8" },
 		);
 
-		filenames = "Files modified by user:\n" + userFilenames;
+		filenames = `Files modified by user:\n${userFilenames}`;
 
 		// Look at other users' commits if we don't have enough files
 		if (userFilenames.split("\n").length < 10) {
@@ -37,7 +37,7 @@ async function getFrequentlyModifiedFiles(): Promise<string[]> {
 				"git log -n 1000 --pretty=format: --name-only --diff-filter=M | sort | uniq -c | sort -nr | head -n 20",
 				{ cwd: getCwd(), encoding: "utf8" },
 			);
-			filenames += "\n\nFiles modified by other users:\n" + allFilenames;
+			filenames += `\n\nFiles modified by other users:\n${allFilenames}`;
 		}
 
 		const response = await queryHaiku({

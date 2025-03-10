@@ -22,7 +22,7 @@ type QueuedCommand = {
 	reject: (error: Error) => void;
 };
 
-const TEMPFILE_PREFIX = os.tmpdir() + "/claude-";
+const TEMPFILE_PREFIX = `${os.tmpdir()}/claude-`;
 const DEFAULT_TIMEOUT = 30 * 60 * 1000;
 const SIGTERM_CODE = 143; // Standard exit code for SIGTERM
 const FILE_SUFFIXES = {
@@ -313,7 +313,7 @@ export class PersistentShell {
 							// Timeout occurred - kill any running processes
 							this.killChildren();
 							code = SIGTERM_CODE;
-							stderr += (stderr ? "\n" : "") + "Command execution timed out";
+							stderr += `${stderr ? "\n" : ""}Command execution timed out`;
 							logEvent("persistent_shell_command_timeout", {
 								command: command.substring(0, 10),
 								timeout: commandTimeout.toString(),
@@ -336,7 +336,7 @@ export class PersistentShell {
 
 	private sendToShell(command: string) {
 		try {
-			this.shell.stdin?.write(command + "\n");
+			this.shell.stdin?.write(`${command}\n`);
 		} catch (error) {
 			const errorString =
 				error instanceof Error

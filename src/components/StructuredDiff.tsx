@@ -39,14 +39,14 @@ function formatDiff(
 		lines.map((code) => {
 			if (code.startsWith("+")) {
 				return {
-					code: " " + code.slice(1),
+					code: ` ${code.slice(1)}`,
 					i: 0,
 					type: "add",
 				};
 			}
 			if (code.startsWith("-")) {
 				return {
-					code: " " + code.slice(1),
+					code: ` ${code.slice(1)}`,
 					i: 0,
 					type: "remove",
 				};

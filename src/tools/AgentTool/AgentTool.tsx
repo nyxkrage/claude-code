@@ -160,12 +160,12 @@ export const AgentTool = {
 		} else {
 			const result = [
 				toolUseCount === 1 ? "1 tool use" : `${toolUseCount} tool uses`,
-				formatNumber(
+				`${formatNumber(
 					(lastMessage.message.usage.cache_creation_input_tokens ?? 0) +
 						(lastMessage.message.usage.cache_read_input_tokens ?? 0) +
 						lastMessage.message.usage.input_tokens +
 						lastMessage.message.usage.output_tokens,
-				) + " tokens",
+				)} tokens`,
 				formatDuration(Date.now() - startTime),
 			];
 			yield {
@@ -205,7 +205,7 @@ export const AgentTool = {
 	renderToolUseMessage({ prompt }, { verbose }) {
 		const lines = prompt.split(EOL);
 		return applyMarkdown(
-			!verbose && lines.length > 1 ? lines[0] + "…" : prompt,
+			!verbose && lines.length > 1 ? `${lines[0]}…` : prompt,
 		);
 	},
 	renderToolUseRejectedMessage() {

@@ -85,7 +85,7 @@ export function useSlashCommandTypeahead({
 				const suggestion = suggestions[suggestionIndex];
 				if (!suggestion) return true;
 
-				const input = "/" + suggestion + " ";
+				const input = `/${suggestion} `;
 				onInputChange(input);
 				// Manually move cursor to end
 				setCursorOffset(input.length);

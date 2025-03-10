@@ -96,7 +96,7 @@ function format(
 			return EOL;
 		case "text":
 			if (parent?.type === "list_item") {
-				return `${orderedListNumber === null ? "-" : getListNumber(listDepth, orderedListNumber) + "."} ${token.tokens ? token.tokens.map((_) => format(_, listDepth, orderedListNumber, token)).join("") : token.text}${EOL}`;
+				return `${orderedListNumber === null ? "-" : `${getListNumber(listDepth, orderedListNumber)}.`} ${token.tokens ? token.tokens.map((_) => format(_, listDepth, orderedListNumber, token)).join("") : token.text}${EOL}`;
 			} else {
 				return token.text;
 			}

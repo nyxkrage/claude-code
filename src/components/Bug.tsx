@@ -261,8 +261,9 @@ function createGitHubIssueUrl(
 	description: string,
 ): string {
 	const body = encodeURIComponent(
+		// biome-ignore lint/style/useTemplate: more readable than a single template literal
 		`**Bug Description**\n${description}\n\n` +
-			`**Environment Info**\n` +
+			"**Environment Info**\n" +
 			`- Platform: ${env.platform}\n` +
 			`- Terminal: ${env.terminal}\n` +
 			`- Version: ${MACRO.VERSION || "unknown"}\n` +
@@ -321,12 +322,11 @@ async function submitFeedback(
 			return { success: false };
 		}
 
-		logError("Failed to submit feedback:" + response.status);
+		logError(`Failed to submit feedback:${response.status}`);
 		return { success: false };
 	} catch (err) {
 		logError(
-			"Error submitting feedback: " +
-				(err instanceof Error ? err.message : "Unknown error"),
+			`Error submitting feedback: ${err instanceof Error ? err.message : "Unknown error"}`,
 		);
 		return { success: false };
 	}

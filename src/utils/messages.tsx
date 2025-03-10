@@ -237,7 +237,7 @@ export async function processUserInput(
 		const words = input.slice(1).split(" ");
 		let commandName = words[0];
 		if (words.length > 1 && words[1] === "(MCP)") {
-			commandName = commandName + " (MCP)";
+			commandName = `${commandName} (MCP)`;
 		}
 		if (!commandName) {
 			logEvent("tengu_input_slash_missing", { input });
@@ -460,9 +460,7 @@ export function extractTag(html: string, tagName: string): string | null {
 	// 3. Nested tags of the same type
 	// 4. Multiline content
 	const pattern = new RegExp(
-		`<${escapedTag}(?:\\s+[^>]*)?>` + // Opening tag with optional attributes
-			"([\\s\\S]*?)" + // Content (non-greedy match)
-			`<\\/${escapedTag}>`, // Closing tag
+		`<${escapedTag}(?:\\s+[^>]*)?>([\\s\\S]*?)<\\/${escapedTag}>`, // Closing tag
 		"gi",
 	);
 

@@ -34,7 +34,7 @@ export function dateToFilename(date: Date): string {
 const DATE = dateToFilename(new Date());
 
 function getErrorsPath(): string {
-	return join(CACHE_PATHS.errors(), DATE + ".txt");
+	return join(CACHE_PATHS.errors(), `${DATE}.txt`);
 }
 
 export function getMessagesPath(
@@ -322,10 +322,10 @@ export function formatDate(date: Date): string {
 		return `Yesterday at ${timeStr}`;
 	} else {
 		return (
-			date.toLocaleDateString("en-US", {
+			`${date.toLocaleDateString("en-US", {
 				month: "short",
 				day: "numeric",
-			}) + ` at ${timeStr}`
+			})} at ${timeStr}`
 		);
 	}
 }
@@ -355,7 +355,7 @@ export function logMCPError(serverName: string, error: unknown): void {
 			error instanceof Error ? error.stack || error.message : String(error);
 		const timestamp = new Date().toISOString();
 
-		const logFile = join(logDir, DATE + ".txt");
+		const logFile = join(logDir, `${DATE}.txt`);
 
 		if (!existsSync(logDir)) {
 			mkdirSync(logDir, { recursive: true });

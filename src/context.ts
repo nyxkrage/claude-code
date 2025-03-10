@@ -140,8 +140,7 @@ export const getGitStatus = memoize(async (): Promise<string | null> => {
 		const statusLines = status.split("\n").length;
 		const truncatedStatus =
 			statusLines > 200
-				? status.split("\n").slice(0, 200).join("\n") +
-					'\n... (truncated because there are more than 200 lines. If you need more information, run "git status" using BashTool)'
+				? `${status.split("\n").slice(0, 200).join("\n")}\n... (truncated because there are more than 200 lines. If you need more information, run "git status" using BashTool)`
 				: status;
 
 		return `This is the git status at the start of the conversation. Note that this status is a snapshot in time, and will not update during the conversation.\nCurrent branch: ${branch}\n\nMain branch (you will usually use this for PRs): ${mainBranch}\n\nStatus:\n${truncatedStatus || "(clean)"}\n\nRecent commits:\n${log}\n\nYour recent commits:\n${authorLog || "(no recent commits)"}`;
