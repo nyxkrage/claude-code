@@ -466,6 +466,7 @@ async function querySonnetWithPromptCaching(
 				: "",
 		});
 
+		// biome-ignore lint/style/noParameterAssign: introducing a new variable makes this code less readable
 		systemPrompt = [getCLISyspromptPrefix(), ...systemPrompt];
 	}
 

@@ -65,6 +65,7 @@ export const GlobTool = {
 	renderToolResultMessage(output) {
 		// Handle string content for backward compatibility
 		if (typeof output === "string") {
+			// biome-ignore lint/style/noParameterAssign: introducing a new local variable makes this code less readable as this just handles overloaded functions and ensures the rest of the function can assume the type is correct
 			output = JSON.parse(output) as Output;
 		}
 

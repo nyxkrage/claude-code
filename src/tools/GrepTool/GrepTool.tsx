@@ -72,8 +72,10 @@ export const GrepTool = {
 	renderToolResultMessage(output) {
 		// Handle string content for backward compatibility
 		if (typeof output === "string") {
+			// pretty sure the code beneath this is wrong, so rather fail in case this is reachable.
+			throw new Error("Unexpected string output from GrepTool");
 			// Convert string to Output type using tmpDeserializeOldLogResult if needed
-			output = output as unknown as Output;
+			// output = output as unknown as Output;
 		}
 
 		return (

@@ -243,6 +243,7 @@ export function getNextAvailableLogForkNumber(
 	sidechainNumber: number,
 ): number {
 	while (existsSync(getMessagesPath(date, forkNumber, sidechainNumber))) {
+		// biome-ignore lint/style/noParameterAssign: introducing a new local variable makes this code less readable
 		forkNumber++;
 	}
 	return forkNumber;

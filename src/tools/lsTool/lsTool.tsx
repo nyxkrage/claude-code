@@ -241,6 +241,7 @@ function printTree(tree: TreeNode[], level = 0, prefix = ""): string {
 	// Add absolute path at root level
 	if (level === 0) {
 		result += `- ${getCwd()}${sep}\n`;
+		// biome-ignore lint/style/noParameterAssign: introducing a new local variable makes this code less readable
 		prefix = "  ";
 	}
 

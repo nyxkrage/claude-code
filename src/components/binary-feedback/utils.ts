@@ -104,6 +104,7 @@ function contentBlocksEqual(
 	if (cb1.type === "text") {
 		return textContentBlocksEqual(cb1, cb2 as TextBlock);
 	}
+	// biome-ignore lint/style/noParameterAssign: this is just a type cast
 	cb2 = cb2 as ToolUseBlock;
 	return cb1.name === cb2.name && isEqual(cb1.input, cb2.input);
 }
