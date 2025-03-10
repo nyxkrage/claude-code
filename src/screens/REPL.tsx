@@ -424,7 +424,7 @@ export function REPL({
 					</Box>
 				),
 			},
-			...reorderMessages(normalizedMessages).map((_) => {
+			...reorderMessages(normalizedMessages).map((_, i) => {
 				const toolUseID = getToolUseID(_);
 				const message =
 					_.type === "progress" ? (
@@ -434,6 +434,8 @@ export function REPL({
 						// TODO: Find a cleaner way to do this.
 						_.content.message.content[0].text === INTERRUPT_MESSAGE ? (
 							<Message
+								// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better option for the key
+								key={i}
 								message={_.content}
 								messages={_.normalizedMessages}
 								addMargin={false}
@@ -447,7 +449,8 @@ export function REPL({
 								shouldShowDot={false}
 							/>
 						) : (
-							<MessageResponse>
+							// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better option for the key
+							<MessageResponse key={i}>
 								<Message
 									message={_.content}
 									messages={_.normalizedMessages}
@@ -469,6 +472,8 @@ export function REPL({
 						)
 					) : (
 						<Message
+							// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better option for the key
+							key={i}
 							message={_}
 							messages={normalizedMessages}
 							addMargin={true}
