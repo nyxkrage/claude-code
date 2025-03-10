@@ -318,16 +318,16 @@ export function formatDate(date: Date): string {
 
 	if (isToday) {
 		return `Today at ${timeStr}`;
-	} else if (isYesterday) {
+	} 
+	if (isYesterday) {
 		return `Yesterday at ${timeStr}`;
-	} else {
-		return (
-			`${date.toLocaleDateString("en-US", {
-				month: "short",
-				day: "numeric",
-			})} at ${timeStr}`
-		);
 	}
+	return (
+		`${date.toLocaleDateString("en-US", {
+			month: "short",
+			day: "numeric",
+		})} at ${timeStr}`
+	);
 }
 
 export function parseISOString(s: string): Date {

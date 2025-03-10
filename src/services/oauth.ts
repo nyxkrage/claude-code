@@ -211,14 +211,14 @@ export class OAuthService {
 					this.pendingCodePromise.reject(error);
 				}
 				return;
-			} else {
-				logError(err);
-				this.closeServer();
-				if (this.pendingCodePromise) {
-					this.pendingCodePromise.reject(err);
-				}
-				return;
 			}
+			
+			logError(err);
+			this.closeServer();
+			if (this.pendingCodePromise) {
+				this.pendingCodePromise.reject(err);
+			}
+			return;
 		});
 	}
 

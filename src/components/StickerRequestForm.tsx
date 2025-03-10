@@ -48,13 +48,11 @@ export function StickerRequestForm({
 			return "large";
 		}
 		// Medium terminals (can fit medium ASCII art + form content)
-		else if (rows >= 35) {
+		if (rows >= 35) {
 			return "medium";
 		}
 		// Small terminals or any other case
-		else {
-			return "small";
-		}
+		return "small";
 	};
 
 	// Animation logic is now handled by the AnimatedClaudeAsterisk component
@@ -387,7 +385,9 @@ export function StickerRequestForm({
 					</Box>
 				</>
 			);
-		} else if (showingNonUsMessage) {
+		}
+		
+		if (showingNonUsMessage) {
 			return (
 				<>
 					<Box marginY={1}>
@@ -410,97 +410,97 @@ export function StickerRequestForm({
 					</Box>
 				</>
 			);
-		} else {
-			return (
-				<>
-					<Box flexDirection="column">
-						<Text color={theme.text}>
-							Please provide your coordinates for the sticker deployment
-							mission.
-						</Text>
-						<Text color={theme.secondaryText}>
-							Currently only shipping within the United States.
-						</Text>
-					</Box>
+		}
 
-					<Box flexDirection="column">
-						<Box flexDirection="row" marginLeft={2}>
-							{fields.map((f, i) => (
-								<React.Fragment key={f.key}>
-									<Text
-										color={
-											f.key === currentField
-												? theme.suggestion
-												: theme.secondaryText
-										}
-									>
-										{f.key === currentField ? (
-											`[${f.label}]`
-										) : formState[f.key] ? (
-											<Text color={theme.secondaryText}>●</Text>
-										) : (
-											"○"
-										)}
-									</Text>
-									{i < fields.length - 1 && <Text> </Text>}
-								</React.Fragment>
-							))}
-						</Box>
-						<Box marginLeft={2}>
-							<Text color={theme.secondaryText}>
-								Field {fields.findIndex((f) => f.key === currentField) + 1} of{" "}
-								{fields.length}
-							</Text>
-						</Box>
-					</Box>
+		return (
+			<>
+				<Box flexDirection="column">
+					<Text color={theme.text}>
+						Please provide your coordinates for the sticker deployment
+						mission.
+					</Text>
+					<Text color={theme.secondaryText}>
+						Currently only shipping within the United States.
+					</Text>
+				</Box>
 
-					<Box flexDirection="column" marginX={2}>
-						{currentField === "usLocation" ? (
-							// Special Yes/No Buttons for US Location
-							<Box flexDirection="row">
+				<Box flexDirection="column">
+					<Box flexDirection="row" marginLeft={2}>
+						{fields.map((f, i) => (
+							<React.Fragment key={f.key}>
 								<Text
 									color={
-										selectedYesNo === "yes"
-											? theme.success
+										f.key === currentField
+											? theme.suggestion
 											: theme.secondaryText
 									}
-									bold
 								>
-									{selectedYesNo === "yes" ? "●" : "○"} YES
+									{f.key === currentField ? (
+										`[${f.label}]`
+									) : formState[f.key] ? (
+										<Text color={theme.secondaryText}>●</Text>
+									) : (
+										"○"
+									)}
 								</Text>
-								<Text> </Text>
-								<Text
-									color={
-										selectedYesNo === "no" ? theme.error : theme.secondaryText
-									}
-									bold
-								>
-									{selectedYesNo === "no" ? "●" : "○"} NO
-								</Text>
-							</Box>
-						) : (
-							// Regular TextInput for other fields
-							<TextInput
-								value={inputValue}
-								onChange={setInputValue}
-								onSubmit={handleSubmit}
-								placeholder={currentFieldDef.label}
-								cursorOffset={cursorOffset}
-								onChangeCursorOffset={setCursorOffset}
-								columns={40}
-							/>
-						)}
-						{error && (
-							<Box marginTop={1}>
-								<Text color={theme.error} bold>
-									✗ {error.message}
-								</Text>
-							</Box>
-						)}
+								{i < fields.length - 1 && <Text> </Text>}
+							</React.Fragment>
+						))}
 					</Box>
-				</>
-			);
-		}
+					<Box marginLeft={2}>
+						<Text color={theme.secondaryText}>
+							Field {fields.findIndex((f) => f.key === currentField) + 1} of{" "}
+							{fields.length}
+						</Text>
+					</Box>
+				</Box>
+
+				<Box flexDirection="column" marginX={2}>
+					{currentField === "usLocation" ? (
+						// Special Yes/No Buttons for US Location
+						<Box flexDirection="row">
+							<Text
+								color={
+									selectedYesNo === "yes"
+										? theme.success
+										: theme.secondaryText
+								}
+								bold
+							>
+								{selectedYesNo === "yes" ? "●" : "○"} YES
+							</Text>
+							<Text> </Text>
+							<Text
+								color={
+									selectedYesNo === "no" ? theme.error : theme.secondaryText
+								}
+								bold
+							>
+								{selectedYesNo === "no" ? "●" : "○"} NO
+							</Text>
+						</Box>
+					) : (
+						// Regular TextInput for other fields
+						<TextInput
+							value={inputValue}
+							onChange={setInputValue}
+							onSubmit={handleSubmit}
+							placeholder={currentFieldDef.label}
+							cursorOffset={cursorOffset}
+							onChangeCursorOffset={setCursorOffset}
+							columns={40}
+						/>
+					)}
+					{error && (
+						<Box marginTop={1}>
+							<Text color={theme.error} bold>
+								✗ {error.message}
+							</Text>
+						</Box>
+					)}
+				</Box>
+			</>
+		);
 	};
 
 	// Main render with consistent structure

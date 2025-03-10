@@ -71,9 +71,8 @@ function pathFromToolUse(toolUseConfirm: ToolUseConfirm): string | null {
 	if (pathArgName && pathArgName in input) {
 		if (typeof input[pathArgName] === "string") {
 			return toAbsolutePath(input[pathArgName]);
-		} else {
-			return toAbsolutePath(getCwd());
 		}
+		return toAbsolutePath(getCwd());
 	}
 	return null;
 }

@@ -98,12 +98,12 @@ export const bashToolHasPermission = async (
 		// Only allow exact matches for potential command injections
 		if (bashToolCommandHasExactMatchPermission(tool, command, allowedTools)) {
 			return { result: true };
-		} else {
-			return {
-				result: false,
-				message: `Claude requested permissions to use ${tool.name}, but you haven't granted it yet.`,
-			};
 		}
+
+		return {
+			result: false,
+			message: `Claude requested permissions to use ${tool.name}, but you haven't granted it yet.`,
+		};
 	}
 
 	// If there is only one command, no need to process subCommands
@@ -117,12 +117,12 @@ export const bashToolHasPermission = async (
 			)
 		) {
 			return { result: true };
-		} else {
-			return {
-				result: false,
-				message: `Claude requested permissions to use ${tool.name}, but you haven't granted it yet.`,
-			};
 		}
+
+		return {
+			result: false,
+			message: `Claude requested permissions to use ${tool.name}, but you haven't granted it yet.`,
+		};
 	}
 	if (
 		subCommands.every((subCommand) => {

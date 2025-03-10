@@ -24,9 +24,9 @@ export default function Link({ url, children }: LinkProps): React.ReactNode {
 				<Text>{displayContent}</Text>
 			</InkLink>
 		);
-	} else {
-		// But if we don't have a title and just have a url *and* are not a terminal that supports links
-		// that doesn't support clickable links anyway, just show the URL
-		return <Text underline>{displayContent}</Text>;
 	}
+
+	// But if we don't have a title and just have a url *and* are not a terminal that supports links
+	// that doesn't support clickable links anyway, just show the URL
+	return <Text underline>{displayContent}</Text>;
 }

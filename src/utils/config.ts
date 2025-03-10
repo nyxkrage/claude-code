@@ -475,15 +475,15 @@ export function getConfigForCLI(key: string, global: boolean): unknown {
 			process.exit(1);
 		}
 		return getGlobalConfig()[key];
-	} else {
-		if (!isProjectConfigKey(key)) {
-			console.error(
-				`Error: '${key}' is not a valid config key. Valid keys are: ${PROJECT_CONFIG_KEYS.join(", ")}`,
-			);
-			process.exit(1);
-		}
-		return getCurrentProjectConfig()[key];
 	}
+	
+	if (!isProjectConfigKey(key)) {
+		console.error(
+			`Error: '${key}' is not a valid config key. Valid keys are: ${PROJECT_CONFIG_KEYS.join(", ")}`,
+		);
+		process.exit(1);
+	}
+	return getCurrentProjectConfig()[key];
 }
 
 export function setConfigForCLI(
@@ -572,7 +572,7 @@ export function listConfigForCLI(global: boolean): object {
 	if (global) {
 		const currentConfig = pick(getGlobalConfig(), GLOBAL_CONFIG_KEYS);
 		return currentConfig;
-	} else {
-		return pick(getCurrentProjectConfig(), PROJECT_CONFIG_KEYS);
 	}
+
+	return pick(getCurrentProjectConfig(), PROJECT_CONFIG_KEYS);
 }

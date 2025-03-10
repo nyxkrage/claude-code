@@ -57,7 +57,9 @@ const compact = {
 			throw new Error(
 				`Failed to generate conversation summary - response did not contain valid text content - ${summaryResponse}`,
 			);
-		} else if (summary.startsWith(API_ERROR_MESSAGE_PREFIX)) {
+		}
+		
+		if (summary.startsWith(API_ERROR_MESSAGE_PREFIX)) {
 			throw new Error(summary);
 		}
 

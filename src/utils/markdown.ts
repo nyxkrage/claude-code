@@ -27,12 +27,11 @@ function format(
 		case "code":
 			if (token.lang && supportsLanguage(token.lang)) {
 				return highlight(token.text, { language: token.lang }) + EOL;
-			} else {
-				logError(
-					`Language not supported while highlighting code, falling back to markdown: ${token.lang}`,
-				);
-				return highlight(token.text, { language: "markdown" }) + EOL;
 			}
+			logError(
+				`Language not supported while highlighting code, falling back to markdown: ${token.lang}`,
+			);
+			return highlight(token.text, { language: "markdown" }) + EOL;
 		case "codespan":
 			// inline code
 			return chalk.blue(token.text);
@@ -97,9 +96,9 @@ function format(
 		case "text":
 			if (parent?.type === "list_item") {
 				return `${orderedListNumber === null ? "-" : `${getListNumber(listDepth, orderedListNumber)}.`} ${token.tokens ? token.tokens.map((_) => format(_, listDepth, orderedListNumber, token)).join("") : token.text}${EOL}`;
-			} else {
-				return token.text;
 			}
+			
+			return token.text;
 	}
 	// TODO: tables
 	return "";

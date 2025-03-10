@@ -244,7 +244,8 @@ function isCommandList(command: string): boolean {
 			if (part.op === "glob") {
 				// Globs are safe
 				continue;
-			} else if (COMMAND_LIST_SEPARATORS.has(part.op)) {
+			}
+			if (COMMAND_LIST_SEPARATORS.has(part.op)) {
 				// Command list separators are safe
 				continue;
 			}

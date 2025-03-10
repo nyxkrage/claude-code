@@ -331,19 +331,19 @@ export function userMessageToMessageParam(
 					},
 				],
 			};
-		} else {
-			return {
-				role: "user",
-				content: message.message.content.map((_, i) => ({
-					..._,
-					...(i === message.message.content.length - 1
-						? PROMPT_CACHING_ENABLED
-							? { cache_control: { type: "ephemeral" } }
-							: {}
-						: {}),
-				})),
-			};
 		}
+		
+		return {
+			role: "user",
+			content: message.message.content.map((_, i) => ({
+				..._,
+				...(i === message.message.content.length - 1
+					? PROMPT_CACHING_ENABLED
+						? { cache_control: { type: "ephemeral" } }
+						: {}
+					: {}),
+			})),
+		};
 	}
 	return {
 		role: "user",
@@ -369,21 +369,21 @@ export function assistantMessageToMessageParam(
 					},
 				],
 			};
-		} else {
-			return {
-				role: "assistant",
-				content: message.message.content.map((_, i) => ({
-					..._,
-					...(i === message.message.content.length - 1 &&
-					_.type !== "thinking" &&
-					_.type !== "redacted_thinking"
-						? PROMPT_CACHING_ENABLED
-							? { cache_control: { type: "ephemeral" } }
-							: {}
-						: {}),
-				})),
-			};
 		}
+
+		return {
+			role: "assistant",
+			content: message.message.content.map((_, i) => ({
+				..._,
+				...(i === message.message.content.length - 1 &&
+				_.type !== "thinking" &&
+				_.type !== "redacted_thinking"
+					? PROMPT_CACHING_ENABLED
+						? { cache_control: { type: "ephemeral" } }
+						: {}
+					: {}),
+			})),
+		};
 	}
 	return {
 		role: "assistant",

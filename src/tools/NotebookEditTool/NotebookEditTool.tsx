@@ -162,7 +162,9 @@ export const NotebookEditTool = {
 				result: false,
 				message: `Cell number is out of bounds. For insert mode, the maximum value is ${notebook.cells.length} (to append at the end).`,
 			};
-		} else if (
+		}
+		
+		if (
 			(edit_mode === "replace" || edit_mode === "delete") &&
 			(cell_number >= notebook.cells.length || !notebook.cells[cell_number])
 		) {

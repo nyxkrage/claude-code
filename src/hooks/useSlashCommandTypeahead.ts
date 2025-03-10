@@ -66,7 +66,9 @@ export function useSlashCommandTypeahead({
 					prev >= suggestions.length - 1 ? 0 : prev + 1,
 				);
 				return true;
-			} else if (key.upArrow) {
+			}
+			
+			if (key.upArrow) {
 				setSelectedSuggestion((prev) =>
 					prev <= 0 ? suggestions.length - 1 : prev - 1,
 				);
@@ -74,7 +76,7 @@ export function useSlashCommandTypeahead({
 			}
 
 			// Handle selection completion via tab or return
-			else if (key.tab || (key.return && selectedSuggestion >= 0)) {
+			if (key.tab || (key.return && selectedSuggestion >= 0)) {
 				// Ensure a suggestion is selected
 				if (selectedSuggestion === -1 && key.tab) {
 					setSelectedSuggestion(0);
