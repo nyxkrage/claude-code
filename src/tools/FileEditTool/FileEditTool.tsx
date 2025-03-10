@@ -195,7 +195,7 @@ export const FileEditTool = {
 		if (!file.includes(old_string)) {
 			return {
 				result: false,
-				message: `String to replace not found in file.`,
+				message: "String to replace not found in file.",
 				meta: {
 					isFilePathAbsolute: String(isAbsolute(file_path)),
 				},

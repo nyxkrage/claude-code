@@ -103,7 +103,7 @@ export function useTextInput({
 	const handleEscape = useDoublePress(
 		(show) => {
 			maybeClearImagePasteErrorTimeout();
-			onMessage?.(!!originalValue && show, `Press Escape again to clear`);
+			onMessage?.(!!originalValue && show, "Press Escape again to clear");
 		},
 		() => {
 			if (originalValue) {

@@ -77,7 +77,7 @@ const compact = {
 		getMessagesSetter()([]);
 		setForkConvoWithMessagesOnTheNextRender([
 			createUserMessage(
-				`Use the /compact command to clear the conversation history, and start a new conversation with the summary in context.`,
+				"Use the /compact command to clear the conversation history, and start a new conversation with the summary in context.",
 			),
 			summaryResponse,
 		]);

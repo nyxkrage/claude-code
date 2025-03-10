@@ -505,7 +505,7 @@ export function setConfigForCLI(
 
 		if (key === "autoUpdaterStatus" && !isAutoUpdaterStatus(value as string)) {
 			console.error(
-				`Error: Invalid value for autoUpdaterStatus. Must be one of: disabled, enabled, no_permissions, not_configured`,
+				"Error: Invalid value for autoUpdaterStatus. Must be one of: disabled, enabled, no_permissions, not_configured",
 			);
 			process.exit(1);
 		}

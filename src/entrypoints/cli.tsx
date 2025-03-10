@@ -191,7 +191,7 @@ async function setup(
 			process.getuid() === 0
 		) {
 			console.error(
-				`--dangerously-skip-permissions cannot be used with root/sudo privileges for security reasons`,
+				"--dangerously-skip-permissions cannot be used with root/sudo privileges for security reasons",
 			);
 			process.exit(1);
 		}
@@ -671,10 +671,10 @@ ${commandList}`,
 			console.log(`${name}:`);
 			console.log(`  Scope: ${server.scope}`);
 			if (server.type === "sse") {
-				console.log(`  Type: sse`);
+				console.log("  Type: sse");
 				console.log(`  URL: ${server.url}`);
 			} else {
-				console.log(`  Type: stdio`);
+				console.log("  Type: stdio");
 				console.log(`  Command: ${server.command}`);
 				console.log(`  Args: ${server.args.join(" ")}`);
 				if (server.env) {

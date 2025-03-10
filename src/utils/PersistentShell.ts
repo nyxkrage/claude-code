@@ -274,7 +274,7 @@ export class PersistentShell {
 			);
 
 			// 2. Capture exit code immediately after command execution to avoid losing it
-			commandParts.push(`EXEC_EXIT_CODE=$?`);
+			commandParts.push("EXEC_EXIT_CODE=$?");
 
 			// 3. Update CWD file
 			commandParts.push(`pwd > ${this.cwdFile}`);

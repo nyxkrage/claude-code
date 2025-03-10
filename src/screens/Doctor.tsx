@@ -41,7 +41,7 @@ export function Doctor({ onDone, doctorMode = false }: Props): React.ReactNode {
 
 	const options: Option[] = [
 		{
-			label: `Manually fix permissions on current npm prefix (Recommended)`,
+			label: "Manually fix permissions on current npm prefix (Recommended)",
 			value: "manual",
 			description:
 				platform === "win32"
