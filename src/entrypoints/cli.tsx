@@ -230,7 +230,7 @@ async function setup(
 			shiftEnterKeyBindingInstalled: true,
 		};
 		// Remove the old config property
-		delete updatedConfig.iterm2KeyBindingInstalled;
+		updatedConfig.iterm2KeyBindingInstalled = undefined;
 		saveGlobalConfig(updatedConfig);
 	}
 
