@@ -359,7 +359,7 @@ export const useSelectState = ({
 		if (state.value && state.previousValue !== state.value) {
 			onChange?.(state.value);
 		}
-	}, [state.previousValue, state.value, options, onChange]);
+	}, [state.previousValue, state.value, onChange]);
 
 	useEffect(() => {
 		if (state.focusedValue) {

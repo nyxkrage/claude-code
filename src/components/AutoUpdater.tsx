@@ -77,14 +77,14 @@ export function AutoUpdater({
 			}
 
 			onAutoUpdaterResult({
-				version: latestVersion!,
+				version: latestVersion,
 				status: installStatus,
 			});
 		}
 		// Don't re-render when isUpdating changes
 		// TODO: Find a cleaner way to do this
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [onAutoUpdaterResult]);
+	}, [onAutoUpdaterResult, isUpdating, onChangeIsUpdating]);
 
 	// Initial check
 	useEffect(() => {
@@ -122,13 +122,11 @@ export function AutoUpdater({
 				</Text>
 			)}
 			{isUpdating && (
-				<>
-					<Box>
-						<Text color={theme.secondaryText} dimColor wrap="end">
-							Auto-updating to v{versions.latest}…
-						</Text>
-					</Box>
-				</>
+				<Box>
+					<Text color={theme.secondaryText} dimColor wrap="end">
+						Auto-updating to v{versions.latest}…
+					</Text>
+				</Box>
 			)}
 			{autoUpdaterResult?.status === "success" && autoUpdaterResult?.version ? (
 				<Text color={theme.success}>

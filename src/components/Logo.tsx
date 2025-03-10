@@ -78,7 +78,7 @@ export function Logo({
 							{isCustomApiKey && apiKey ? (
 								<Text color={theme.secondaryText}>
 									• API Key:{" "}
-									<Text bold>sk-ant-…{apiKey!.slice(-width + 25)}</Text>
+									<Text bold>sk-ant-…{apiKey.slice(-width + 25)}</Text>
 								</Text>
 							) : null}
 							{process.env.DISABLE_PROMPT_CACHING ? (
