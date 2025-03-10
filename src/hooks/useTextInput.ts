@@ -9,7 +9,7 @@ import {
 
 const IMAGE_PLACEHOLDER = "[Image pasted]";
 
-type MaybeCursor = void | Cursor;
+type MaybeCursor = Cursor | undefined;
 type InputHandler = (input: string) => MaybeCursor;
 type InputMapper = (input: string) => MaybeCursor;
 function mapInput(input_map: Array<[string, InputHandler]>): InputMapper {

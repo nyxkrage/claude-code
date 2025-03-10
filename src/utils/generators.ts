@@ -12,8 +12,8 @@ export async function lastX<A>(as: AsyncGenerator<A>): Promise<A> {
 }
 
 type QueuedGenerator<A> = {
-	done: boolean | void;
-	value: A | void;
+	done?: boolean;
+	value?: A;
 	generator: AsyncGenerator<A, void>;
 	promise: Promise<QueuedGenerator<A>>;
 };
