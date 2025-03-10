@@ -76,7 +76,7 @@ function getRetryDelay(
 ): number {
 	if (retryAfterHeader) {
 		const seconds = Number.parseInt(retryAfterHeader, 10);
-		if (!isNaN(seconds)) {
+		if (!Number.isNaN(seconds)) {
 			return seconds * 1000;
 		}
 	}

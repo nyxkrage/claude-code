@@ -845,7 +845,7 @@ ${commandList}`,
 					if (identifier !== undefined) {
 						// Check if identifier is a number or a file path
 						const number = Math.abs(Number.parseInt(identifier));
-						const isNumber = !isNaN(number);
+						const isNumber = !Number.isNaN(number);
 						// biome-ignore lint/suspicious/noExplicitAny: TODO: unsure about the log messages structure
 						let messages: any[];
 						let date: string

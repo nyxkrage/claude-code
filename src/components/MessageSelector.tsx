@@ -108,7 +108,7 @@ export function MessageSelector({
 
 		// Handle number keys (1-9)
 		const num = Number(input);
-		if (!isNaN(num) && num >= 1 && num <= Math.min(9, allItems.length)) {
+		if (!Number.isNaN(num) && num >= 1 && num <= Math.min(9, allItems.length)) {
 			if (!allItems[num - 1]) {
 				return;
 			}
