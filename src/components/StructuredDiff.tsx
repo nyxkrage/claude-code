@@ -22,7 +22,7 @@ export function StructuredDiff({
 		() => formatDiff(patch.lines, patch.oldStart, width, dim, overrideTheme),
 		[patch.lines, patch.oldStart, width, dim, overrideTheme],
 	);
-
+	// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better key for this
 	return diff.map((_, i) => <Box key={i}>{_}</Box>);
 }
 

@@ -127,7 +127,7 @@ export function Logo({
 							<Text color={theme.secondaryText}>MCP Servers:</Text>
 						</Box>
 						{mcpClients.map((client, idx) => (
-							<Box key={idx} width={width - 6}>
+							<Box key={client.name} width={width - 6}>
 								<Text color={theme.secondaryText}>• {client.name}</Text>
 								<Box flexGrow={1} />
 								<Text

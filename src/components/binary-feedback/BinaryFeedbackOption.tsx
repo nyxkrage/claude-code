@@ -38,6 +38,7 @@ export function BinaryFeedbackOption({
 	return normalizeMessages([message])
 		.filter((_) => _.type !== "progress")
 		.map((_, index) => (
+			// biome-ignore lint/suspicious/noArrayIndexKey: there probably isn't a better key for this, though I dont think messages should ever be modified in the middle of the list anyway
 			<Box flexDirection="column" key={index}>
 				<Message
 					addMargin={false}

@@ -29,6 +29,7 @@ export function AssistantLocalCommandOutputMessage({
 				<Text color={theme.secondaryText}>{"  "}⎿ </Text>
 			</Box>
 			{insides.map((_, index) => (
+				// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better key for this
 				<Box key={index} flexDirection="column">
 					{_}
 				</Box>

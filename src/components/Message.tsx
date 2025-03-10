@@ -57,6 +57,7 @@ export function Message({
 			<Box flexDirection="column" width="100%">
 				{message.message.content.map((_, index) => (
 					<AssistantMessage
+						// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better key for this
 						key={index}
 						param={_}
 						costUSD={message.costUSD}
@@ -87,6 +88,7 @@ export function Message({
 		<Box flexDirection="column" width="100%">
 			{content.map((_, index) => (
 				<UserMessage
+					// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better key for this
 					key={index}
 					message={message}
 					messages={messages}

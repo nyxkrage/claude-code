@@ -156,6 +156,7 @@ export default function ProjectOnboarding({
 						</Box>
 						<Box flexDirection="column" marginLeft={1}>
 							{releaseNotesToShow.map((note, noteIndex) => (
+								// biome-ignore lint/suspicious/noArrayIndexKey: dont think there is a better key for this
 								<Text key={noteIndex} color={getTheme().secondaryText}>
 									• {note}
 								</Text>

@@ -51,36 +51,38 @@ export const MCPTool = {
 	},
 	renderToolResultMessage(output, { verbose }) {
 		if (Array.isArray(output)) {
-			return (
-				<Box flexDirection="column">
-					{output.map((item, i) => {
-						if (item.type === "image") {
-							return (
-								<Box
-									key={i}
-									justifyContent="space-between"
-									overflowX="hidden"
-									width="100%"
-								>
-									<Box flexDirection="row">
-										<Text>&nbsp;&nbsp;⎿ &nbsp;</Text>
-										<Text>[Image]</Text>
-									</Box>
-								</Box>
-							);
-						}
-						const lines = item.text.split("\n").length;
-						return (
-							<OutputLine
-								key={i}
-								content={item.text}
-								lines={lines}
-								verbose={verbose}
-							/>
-						);
-					})}
-				</Box>
-			);
+			throw new Error("Unexpected output from MCP tool, this should always be a string...");
+
+			// return (
+			// 	<Box flexDirection="column">
+			// 		{output.map((item, i) => {
+			// 			if (item.type === "image") {
+			// 				return (
+			// 					<Box
+			// 						key={i}
+			// 						justifyContent="space-between"
+			// 						overflowX="hidden"
+			// 						width="100%"
+			// 					>
+			// 						<Box flexDirection="row">
+			// 							<Text>&nbsp;&nbsp;⎿ &nbsp;</Text>
+			// 							<Text>[Image]</Text>
+			// 						</Box>
+			// 					</Box>
+			// 				);
+			// 			}
+			// 			const lines = item.text.split("\n").length;
+			// 			return (
+			// 				<OutputLine
+			// 					key={item}
+			// 					content={item.text}
+			// 					lines={lines}
+			// 					verbose={verbose}
+			// 				/>
+			// 			);
+			// 		})}
+			// 	</Box>
+			// );
 		}
 
 		if (!output) {

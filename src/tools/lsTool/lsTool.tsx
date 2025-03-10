@@ -78,6 +78,7 @@ export const LSTool = {
 							.filter((_) => _.trim() !== "")
 							.slice(0, verbose ? undefined : MAX_LINES)
 							.map((_, i) => (
+								// biome-ignore lint/suspicious/noArrayIndexKey: there is no better key for this
 								<Text key={i}>{_}</Text>
 							))}
 						{!verbose && result.split("\n").length > MAX_LINES && (

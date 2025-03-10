@@ -114,6 +114,7 @@ export function ConfigureNpmPrefix({
 					dangerous. The following changes will be made:
 				</Text>
 				{installSteps.map((step, index) => (
+					// biome-ignore lint/suspicious/noArrayIndexKey: there is no better key for this
 					<Box key={index} flexDirection="column">
 						<Box flexDirection="row">
 							<Text
