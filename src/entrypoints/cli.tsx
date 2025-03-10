@@ -791,7 +791,7 @@ ${commandList}`,
 			.argument(
 				"[number]",
 				"A number (0, 1, 2, etc.) to display a specific log",
-				parseInt,
+				Number.parseInt,
 			)
 			.option("-c, --cwd <cwd>", "The current working directory", String, cwd())
 			.action(async (number, { cwd }) => {
@@ -844,7 +844,7 @@ ${commandList}`,
 					// If a specific conversation is requested, load and resume it directly
 					if (identifier !== undefined) {
 						// Check if identifier is a number or a file path
-						const number = Math.abs(parseInt(identifier));
+						const number = Math.abs(Number.parseInt(identifier));
 						const isNumber = !isNaN(number);
 						let messages, date, forkNumber;
 						try {
@@ -922,7 +922,7 @@ ${commandList}`,
 			.argument(
 				"[number]",
 				"A number (0, 1, 2, etc.) to display a specific log",
-				parseInt,
+				Number.parseInt,
 			)
 			.option("-c, --cwd <cwd>", "The current working directory", String, cwd())
 			.action(async (number, { cwd }) => {

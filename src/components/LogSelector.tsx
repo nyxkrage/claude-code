@@ -73,7 +73,7 @@ export function LogSelector({
 			</Box>
 			<Select
 				options={options}
-				onChange={(index) => onSelect(parseInt(index, 10))}
+				onChange={(index) => onSelect(Number.parseInt(index, 10))}
 				visibleOptionCount={visibleCount}
 			/>
 			{hiddenCount > 0 && (

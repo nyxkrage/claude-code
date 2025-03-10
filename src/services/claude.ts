@@ -75,7 +75,7 @@ function getRetryDelay(
 	retryAfterHeader?: string | null,
 ): number {
 	if (retryAfterHeader) {
-		const seconds = parseInt(retryAfterHeader, 10);
+		const seconds = Number.parseInt(retryAfterHeader, 10);
 		if (!isNaN(seconds)) {
 			return seconds * 1000;
 		}
@@ -247,7 +247,7 @@ export function getAnthropicClient(model?: string): Anthropic {
 	const ARGS = {
 		defaultHeaders,
 		maxRetries: 0, // Disabled auto-retry in favor of manual implementation
-		timeout: parseInt(process.env.API_TIMEOUT_MS || String(60 * 1000), 10),
+		timeout: Number.parseInt(process.env.API_TIMEOUT_MS || String(60 * 1000), 10),
 	};
 	if (USE_BEDROCK) {
 		const client = new AnthropicBedrock(ARGS);
